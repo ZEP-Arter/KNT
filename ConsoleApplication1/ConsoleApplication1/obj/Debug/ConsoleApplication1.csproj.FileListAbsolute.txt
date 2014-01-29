@@ -1,0 +1,9 @@
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenTK.dll
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenTK.pdb
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\bin\Debug\OpenTK.xml
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Branden\Desktop\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
