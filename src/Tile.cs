@@ -1,7 +1,9 @@
+using KNT.GUI;
+
 namespace GameLogic
 {
-	public class Tile
+	public class Tile : IImage
 	{
 		
-  }
+    }
 }
