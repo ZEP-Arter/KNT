@@ -1,5 +1,8 @@
+using KNT.GUI;
+
 namespace GameLogic
 {
+<<<<<<< HEAD
     //THERE ARE 48 TILES
     //NUMBER OF TILES ON A 4 PLAYER BOARD IS 37
     public class Tile
@@ -13,5 +16,10 @@ namespace GameLogic
 
         private int playerControl;
 
+=======
+	public class Tile : IImage
+	{
+		
+>>>>>>> ebe1bfc5d900444dc531ae296102bd9cbf6900c2
     }
 }
