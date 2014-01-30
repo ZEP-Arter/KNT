@@ -1,7 +1,9 @@
+using KNT.GUI;
+
 namespace GameLogic
 {
     //THERE ARE 351 THINGS
-    public class Things
+    public class Things : IImage
     {
         //Type of Thing:    Special Income, Creature, Magic, Treasure, Event, Gold Counter,
         //                  Fort, Control Marker, Special Character

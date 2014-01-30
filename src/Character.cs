@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +26,17 @@ namespace GameLogic
 			{ return name; }
 			
 			public void setOwned()
-			{ isOwned ? (isOwned = false) : (isOwned = true) ; }
+            {
+                if (isOwned)
+                    isOwned = false;
+                else
+                    isOwned = true;
+            }
 		
 		//private
 		
 		//protected
-			protected setName(string n)
+			protected void setName(string n)
 			{ name = n; }
 		
 		//private members
@@ -44,5 +49,7 @@ namespace GameLogic
 			
 			//is owned by a player ( not in pool next to the bank)
 			private bool isOwned;
+
+            //this needs some sort of image
     }
 }

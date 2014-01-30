@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 namespace GameLogic
 {
 	public class Player
@@ -41,8 +46,22 @@ namespace GameLogic
 
             public int getTurn()
             { return turn; }
-		
-		//private
+
+            public Things getThingFromRack(int pos)
+            {
+                Things thing = rack[pos];
+
+                removeFromRack(thing);
+
+                return thing;
+            }
+
+        //private
+
+            private void removeFromRack(Things thing)
+            {
+                rack.Remove(thing);
+            }
 		
 		//private members
 		//
@@ -55,11 +74,12 @@ namespace GameLogic
         //  turn position : since this is going to change I think it is best we have a var for it, not sure what type, keeping it as 'int' for now
             private int turn;
 
-		//  things ( this will have to have a bool (isOnRack)
-		//
+		//  things ( this will have to have a bool (isOnRack) // this is probs the things in play
+            private List<Things> things;
 		//  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
-		//
-		// Rack ( this is an Obj, with just a list. mostly logic )
+            private List<SpecialCharacter> characters;
+		// Rack
+            private List<Things> rack;
 		// ( cannot keep gold counters, special characters, and forts )
 	}
 
