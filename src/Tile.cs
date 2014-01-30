@@ -13,7 +13,7 @@ namespace GameLogic
         //Shows whether the Tile can be selected as a starting point
         private bool startPossible;
 
-        private int playerControl;
+		private Player playerControl;
 
     }
 }
