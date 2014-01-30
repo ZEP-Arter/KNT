@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace GameLogic
 {
@@ -9,14 +13,52 @@ namespace GameLogic
 		
 		//public
 		
-			public getGame() { return game; }
+			public GameBoard getGame() { return game; }
 		
-			public createGame() { game = new GameBoard(); }
+			public void createGame(string hostName) 
+            { 
+                game = new GameBoard();
+
+                addPlayer(hostName);
+
+                currentPlayer = players[0];
+            }
+
+            public void play() { }
+
+            public void addPlayer(string name)
+            {
+                if (players.Count == 0)
+                    players.Add(new Player(name));
+                else
+                    players.Add(new Player(name, NetworkPosition.CLIENT));
+            }
 		
 		//private
 		
 			//ctor
-			private GameBoard () {} 
+			private GameBoard () 
+            {
+                theBoard = new Board();
+                players = new List<Player>(4);
+            }
+
+            private void playTurn( Player p )
+            {
+                    
+            }
+
+            private void nextTurn()
+            {
+                foreach (Player p in players)
+                {
+                    if (p.getTurn() == (currentPlayer.getTurn() + 1))
+                    {
+                        playTurn(p);
+                        break;
+                    }
+                }
+            }
 		
 		// private members
 		
@@ -24,10 +66,13 @@ namespace GameLogic
 			private GameBoard game;
 		
 			// List of Players
-			//
+            List<Player> players;
 		
 			// Board Obj
-			//
+            private Board theBoard;
+
+            // person who is currently playing their turn
+            private Player currentPlayer;
 		
 			// the Bank
 			//
