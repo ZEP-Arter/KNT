@@ -97,10 +97,103 @@ namespace GameLogic
             {
                 //init things, characters, gold and other things that need to be set up. ie . the board, the bank, the playing cup (whatever that is :p)
                 // init bank
+				initBank();
                 // init cup
                 // init players ( this may need a lot of logic )
                 // init board
             }
+
+			private void initBank()
+			{
+				initSpecialCharacters();
+			}
+
+			private void initSpecialCharacters()
+			{
+				string type = "SpecialCharacters";
+				
+				if( !bank.ContainsKey(type) )
+				{
+					bank.Add(type, new List<Things>());
+				}
+				
+				List<Things> sc = bank[type];
+				List<Attributes> attr = new List<Attributes>();
+				
+				sc.Add(new SpecialCharacter("Sword Master", "", 4, attr));
+				
+				//MAGIC\\
+				
+				attr.Add(Attributes.MAGIC);
+				
+				//ctor for special characters (name, path_to_image, combat_score, list_of_attributes)
+				
+				sc.Add(new SpecialCharacter("Arch Cleric", "", 5, attr));
+				
+				sc.Add(new SpecialCharacter("Arch Mage", "", 6, attr));
+				
+				//SPECIAL\\
+				
+				attr.clear();
+				
+				attr.Add(Attributes.SPECIAL);
+				
+				sc.Add(new SpecialCharacter("Assassin Primus", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Baurn Munchausen", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("DeerHunter", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Desert Master", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Dwarf King", "", 5, attr));
+				
+				sc.Add(new SpecialCharacter("Forest King", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Grand Duke", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Ice Lord", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Jungle Lord", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Master Thief", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Mountain King", "", 4, attr));
+				
+				sc.Add(new SpecialCharacter("Plains Lord", "", 4, attr));
+				
+			    sc.Add(new SpecialCharacter("Swamp King", "", 4, attr));
+			
+				sc.Add(new SpecialCharacter("Warlord", "", 5, attr));
+				
+				//RANGED\\
+				
+				attr.clear();
+				
+				attr.Add(Attributes.RANGED);
+				
+				sc.Add(new SpecialCharacter("Elf Lord", "", 6, attr));
+				
+				sc.Add(new RangedCharacter("Marksman", "", 5, attr, 2));
+				
+				//FLYING\\
+				
+				attr.clear();
+				
+				attr.Add(Attributes.FLYING);
+				
+				sc.Add(new SpecialCharacter("Ghaog II", "", 6, attr));
+				
+				sc.Add(new SpecialCharacter("Lord of the Eagles", "", 5, attr));
+				
+				//CHARGE\\
+				
+				attr.clear();
+				
+				attr.Add(Attributes.CHARGE);
+				
+				sc.Add(new SpecialCharacter("Sir Lance-a-Lot", "", 5, attr));
+			}
 		
 		// private members
 		
