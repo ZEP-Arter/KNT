@@ -5,23 +5,20 @@ using System.Text;
 
 namespace GameLogic
 {
-    class SpecialCharacter : Things
+    class Creature : Things
     {
 		//ctor
-			public SpecialCharacter( string n, string path, int c, List<Attributes> attr)
-			{
-				base("SpecialCharater", n, path);
-                
-                combatValue = c;
-                attributes = attr;
-			}
+        public Creature(string name, string path, string hex, int c, List<Attributes> attr)
+        {
+            base("Creature", name, path);
+            hexType = hex;
+            combatValue = c
+            attributes = attr;
+        }
 			
 		//public
 		
 		//private members
-		
-			// special abilities
-			private List<string> abilities; // maybe make this a class in itself ( 'abilities' ) not sure yet as to what the contain
     }
 
 	public enum Attributes

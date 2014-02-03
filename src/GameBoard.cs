@@ -34,7 +34,7 @@ namespace GameLogic
                     players.Add(new Player(name, NetworkPosition.CLIENT));
             }
 
-            public Things getRanodmThingFromCup()
+            public Things getRandomThingFromCup()
             {
                 Random r = new Random();
 
@@ -99,6 +99,7 @@ namespace GameLogic
                 // init bank
 				initBank();
                 // init cup
+                initCup();
                 // init players ( this may need a lot of logic )
                 // init board
             }
@@ -194,6 +195,60 @@ namespace GameLogic
 				
 				sc.Add(new SpecialCharacter("Sir Lance-a-Lot", "", 5, attr));
 			}
+        
+            private void initCup()
+            {
+                initCreatures();   
+            }
+        
+            private void initCreatures()
+            {
+                List<Attributes> attr = new List<Attributes>();
+                
+                playingCup.Add(new Creature("Goblin", "", "Mountain", 1, attr));
+                playingCup.Add(new Creature("Goblin", "", "Mountain", 1, attr));
+                playingCup.Add(new Creature("Goblin", "", "Mountain", 1, attr));
+                playingCup.Add(new Creature("Goblin", "", "Mountain", 1, attr));
+                playingCup.Add(new Creature("Dwarves", "", "Mountain", 3, attr)); //Charge
+                playingCup.Add(new Creature("Dwarves", "", "Mountain", 2, attr)); //Ranged
+                playingCup.Add(new Creature("Dwarves", "", "Mountain", 3, attr)); //Ranged
+                playingCup.Add(new Creature("Troll", "", "Mountain", 4, attr));
+                playingCup.Add(new Creature("Great Eagle", "", "Mountain", 2, attr)); //Flying
+                playingCup.Add(new Creature("Brown Dragon", "", "Mountain", 3, attr)); //Flying
+                playingCup.Add(new Creature("Mountain Men", "", "Mountain", 1, attr));
+                playingCup.Add(new Creature("Mountain Men", "", "Mountain", 1, attr));
+                playingCup.Add(new Creature("Giant Roc", "", "Mountain", 3, attr)); //Flying
+                playingCup.Add(new Creature("Giant Condor", "", "Mountain", 3, attr)); //Flying
+                playingCup.Add(new Creature("Cyclops", "", "Mountain", 5, attr));
+                playingCup.Add(new Creature("Giant Hawk", "", "Mountain", 1, attr)); //Flying
+                playingCup.Add(new Creature("Ogre", "", "Mountain", 2, attr));
+                playingCup.Add(new Creature("Brown Knight", "", "Mountain", 4, attr)); //Charge
+                playingCup.Add(new Creature("Little Roc", "", "Mountain", 2, attr)); //Flying
+                playingCup.Add(new Creature("Giant", "", "Mountain", 4, attr)); //Ranged
+                playingCup.Add(new Creature("Mountain Lion", "", "Mountain", 2, attr));
+                
+                playingCup.Add(new Creature("Villains", "", "Plains", 2, attr));
+                playingCup.Add(new Creature("Gypsies", "", "Plains", 2, attr)); //Magic
+                playingCup.Add(new Creature("White Knight", "", "Plains", 3, attr)); //Charge
+                playingCup.Add(new Creature("Tribesmen", "", "Plains", 2, attr));
+                playingCup.Add(new Creature("Greathunter", "", "Plains", 2, attr)); //Ranged
+                playingCup.Add(new Creature("Wolf Pack", "", "Plains", 3, attr));
+                playingCup.Add(new Creature("Lion Pride", "", "Plains", 3, attr));
+                playingCup.Add(new Creature("Farmers", "", "Plains", 1, attr));
+                playingCup.Add(new Creature("Farmers", "", "Plains", 1, attr));
+                playingCup.Add(new Creature("Farmers", "", "Plains", 1, attr));
+                playingCup.Add(new Creature("Farmers", "", "Plains", 1, attr));
+                playingCup.Add(new Creature("Buffalo Herd", "", "Plains", 3, attr));
+                playingCup.Add(new Creature("Buffalo Herd", "", "Plains", 4, attr));
+                playingCup.Add(new Creature("Giant Beetle", "", "Plains", 2, attr)); //Flying
+                playingCup.Add(new Creature("Giant Hawk", "", "Plains", 2, attr)); //Flying
+                playingCup.Add(new Creature("Centaur", "", "Plains", 2, attr));
+                playingCup.Add(new Creature("Pegusus", "", "Plains", 3, attr)); //Flying
+                playingCup.Add(new Creature("Pterodactyl", "", "Plains", 3, attr)); //Flying
+                playingCup.Add(new Creature("Dragonfly", "", "Plains", 2, attr)); //Flying
+                playingCup.Add(new Creature("Hunters", "", "Plains", 1, attr)); //Ranged
+                playingCup.Add(new Creature("Eagles", "", "Plains", 2, attr)); //Flying
+            }
 		
 		// private members
 		

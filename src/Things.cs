@@ -7,13 +7,11 @@ namespace GameLogic
     {
         //Type of Thing:    Special Income, Creature, Magic, Treasure, Event, Gold Counter,
         //                  Fort, Control Marker, Special Character
-		public Thing(string t, string n, string path, int combat)
+		public Thing(string t, string n, string path)
 		{
 			type = t;
 			
 			name = n;
-			
-			combatValue = combat;
 			
 			isOwned = false;
 			
