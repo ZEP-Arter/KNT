@@ -10,7 +10,7 @@ namespace GameLogic
 		//ctor
 			public SpecialCharacter( string n, string path, int c, List<Attributes> attr)
 			{
-				base("SpecialCharater", n, path);
+				base("SpecialCharacter", n, path);
                 
                 combatValue = c;
                 attributes = attr;
