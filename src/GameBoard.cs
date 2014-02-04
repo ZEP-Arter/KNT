@@ -248,6 +248,111 @@ namespace GameLogic
                 playingCup.Add(new Creature("Dragonfly", "", "Plains", 2, attr)); //Flying
                 playingCup.Add(new Creature("Hunters", "", "Plains", 1, attr)); //Ranged
                 playingCup.Add(new Creature("Eagles", "", "Plains", 2, attr)); //Flying
+                
+                playingCup.Add(new Creature("Crawling Vines", "", "Jungle", 6, attr));
+                playingCup.Add(new Creature("Giant Ape", "", "Jungle", 5, attr));
+                playingCup.Add(new Creature("Giant Ape", "", "Jungle", 5, attr));
+                playingCup.Add(new Creature("Headhunter", "", "Jungle", 2, attr)); //Ranged
+                playingCup.Add(new Creature("Dinosaur", "", "Jungle", 4, attr));
+                playingCup.Add(new Creature("Pygmies", "", "Jungle", 2, attr));
+                playingCup.Add(new Creature("Witch Doctor", "", "Jungle", 2, attr)); //Magic
+                playingCup.Add(new Creature("Tigers", "", "Jungle", 3, attr));
+                playingCup.Add(new Creature("Tigers", "", "Jungle", 3, attr));
+                playingCup.Add(new Creature("Pterodactyl Warriors", "", "Jungle", 2, attr)); //Flying Ranged
+                playingCup.Add(new Creature("Pterodactyl Warriors", "", "Jungle", 2, attr)); //Flying Ranged
+                playingCup.Add(new Creature("Crocodiles", "", "Jungle", 2, attr));
+                playingCup.Add(new Creature("Watusi", "", "Jungle", 2, attr));
+                playingCup.Add(new Creature("Elephant", "", "Jungle", 4, attr)); //Charge
+                playingCup.Add(new Creature("Giant Snake", "", "Jungle", 3, attr));
+                playingCup.Add(new Creature("Bird of Paradise", "", "Jungle", 1, attr)); //Flying
+                
+                playingCup.Add(new Creature("Killer Puffin", "", "Frozen Waste", 2, attr)); //Flying
+                playingCup.Add(new Creature("Ice giant", "", "Frozen Waste", 5, attr)); //Ranged
+                playingCup.Add(new Creature("Eskimos", "", "Frozen Waste", 2, attr));
+                playingCup.Add(new Creature("Eskimos", "", "Frozen Waste", 2, attr));
+                playingCup.Add(new Creature("Eskimos", "", "Frozen Waste", 2, attr));
+                playingCup.Add(new Creature("Eskimos", "", "Frozen Waste", 2, attr));
+                playingCup.Add(new Creature("White Bear", "", "Frozen Waste", 4, attr));
+                playingCup.Add(new Creature("Walrus", "", "Frozen Waste", 4, attr));
+                playingCup.Add(new Creature("Dragon Rider", "", "Frozen Waste", 3, attr)); //Flying Ranged
+                playingCup.Add(new Creature("Iceworm", "", "Frozen Waste", 4, attr)); //Magic
+                playingCup.Add(new Creature("Mammoth", "", "Frozen Waste", 5, attr)); //Charge
+                playingCup.Add(new Creature("Killer Penguins", "", "Frozen Waste", 3, attr));
+                playingCup.Add(new Creature("Wolves", "", "Frozen Waste", 3, attr));
+                playingCup.Add(new Creature("Ice Bats", "", "Frozen Waste", 1, attr)); //Flying
+                playingCup.Add(new Creature("North Wind", "", "Frozen Waste", 2, attr)); //Flying Magic
+                playingCup.Add(new Creature("Elk Herd", "", "Frozen Waste", 2, attr));
+                playingCup.Add(new Creature("White Dragon", "", "Frozen Waste", 5, attr)); //Magic
+                
+                playingCup.Add(new Creature("Giant Lizard", "", "Swamp", 2, attr));
+                playingCup.Add(new Creature("Giant Lizard", "", "Swamp", 2, attr));
+                playingCup.Add(new Creature("Crocodiles", "", "Swamp", 2, attr));
+                playingCup.Add(new Creature("Ghost", "", "Swamp", 1, attr)); //Flying
+                playingCup.Add(new Creature("Ghost", "", "Swamp", 1, attr)); //Flying
+                playingCup.Add(new Creature("Ghost", "", "Swamp", 1, attr)); //Flying
+                playingCup.Add(new Creature("Ghost", "", "Swamp", 1, attr)); //Flying
+                playingCup.Add(new Creature("Vampire Bat", "", "Swamp", 4, attr)); //Flying
+                playingCup.Add(new Creature("Swamp Rat", "", "Swamp", 1, attr));
+                playingCup.Add(new Creature("Sprite", "", "Swamp", 1, attr)); //Magic
+                playingCup.Add(new Creature("Giant Snake", "", "Swamp", 3, attr));
+                playingCup.Add(new Creature("Swamp Gas", "", "Swamp", 1, attr)); //Flying
+                playingCup.Add(new Creature("Slime Beast", "", "Swamp", 3, attr));
+                playingCup.Add(new Creature("Will-O-Wisp", "", "Swamp", 2, attr)); //Magic
+                playingCup.Add(new Creature("Watersnake", "", "Swamp", 1, attr));
+                playingCup.Add(new Creature("Dark Wizard", "", "Swamp", 1, attr)); //Flying Magic
+                playingCup.Add(new Creature("Poison Frog", "", "Swamp", 1, attr));
+                playingCup.Add(new Creature("Pirates", "", "Swamp", 2, attr));
+                playingCup.Add(new Creature("Basilisk", "", "Swamp", 3, attr)); //Magic
+                playingCup.Add(new Creature("Winged Pirhana", "", "Swamp", 3, attr)); //Flying
+                playingCup.Add(new Creature("Spirit", "", "Swamp", 2, attr)); //Magic
+                playingCup.Add(new Creature("Thing", "", "Swamp", 2, attr));
+                playingCup.Add(new Creature("Black Knight", "", "Swamp", 3, attr)); //Charge
+                playingCup.Add(new Creature("Huge Leech", "", "Swamp", 2, attr));
+                playingCup.Add(new Creature("Giant Mosquito", "", "Swamp", 2, attr)); //Flying
+                
+                playingCup.Add(new Creature("Sandworm", "", "Desert", 3, attr));
+                playingCup.Add(new Creature("Giant Spider", "", "Desert", 1, attr));
+                playingCup.Add(new Creature("Nomads", "", "Desert", 1, attr));
+                playingCup.Add(new Creature("Nomads", "", "Desert", 1, attr));
+                playingCup.Add(new Creature("Baby Dragon", "", "Desert", 3, attr)); //Flying
+                playingCup.Add(new Creature("Skeletons", "", "Desert", 1, attr));
+                playingCup.Add(new Creature("Skeletons", "", "Desert", 1, attr));
+                playingCup.Add(new Creature("Griffon", "", "Desert", 2, attr)); //Flying
+                playingCup.Add(new Creature("Dervish", "", "Desert", 2, attr)); //Magic
+                playingCup.Add(new Creature("Dervish", "", "Desert", 2, attr)); //Magic
+                playingCup.Add(new Creature("Giant Wasp", "", "Desert", 4, attr)); //Flying
+                playingCup.Add(new Creature("Giant Wasp", "", "Desert", 4, attr)); //Flying
+                playingCup.Add(new Creature("Desert Bat", "", "Desert", 1, attr)); //Flying
+                playingCup.Add(new Creature("Genie", "", "Desert", 4, attr)); //Magic
+                playingCup.Add(new Creature("Camel Corps", "", "Desert", 3, attr));
+                playingCup.Add(new Creature("Vultures", "", "Desert", 1, attr)); //Flying
+                playingCup.Add(new Creature("Buzzard", "", "Desert", 1, attr)); //Flying
+                playingCup.Add(new Creature("Dust Devil", "", "Desert", 4, attr)); //Flying
+                playingCup.Add(new Creature("Sphinx", "", "Desert", 4, attr)); //Magic
+                playingCup.Add(new Creature("Yellow Knight", "", "Desert", 3, attr)); //Charge
+                playingCup.Add(new Creature("Old Dragon", "", "Desert", 4, attr)); //Flying Magic
+                
+                playingCup.Add(new Creature("Pixies", "", "Forest", 1, attr)); //Flying
+                playingCup.Add(new Creature("Pixies", "", "Forest", 1, attr)); //Flying
+                playingCup.Add(new Creature("Killer Racoon", "", "Forest", 2, attr));
+                playingCup.Add(new Creature("Druid", "", "Forest", 3, attr)); //Magic
+                playingCup.Add(new Creature("Elf Mage", "", "Forest", 2, attr)); //Magic
+                playingCup.Add(new Creature("Bandits", "", "Forest", 2, attr));
+                playingCup.Add(new Creature("Flying Squirrel", "", "Forest", 1, attr)); //Flying
+                playingCup.Add(new Creature("Flying Squirrel", "", "Forest", 2, attr)); //Flying
+                playingCup.Add(new Creature("Green Knight", "", "Forest", 4, attr)); //Charge
+                playingCup.Add(new Creature("Dryad", "", "Forest", 1, attr)); //Magic
+                playingCup.Add(new Creature("Elves", "", "Forest", 3, attr)); //Ranged
+                playingCup.Add(new Creature("Elves", "", "Forest", 2, attr)); //Ranged
+                playingCup.Add(new Creature("Elves", "", "Forest", 2, attr)); //Ranged
+                playingCup.Add(new Creature("Bears", "", "Forest", 2, attr));
+                playingCup.Add(new Creature("Great Owl", "", "Forest", 2, attr)); //Flying
+                playingCup.Add(new Creature("Wild Cat", "", "Forest", 2, attr));
+                playingCup.Add(new Creature("Wyvern", "", "Forest", 3, attr)); //Flying
+                playingCup.Add(new Creature("Big Foot", "", "Forest", 5, attr));
+                playingCup.Add(new Creature("Unicorn", "", "Forest", 4, attr));
+                playingCup.Add(new Creature("Forester", "", "Forest", 2, attr)); //Ranged
+                playingCup.Add(new Creature("Walking Tree", "", "Forest", 5, attr));
             }
 		
 		// private members
