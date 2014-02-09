@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameLogic
 {
-	public class Player
+	public class Player : IComparable
 	{
 		//ctor
 
@@ -107,6 +107,14 @@ namespace GameLogic
             public void AddThingToRack(Thing thing)
             {
                 rack.Add(thing);
+            }
+
+            public int CompareTo(Object toCompare)
+            {
+                if (this.turn < ((Player)toCompare).turn)
+                    return 1;
+
+                return -1;
             }
 
 

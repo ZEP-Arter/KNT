@@ -7,11 +7,15 @@ namespace GameLogic
 {
     public class GoldCollectionPhase : Phase
     {
-        public GoldCollectionPhase(List<Player> players)
+        public GoldCollectionPhase()
             : base("GoldCollection")
         {
-            _players = players;
             gold = 0;
+        }
+
+        public override void playPhase(List<Player> players)
+        {
+            _players = players;
             collectGold();
         }
 
@@ -60,8 +64,6 @@ namespace GameLogic
         {
             gold += amount;
         }
-
-        private List<Player> _players;
 
         private int gold
         {
