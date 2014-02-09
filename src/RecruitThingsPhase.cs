@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,20 +7,23 @@ namespace GameLogic
 {
     public class RecruitThingsPhase : Phase
     {
-        public RecruitThingsPhase(List<Player> players) :
+        public RecruitThingsPhase() :
             base("RecruitThings")
         {
-            _players = players;
             tradins = new List<Thing>();
         }
 
-        private void recruitThings()
+        public override void playPhase(List<Player> players)
+        {
+            _players = players;
+        }
+
+        private void recruiteThigns()
         {
             this.beginPhase();
 
             foreach (Player p in _players)
             {
-                //prompt to skip phase?
                 //if skip break;
                 //prompt to take trad ins'?
                 //displayTradeIns(p);
@@ -84,7 +87,6 @@ namespace GameLogic
             }
         }
 
-        private List<Player> _players;
         private List<Thing> tradins;
     }
 }
