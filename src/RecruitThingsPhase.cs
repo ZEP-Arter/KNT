@@ -7,11 +7,15 @@ namespace GameLogic
 {
     public class RecruitThingsPhase : Phase
     {
-        public RecruitThingsPhase(List<Player> players) :
+        public RecruitThingsPhase() :
             base("RecruitThings")
         {
-            _players = players;
             tradins = new List<Thing>();
+        }
+
+        public override void playPhase(List<Player> players)
+        {
+            _players = players;
         }
 
         private void recruiteThigns()
@@ -20,7 +24,6 @@ namespace GameLogic
 
             foreach (Player p in _players)
             {
-                //prompt to skip phase?
                 //if skip break;
                 //prompt to take trad ins'?
                 //displayTradeIns(p);
@@ -84,7 +87,6 @@ namespace GameLogic
             }
         }
 
-        private List<Player> _players;
         private List<Thing> tradins;
     }
 }

@@ -56,9 +56,12 @@ namespace GameLogic
             return true;
         }
 
+        public abstract void playPhase(List<Player> players);
+
 
         string name;
         protected State currentState;
+        protected List<Player> _players;
 
         protected enum State
         {

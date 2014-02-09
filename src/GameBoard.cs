@@ -13,7 +13,17 @@ namespace GameLogic
 
             public void play() 
             {
-                //walk through all the phases until someone wins 
+                setPlayerOrder();
+                //walk through all the phases until someone wins
+                foreach (Phase phase in gamePhases)
+                {
+                    currentPhase = gamePhases.IndexOf(phase);
+
+                    playTurn(phase);
+                }
+
+                orderPlayers();
+                // did someone win??
             }
 
             public void addPlayer(string name)
@@ -53,6 +63,19 @@ namespace GameLogic
 
                 return thing;
             }
+
+            public void setPlayerOrder()
+            {
+                //ask players to roll dice
+                SortedDictionary<int, Player> order = new SortedDictionary<int, Player>();
+
+                foreach( Player p in players )
+                {
+                    order.Add(DiceRoller.Roll.rollDice(), p);
+                }
+
+                players = order.Values.ToList<Player>();
+            }
 		
 		//private
 		
@@ -61,27 +84,37 @@ namespace GameLogic
             {
                 theBoard = new Board();
                 players = new List<Player>(4);
+
+                int n = 1;
+
+                while (players.Count != players.Capacity)
+                {
+                    addPlayer("Player " + n++);
+                }
+
                 bank = new Dictionary<string, List<Thing>>();
                 playingCup = new List<Thing>();
+                currentPhase = 0;
                 initGamePhases();
                 init();
             }
 
-            private void playTurn( Player p )
+            private void orderPlayers()
             {
-                    
+                List<Player> reOrder = new List<Player>(4);
+
+                reOrder.Add(players[players.Count - 1]);
+                reOrder.Add(players[0]);
+                reOrder.Add(players[1]);
+                reOrder.Add(players[2]);
+
+                players = reOrder;
+
             }
 
-            private void nextTurn()
+            private void playTurn(Phase phase)
             {
-                foreach (Player p in players)
-                {
-                    if (p.getTurn() == (currentPlayer.getTurn() + 1))
-                    {
-                        playTurn(p);
-                        break;
-                    }
-                }
+                phase.playPhase(players);
             }
 
             private void removeFromBank(string type, Thing thing)
@@ -201,6 +234,10 @@ namespace GameLogic
             private void initGamePhases()
             {
                 gamePhases = new List<Phase>(9);
+                gamePhases.Add(new GoldCollectionPhase());
+                gamePhases.Add(new RecruitThingsPhase());
+                //movemnet
+                //combat
             }
         
             private void initCup()
@@ -400,6 +437,9 @@ namespace GameLogic
 
             // GamePhases
             List<Phase> gamePhases;
+
+            // current phase;
+            int currentPhase;
 		
 		
 	} // end GameBorad Class
