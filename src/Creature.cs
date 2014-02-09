@@ -5,29 +5,18 @@ using System.Text;
 
 namespace GameLogic
 {
-    class Creature : Things
+    class Creature : Thing
     {
 		//ctor
-        public Creature(string name, string path, string hex, int c, List<Attributes> attr)
+        public Creature(string name, string hex, int c, List<Attributes.CombatAttributes> attr)
+            : base("Creature", name, attr)
         {
-            base("Creature", name, path);
             hexType = hex;
-            combatValue = c
-            attributes = attr;
+            combatValue = c;
         }
 			
 		//public
 		
 		//private members
     }
-
-	public enum Attributes
-	{
-		FLYING, // triangel
-		MAGIC, // drawn star
-		CHARGE, //can charge in combat (large C)
-		RANGED, // (large R)
-		SPECIAL, // has special ability ( kleene star * )
-		PLUS_HITS // paranthesis around combat score is multi hit in combat ( can take more then one hit in combat )
-	}
 }

@@ -1,21 +1,21 @@
-using KNT.GUI;
 
+using System.Collections.Generic;
 namespace GameLogic
 {
     //THERE ARE 351 THINGS
-    public class Thing : IImage
+    public class Thing
     {
         //Type of Thing:    Special Income, Creature, Magic, Treasure, Event, Gold Counter,
         //                  Fort, Control Marker, Special Character
-		public Thing(string t, string n, string path)
+		public Thing(string t, string n, List<Attributes.CombatAttributes> attr)
 		{
 			type = t;
 			
 			name = n;
+
+            attributes = attr;
 			
 			isOwned = false;
-			
-			image_path = path;
 		}
 		
 		
@@ -45,12 +45,12 @@ namespace GameLogic
 
         string type;
         string name;
-        string hexType; //if applicable
+        protected string hexType; //if applicable
 
         //this needs some sort of image
-		private const string image_path;
+		private const string image_path = "";
 
-        int combatValue; //if applicable
+        protected int combatValue; //if applicable
 
         bool inBank;
         bool onRack;
@@ -58,6 +58,6 @@ namespace GameLogic
 
         int goldValue; //if applicable
 
-        string attribute; //if applicable
+        List<Attributes.CombatAttributes> attributes; //if applicable
     }
 }

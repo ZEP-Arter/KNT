@@ -26,7 +26,7 @@ namespace KingsNThings
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = Directory.GetCurrentDirectory() + "/KingsNThingsContent/images";
+            Content.RootDirectory = "KNT_Content/images";
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1000;
@@ -55,7 +55,6 @@ namespace KingsNThings
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Console.Out.WriteLine(Directory.GetCurrentDirectory());
             board = Content.Load<Texture2D>("board");
             hexTexture = Content.Load<Texture2D>("desert");
             button = new Button(hexTexture, spriteBatch, 110, 100);

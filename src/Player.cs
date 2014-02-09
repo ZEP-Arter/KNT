@@ -47,9 +47,9 @@ namespace GameLogic
             public int getTurn()
             { return turn; }
 
-            public Things getThingFromRack(int pos)
+            public Thing getThingFromRack(int pos)
             {
-                Things thing = rack[pos];
+                Thing thing = rack[pos];
 
                 removeFromRack(thing);
 
@@ -58,7 +58,7 @@ namespace GameLogic
 
         //private
 
-            private void removeFromRack(Things thing)
+            private void removeFromRack(Thing thing)
             {
                 rack.Remove(thing);
             }
@@ -75,11 +75,11 @@ namespace GameLogic
             private int turn;
 
 		//  things ( this will have to have a bool (isOnRack) // this is probs the things in play
-            private List<Things> things;
+            private List<Thing> things;
 		//  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
             private List<SpecialCharacter> characters;
 		// Rack
-            private List<Things> rack;
+            private List<Thing> rack;
 		// ( cannot keep gold counters, special characters, and forts )
 	}
 
