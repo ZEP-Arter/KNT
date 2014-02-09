@@ -23,6 +23,7 @@ namespace GameLogic
             {
                 determineGold(p);
                 givePlayerGold(p);
+                // need something to determine end turn here
             }
 
             this.endPhase();

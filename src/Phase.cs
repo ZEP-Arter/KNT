@@ -56,6 +56,7 @@ namespace GameLogic
             return true;
         }
 
+
         string name;
         protected State currentState;
 

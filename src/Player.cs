@@ -16,6 +16,8 @@ namespace GameLogic
             _position = NetworkPosition.HOST;
 
             turn = 0;
+
+            gold = 10;
         }
 
         public Player(string n, NetworkPosition np)
@@ -92,6 +94,22 @@ namespace GameLogic
                 return sic;
             }
 
+            public int getPlayerGold()
+            {
+                return gold;
+            }
+
+            public void givePlayerGold(int amount)
+            {
+                gold += amount;
+            }
+
+            public void AddThingToRack(Thing thing)
+            {
+                rack.Add(thing);
+            }
+
+
         //private
 
             private void removeFromRack(Thing thing)
@@ -120,7 +138,10 @@ namespace GameLogic
 
         //tiles owned
             List<Tile> ownedTiles;
-	}
+
+        //total gold pieces
+            private int gold;
+    }
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p
     public enum NetworkPosition

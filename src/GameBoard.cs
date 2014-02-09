@@ -11,7 +11,10 @@ namespace GameLogic
 		
 		//public
 
-            public void play() { }
+            public void play() 
+            {
+                //walk through all the phases until someone wins 
+            }
 
             public void addPlayer(string name)
             {
@@ -23,6 +26,9 @@ namespace GameLogic
 
             public Thing getRandomThingFromCup()
             {
+                if (playingCup.Count == 0)
+                    return null;
+
                 Random r = new Random();
 
                 int nxt = r.Next(playingCup.Count);
@@ -36,7 +42,12 @@ namespace GameLogic
 
             public Thing getThingFromBank(string type)
             {
-                Thing thing = bank[type][0];
+                List<Thing> typeList = bank[type];
+
+                if (typeList.Count == 0)
+                    return null;
+
+                Thing thing = typeList[0];
 
                 removeFromBank(type, thing);
 
@@ -52,6 +63,7 @@ namespace GameLogic
                 players = new List<Player>(4);
                 bank = new Dictionary<string, List<Thing>>();
                 playingCup = new List<Thing>();
+                initGamePhases();
                 init();
             }
 
@@ -187,7 +199,7 @@ namespace GameLogic
 
             private void initGamePhases()
             {
-
+                gamePhases = new List<Phase>(9);
             }
         
             private void initCup()
@@ -381,7 +393,7 @@ namespace GameLogic
             List<Thing> playingCup;
 
             // GamePhases
-            SortedSet<Phase> gamePhases;
+            List<Phase> gamePhases;
 		
 		
 	} // end GameBorad Class
