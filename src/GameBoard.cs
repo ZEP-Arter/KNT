@@ -6,23 +6,12 @@ using System.Text;
 namespace GameLogic
 {
 
-	class GameBoard
+	public class GameBoard
 	{
 		
 		// @ericadamski : I think this should be a singleton.
 		
 		//public
-		
-			public GameBoard getGame() { return game; }
-		
-			public void createGame(string hostName) 
-            { 
-                game = new GameBoard();
-
-                addPlayer(hostName);
-
-                currentPlayer = players[0];
-            }
 
             public void play() { }
 
@@ -63,6 +52,8 @@ namespace GameLogic
             {
                 theBoard = new Board();
                 players = new List<Player>(4);
+                bank = new Dictionary<string, List<Thing>>();
+                playingCup = new List<Thing>();
                 init();
             }
 
@@ -358,22 +349,33 @@ namespace GameLogic
 		// private members
 		
 			// singleton Access
-			private GameBoard game;
+			private static GameBoard game;
+
+
+            public static GameBoard Game
+            {
+                get
+                {
+                    if (game == null)
+                        game = new GameBoard();
+                    return game;
+                }
+            }
 		
 			// List of Players
             List<Player> players;
 		
 			// Board Obj
-            private Board theBoard;
+            Board theBoard;
 
             // person who is currently playing their turn
-            private Player currentPlayer;
+            Player currentPlayer;
 		
 			// the Bank
-            private Dictionary<string, List<Thing>> bank;
+            Dictionary<string, List<Thing>> bank;
 		
 			// the Playing cup // IMPORTANT, this musn't be sorted!! // its random :)
-            private List<Thing> playingCup;
+            List<Thing> playingCup;
 		
 		
 	} // end GameBorad Class
