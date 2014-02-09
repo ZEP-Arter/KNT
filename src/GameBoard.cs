@@ -103,6 +103,7 @@ namespace GameLogic
                 initCup();
                 // init players ( this may need a lot of logic )
                 // init board
+                theBoard.initBoard();
             }
 
 			private void initBank()
@@ -359,6 +360,11 @@ namespace GameLogic
                 playingCup.Add(new Creature("Unicorn", "Forest", 4, attr));
                 playingCup.Add(new Creature("Forester", "Forest", 2, attr)); //Ranged
                 playingCup.Add(new Creature("Walking Tree", "Forest", 5, attr));
+            }
+        
+            private void initMap()
+            {
+                   
             }
 		
 		// private members
