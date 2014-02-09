@@ -7,32 +7,52 @@ namespace GameLogic
 {
     public class GoldCollectionPhase : Phase
     {
-        public GoldCollectionPhase(Player player)
+        public GoldCollectionPhase(List<Player> players)
             : base("GoldCollection")
         {
-            _player = player;
+            _players = players;
             gold = 0;
+            collectGold();
         }
 
-        private void determineGold()
+        public void collectGold()
+        {
+            this.beginPhase();
+
+            foreach (Player p in _players)
+            {
+                determineGold(p);
+                givePlayerGold(p);
+            }
+
+            this.endPhase();
+        }
+
+        private void determineGold(Player player)
         {
             //1 for every owed land hex
-            addGold(_player.getNumberOfOwnedTiles());
+            addGold(player.getNumberOfOwnedTiles());
             //as many gold as the combat value of each fort
 
-            foreach (Thing t in _player.getAllForts())
+            foreach (Thing t in player.getAllForts())
             {
                 addGold(t.combatScore());
             }
             //as many gold as printed value of each special income counter ON THE BOARD
 
-            foreach (Thing t in _player.getAllSpecialIncomeCounters())
+            foreach (Thing t in player.getAllSpecialIncomeCounters())
             {
                 addGold(t.getGoldValue());
             }
 
             //1 one gold per special charater
-            addGold(_player.getNumberOfSpecialCharaters());
+            addGold(player.getNumberOfSpecialCharaters());
+        }
+
+        private void givePlayerGold(Player player)
+        {
+            player.givePlayerGold(gold);
+            gold = 0;
         }
 
         private void addGold(int amount)
@@ -40,7 +60,7 @@ namespace GameLogic
             gold += amount;
         }
 
-        private Player _player;
+        private List<Player> _players;
 
         private int gold
         {
