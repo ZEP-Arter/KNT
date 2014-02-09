@@ -64,8 +64,8 @@ namespace GameLogic
                 rough = true;
             startPossible = s;
         }
-        
-        public int[] getSurrounding() { return int[]{nHex, neHex, seHex, sHex, swHex, nwHex} }
+
+        public int[] getSurrounding() { return new int[] { nHex, neHex, seHex, sHex, swHex, nwHex }; }
         public int getHexNum() { return hexNumber; }
         public void resetMovementLogic() { traversed = false; }
         public bool isRough() { return rough; }

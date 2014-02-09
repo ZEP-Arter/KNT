@@ -7,11 +7,14 @@ namespace GameLogic
 {
     public class MovementPhase : Phase
     {
-        public MovementPhase(List<Player> players, Board b) :
+        public MovementPhase() :
             base("Movement")
         {
+        }
+
+        public override void playPhase(List<Player> players)
+        {
             _players = players;
-            map = b;
         }
 
         private void movement()
@@ -46,7 +49,7 @@ namespace GameLogic
                     break;
                 if(!_t.traversed)
                 {
-                    if(_t.isRough() && moveleft >= 2)
+                    if(_t.isRough() && moveLeft >= 2)
                     {
                         checkMovement(n, moveLeft-2);
                     }
@@ -64,6 +67,8 @@ namespace GameLogic
                 if(t.getHexNum() == n)
                     return t;
             }
+
+            return null;
         }
         
         private void resetMovementLogic()
