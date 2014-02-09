@@ -142,5 +142,7 @@ Walking Tree 5
 
 
 TODO:
-1. See issue #02 for things to do (@ericadamski)
+1. Movement Phase
+2. Combat Phase
+3. Finish up GUI
 ===
