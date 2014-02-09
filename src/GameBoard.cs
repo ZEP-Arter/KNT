@@ -9,8 +9,6 @@ namespace GameLogic
 	public class GameBoard
 	{
 		
-		// @ericadamski : I think this should be a singleton.
-		
 		//public
 
             public void play() { }
@@ -186,6 +184,11 @@ namespace GameLogic
 				
 				sc.Add(new SpecialCharacter("Sir Lance-a-Lot", 5, attr));
 			}
+
+            private void initGamePhases()
+            {
+
+            }
         
             private void initCup()
             {
@@ -376,6 +379,9 @@ namespace GameLogic
 		
 			// the Playing cup // IMPORTANT, this musn't be sorted!! // its random :)
             List<Thing> playingCup;
+
+            // GamePhases
+            SortedSet<Phase> gamePhases;
 		
 		
 	} // end GameBorad Class

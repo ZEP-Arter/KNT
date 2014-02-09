@@ -56,6 +56,42 @@ namespace GameLogic
                 return thing;
             }
 
+            public int getNumberOfOwnedTiles()
+            {
+                return ownedTiles.Count;
+            }
+
+            public int getNumberOfSpecialCharaters()
+            {
+                return characters.Count;
+            }
+
+            public List<Thing> getAllForts()
+            {
+                List<Thing> forts = new List<Thing>();
+
+                foreach (Thing t in things)
+                {
+                    if (t.GetType().Equals("Fort"))
+                        forts.Add(t);
+                }
+
+                return forts;
+            }
+
+            public List<Thing> getAllSpecialIncomeCounters()
+            {
+                List<Thing> sic = new List<Thing>();
+
+                foreach (Thing t in things)
+                {
+                    if (t.GetType().Equals("Special Income"))
+                        sic.Add(t);
+                }
+
+                return sic;
+            }
+
         //private
 
             private void removeFromRack(Thing thing)
@@ -81,6 +117,9 @@ namespace GameLogic
 		// Rack
             private List<Thing> rack;
 		// ( cannot keep gold counters, special characters, and forts )
+
+        //tiles owned
+            List<Tile> ownedTiles;
 	}
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p

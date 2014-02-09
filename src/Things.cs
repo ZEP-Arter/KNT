@@ -35,7 +35,15 @@ namespace GameLogic
         }
 
 		public int combatScore()
-		{ return combatValue; }
+        { return combatValue; }
+
+        public int getGoldValue()
+        {
+            if (goldValue == null)
+                return -1;
+
+            return goldValue;
+        }
 
 		protected void setName(string n)
 		{ name = n; }
