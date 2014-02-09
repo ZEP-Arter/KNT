@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace GameLogic
     {
         public enum CombatAttributes
         {
-            FLYING, // triangel
+            FLYING, // triangle
             MAGIC, // drawn star
             CHARGE, //can charge in combat (large C)
             RANGED, // (large R)

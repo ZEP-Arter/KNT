@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,7 @@ namespace GameLogic
             tradins = new List<Thing>();
         }
 
-        private void recruiteThigns()
+        private void recruitThings()
         {
             this.beginPhase();
 
