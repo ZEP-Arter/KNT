@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using KNT_Service;
 
 namespace KingsNThings
 {
@@ -17,6 +18,7 @@ namespace KingsNThings
     public class KNT_Game : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+        KNTNet client;
         SpriteBatch spriteBatch;
         private Texture2D board;
         private Texture2D[] hexTexture = new Texture2D[9];
@@ -30,6 +32,9 @@ namespace KingsNThings
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
+            client = new KNTNet();
+            Services.AddService(typeof(IKNTNet), client);
+            client.setupGame();
         }
 
         /// <summary>
