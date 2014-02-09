@@ -2,6 +2,7 @@ using System;
 
 namespace KingsNThings
 {
+#if WINDOWS || XBOX
     static class Program
     {
         /// <summary>
@@ -9,11 +10,12 @@ namespace KingsNThings
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (KNT_Game game = new KNT_Game())
             {
                 game.Run();
             }
         }
     }
+#endif
 }
 
