@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 namespace GameLogic
 {
     //THERE ARE 48 TILES
@@ -9,11 +11,11 @@ namespace GameLogic
         
         //Number for connected hexes
         private int nHex;
-        private int neHex;
+        private int neHexOne;
         private int seHex;
         private int sHex;
         private int swHex;
-        private int neHex;
+        private int neHexTwo;
         //Type of Hex: Jungle, Frozen Waste, Desert, Plains, Forest, Sea, Swamp, Mountain
         private string hexType;
         //Shows whether the Tile is face up or face down
@@ -34,29 +36,32 @@ namespace GameLogic
         public bool traversed = false;
         
         //Constructor
-        public Tile(int n, int[6] a, string h)
+        public Tile(int n, int[] a, string h)
         {
+            if (a.Length < 6)
+                throw new Exception("Tile class (ctor): Cannot have an array less then 6.");
+
             hexNumber   = n;
             nHex        = a[0];
-            neHex       = a[1];
+            neHexOne    = a[1];
             seHex       = a[2];
             sHex        = a[3];
             swHex       = a[4];
-            neHex       = a[5];
+            neHexTwo    = a[5];
             hexType     = h;
             if(h == "Swamp" || h == "Forest" || h == "Mountain" || h == "Jungle")
                 rough = true;
         }
         
-        public Tile(int n, int[6] a, string h, bool s)
+        public Tile(int n, int[] a, string h, bool s)
         {
             hexNumber   = n;
             nHex        = a[0];
-            neHex       = a[1];
+            neHexOne    = a[1];
             seHex       = a[2];
             sHex        = a[3];
             swHex       = a[4];
-            neHex       = a[5];
+            neHexTwo    = a[5];
             hexType     = h;
             if(h == "Swamp" || h == "Forest" || h == "Mountain" || h == "Jungle")
                 rough = true;
@@ -64,9 +69,9 @@ namespace GameLogic
         }
         
         public void resetMovementLogic() { traversed = false; }
-        public void isRough() { return rough; }
-        public void getType() { return hexType; }
-        public void getStart() { return startPossible; }
+        public bool isRough() { return rough; }
+        public string getType() { return hexType; }
+        public bool getStart() { return startPossible; }
         public void flipTile() { faceUp = true; }
 
     }
