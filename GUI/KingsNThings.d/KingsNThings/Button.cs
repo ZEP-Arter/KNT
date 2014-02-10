@@ -14,6 +14,7 @@ namespace KingsNThings
         protected Tile _hex;
 
         protected Texture2D image;
+        protected Texture2D backside;
         protected Rectangle location;
         protected SpriteBatch spriteBatch;
         protected int buttonType;
@@ -83,6 +84,7 @@ namespace KingsNThings
         public Button(Texture2D[] texture, SpriteBatch sBatch, int width, int height, int number, int x, int y, Tile t)
         {
             _hex = t;
+            backside = texture[0];
             hexNumber = _hex.getHexNum();
             switch (_hex.getType())
             {
@@ -207,8 +209,10 @@ namespace KingsNThings
                 {
                     marker = KNT_Game.getMyMarker();
 
-                    if (marker.markerSelected && this._hex.getStart())
+                    if (marker.markerSelected && this._hex.getStart() &&
+                        (this._hex.getPlayerAble() == null || this._hex.getPlayerAble() == KNT_Game.me))
                     {
+                        this._hex.selectedAsStarting(KNT_Game.me);
                         marker.isSet = true;
                         marker.markerSelected = false;
                         marker.Location(25 + topleft.X, 5 + topleft.Y);

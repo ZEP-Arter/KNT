@@ -31,6 +31,7 @@ namespace GameLogic
         private bool rough = false;
 
 		private Player playerControl;
+        private Player playerAbleToStart = null;
         
         //Movement logic variable
         public bool traversed = false;
@@ -65,6 +66,30 @@ namespace GameLogic
             startPossible = s;
         }
 
+        public void setPlayerControl(Player p)
+        {
+            playerControl = p;
+        }
+
+        public void selectedAsStarting(Player p)
+        {
+            playerControl = p;
+            foreach (Tile t in GameBoard.Game.getMap().getHexList())
+            {
+                int hNum = t.getHexNum();
+                if (hNum == nHex || hNum == neHex || hNum == seHex ||
+                    hNum == sHex || hNum == swHex || hNum == nwHex)
+                {
+                    if (t.getPlayerAble() == null)
+                        t.setPlayerAble(p);
+                }
+            }
+        }
+       
+        public void setPlayerAble(Player p) { playerAbleToStart = p; }
+
+        public Player getPlayer() { return playerControl; }
+        public Player getPlayerAble() { return playerAbleToStart; }
         public int[] getSurrounding() { return new int[] { nHex, neHex, seHex, sHex, swHex, nwHex }; }
         public int getHexNum() { return hexNumber; }
         public void resetMovementLogic() { traversed = false; }
