@@ -70,11 +70,20 @@ namespace GameLogic
                 return thing;
             }
 
-            public void setPlayerOrder()
+            public bool setPlayerOrder()
             {
                 //ask players to roll dice
                 SortedDictionary<int, Player> order = new SortedDictionary<int, Player>();
 
+                foreach (Player p in players)
+                {
+                    if (!order.ContainsKey(p.getDiceRoll()))
+                        order.Add(p.getDiceRoll(), p);
+                    else
+                        return false;
+                }
+                    
+                /*
                 int diceroll = 0;
 
                 while (true)
@@ -94,9 +103,12 @@ namespace GameLogic
                     else
                         break;
                 }
+                */
 
                 players = order.Values.ToList<Player>();
                 players.Reverse();
+
+                return true;
             }
 
             public List<Player> getPlayers()
