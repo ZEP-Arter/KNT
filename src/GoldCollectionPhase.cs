@@ -65,16 +65,6 @@ namespace GameLogic
             gold += amount;
         }
 
-        private int gold
-        {
-            set
-            {
-                gold = value;
-            }
-            get
-            {
-                return gold;
-            }
-        }
+        private int gold;
     }
 }
