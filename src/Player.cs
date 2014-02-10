@@ -20,6 +20,8 @@ namespace GameLogic
             goldY = yPos;
 
             gold = 10;
+
+            placedMarker = false;
         }
 
         public Player(string n, NetworkPosition np, int yPos)
@@ -33,6 +35,8 @@ namespace GameLogic
             gold = 10;
 
             goldY = yPos;
+
+            placedMarker = false;
         }
 
 		//public
@@ -128,6 +132,16 @@ namespace GameLogic
                 return gold;
             }
 
+            public int getMarkerID()
+            {
+                return myMarker;
+            }
+
+            public void setMarkerID(int id)
+            {
+                myMarker = id;
+            }
+
 
         //private
 
@@ -164,6 +178,12 @@ namespace GameLogic
         // position of gold on scree
             public const int goldX = 660;
             public int goldY; // set at runtime;
+
+        // marker id
+            int myMarker;
+
+        //placed marker
+            public bool placedMarker;
     }
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p

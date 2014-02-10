@@ -30,18 +30,23 @@ namespace GameLogic
         private DiceRoller()
         {
             numRolls = 0;
-            dice = new List<int>(6);
+            dice = new List<int>(11);
             initDice();
         }
 
         private void initDice()
         {
-            dice.Add(1);
             dice.Add(2);
             dice.Add(3);
             dice.Add(4);
             dice.Add(5);
             dice.Add(6);
+            dice.Add(7);
+            dice.Add(8);
+            dice.Add(9);
+            dice.Add(10);
+            dice.Add(11);
+            dice.Add(12);
         }
 
         private static void rollingDice()

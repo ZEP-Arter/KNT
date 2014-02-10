@@ -15,6 +15,7 @@ namespace GameLogic
             {
                 setPlayerOrder();
                 //walk through all the phases until someone wins
+                /*
                 foreach (Phase phase in gamePhases)
                 {
                     currentPhase = gamePhases.IndexOf(phase);
@@ -23,6 +24,7 @@ namespace GameLogic
                 }
 
                 orderPlayers();
+                 * */
                 // did someone win??
             }
 
@@ -73,12 +75,28 @@ namespace GameLogic
                 //ask players to roll dice
                 SortedDictionary<int, Player> order = new SortedDictionary<int, Player>();
 
-                foreach( Player p in players )
+                int diceroll = 0;
+
+                while (true)
                 {
-                    order.Add(DiceRoller.Roll.rollDice(), p);
+                    foreach (Player p in players)
+                    {
+                        diceroll = DiceRoller.Roll.rollDice();
+                        Console.WriteLine(diceroll);
+                        if (!order.ContainsKey(diceroll) && order.Count < 4)
+                            order.Add(diceroll, p);
+                        else
+                            break;
+                    }
+
+                    if (order.Count < 4)
+                        order.Clear();
+                    else
+                        break;
                 }
 
                 players = order.Values.ToList<Player>();
+                players.Reverse();
             }
 
             public List<Player> getPlayers()

@@ -56,7 +56,6 @@ namespace KingsNThings
         {
             // TODO: Add your initialization logic here
             _theGameBoard = GameBoard.Game;
-            me = _theGameBoard.getPlayers()[0];
             //testPlay();
             this.IsMouseVisible = true;
             base.Initialize();
@@ -249,15 +248,13 @@ namespace KingsNThings
 
         protected bool changePlayers()
         {
-            Console.WriteLine(String.Format("me before change {0}.", me.getName()));
-            if (me.placedMarker)
+            if (me != null && me.placedMarker)
             {
                 if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
                     me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
                 else
                     return false;
             }
-            Console.WriteLine(String.Format("me after change {0}.", me.getName()));
 
             return true;
         }
@@ -275,7 +272,7 @@ namespace KingsNThings
                 this.Exit();
 
             if (!changePlayers())
-                _theGameBoard.play();
+                //lol
 
             // TODO: Add your update logic here
 
@@ -410,8 +407,13 @@ namespace KingsNThings
             MouseState mouse = Mouse.GetState();
             spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Blue);
             spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Blue);
-            foreach( Player p in _theGameBoard.getPlayers() )
-                spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()) , new Vector2(Player.goldX, p.goldY), Color.Black);
+            foreach (Player p in _theGameBoard.getPlayers())
+            {
+                if( me != null && p.getName() == me.getName() )
+                    spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(Player.goldX, p.goldY), Color.Blue);
+                else
+                    spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(Player.goldX, p.goldY), Color.Black);
+            }
             
         }
 
