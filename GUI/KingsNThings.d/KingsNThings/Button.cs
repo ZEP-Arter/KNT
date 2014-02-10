@@ -22,7 +22,7 @@ namespace KingsNThings
         public string clickText = "Button was Clicked!";
         protected Point topleft, topright, midleft, midright, botleft, botright;
         protected Rectangle middle;
-        
+        protected Texture2D back;
         public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y)
         {
             image = texture;
@@ -36,6 +36,7 @@ namespace KingsNThings
             midright = new Point(110 + x, 50 + y);
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
+            
         }
 
         public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y, int hexnum)
@@ -53,7 +54,15 @@ namespace KingsNThings
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
             hexNumber = hexnum;
         }
+        public bool isClickedMarker(bool clickedTile, int number)
+        {
+            if (clickedTile == true && number == 3)
+            {
+                return true;
+            }
+            else return false;
 
+        }
         
         public void Location(int x, int y)
         {
@@ -89,16 +98,18 @@ namespace KingsNThings
 
             if (mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton == ButtonState.Pressed)
             {
-                if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 1)
+                
+                if ((IsInsideTriangle(topleft, midleft, botleft, new Point(mouse.X, mouse.Y)) ||
+                    middle.Contains(new Point(mouse.X, mouse.Y)) ||
+                    IsInsideTriangle(topright, midright, botright, new Point(mouse.X, mouse.Y))) && buttonType == 1) //HEX TILES
+                {
+                    clicked = true;
+                }
+
+                if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 3) //MARKER TILES
                 {
                     clicked = true;
 
-                }
-                if ((IsInsideTriangle(topleft, midleft, botleft, new Point(mouse.X, mouse.Y)) ||
-                    middle.Contains(new Point(mouse.X, mouse.Y)) ||
-                    IsInsideTriangle(topright, midright, botright, new Point(mouse.X, mouse.Y))) && buttonType == 1)
-                {
-                    clicked = true;
                 }
             }
 
@@ -118,6 +129,14 @@ namespace KingsNThings
                     location,
                     Color.Silver);
             }
+            
+            else if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 3)
+            {
+                spriteBatch.Draw(image,
+                    location,
+                    Color.Silver);
+
+            }
             else
             {
                 spriteBatch.Draw(image,
@@ -127,11 +146,10 @@ namespace KingsNThings
 
 
 
-            if (clicked)
+            if (clicked && buttonType == 3)
             {
-                //tekst, mis ilmub peale nupule klikkimist
-                Vector2 position = new Vector2(10, 75);
-
+                
+                
             }
 
             spriteBatch.End();
