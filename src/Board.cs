@@ -57,7 +57,7 @@ namespace GameLogic
             tiles.Add(new Tile(37, new int[]{0 , 20, 19, 36, 0 , 0 }, "Desert"));
         }
         
-        public List<Tile> getMap() { return tiles; }
+        public List<Tile> getHexList() { return tiles; }
 
         //private
 

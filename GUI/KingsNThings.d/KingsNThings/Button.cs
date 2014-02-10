@@ -5,11 +5,14 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using GameLogic;
 
 namespace KingsNThings
 {
     class Button
     {
+        protected Tile _hex;
+
         protected Texture2D image;
         protected SpriteFont font;
         protected Rectangle location;
@@ -23,6 +26,7 @@ namespace KingsNThings
         protected Point topleft, topright, midleft, midright, botleft, botright;
         protected Rectangle middle;
         protected Texture2D back;
+
         public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y)
         {
             image = texture;
@@ -54,6 +58,50 @@ namespace KingsNThings
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
             hexNumber = hexnum;
         }
+
+        public Button(Texture2D[] texture, SpriteBatch sBatch, int width, int height, int number, int x, int y, Tile t)
+        {
+            _hex = t;
+            hexNumber = _hex.getHexNum();
+            switch (_hex.getType())
+            {
+                case "Desert":          image = texture[1];
+                                        break;
+
+                case "Forest":          image = texture[2];
+                                        break;
+
+                case "Frozen Waste":    image = texture[3];
+                                        break;
+
+                case "Jungle":          image = texture[4]; 
+                                        break;
+
+                case "Mountain":        image = texture[5]; 
+                                        break;
+
+                case "Plains":          image = texture[6]; 
+                                        break;
+
+                case "Sea":             image = texture[7]; 
+                                        break;
+
+                case "Swamp":           image = texture[8]; 
+                                        break;
+            }
+            //image = texture[1];
+            location = new Rectangle(x, y, width, height);
+            spriteBatch = sBatch;
+            buttonType = number;
+            topleft = new Point(25 + x, 0 + y);
+            midleft = new Point(0 + x, 50 + y);
+            botleft = new Point(25 + x, 100 + y);
+            topright = new Point(85 + x, 0 + y);
+            midright = new Point(110 + x, 50 + y);
+            botright = new Point(85 + x, 100 + y);
+            middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
+        }
+
         public bool isClickedMarker(bool clickedTile, int number)
         {
             if (clickedTile == true && number == 3)
