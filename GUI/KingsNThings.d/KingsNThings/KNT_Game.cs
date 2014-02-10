@@ -24,17 +24,17 @@ namespace KingsNThings
         private Texture2D[] goldTexture = new Texture2D[6];
         private Texture2D[] markerTexture = new Texture2D[4];
         private Texture2D[] scripttileTexture = new Texture2D[40];
-        int tempgold = 5;
         //Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         List<Button> P1Tiles = new List<Button>();
         List<Button> P2Tiles = new List<Button>();
         List<Button> P3Tiles = new List<Button>();
         List<Button> P4Tiles = new List<Button>();
         List<Button> hex = new List<Button>();
-        List<Button> marker = new List<Button>();
+        static List<Button> marker = new List<Button>();
         SpriteFont font;
         Texture2D rack;
         GameBoard _theGameBoard;
+        public static Player me;
 
         public KNT_Game()
         {
@@ -44,12 +44,6 @@ namespace KingsNThings
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
-        }
-
-        private void testPlay()
-        {
-            for (int i = 0; i < 100; i++)
-                Console.WriteLine(DiceRoller.Roll.rollDice());
         }
 
         /// <summary>
@@ -62,6 +56,7 @@ namespace KingsNThings
         {
             // TODO: Add your initialization logic here
             _theGameBoard = GameBoard.Game;
+            me = _theGameBoard.getPlayers()[0];
             //testPlay();
             this.IsMouseVisible = true;
             base.Initialize();
@@ -78,6 +73,7 @@ namespace KingsNThings
             font = Content.Load<SpriteFont>("test");
             board = Content.Load<Texture2D>("images/board");
             rack = Content.Load<Texture2D>("images/rack");
+
             /////////////////////////////////HEX TEXTURES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             hexTexture[0] = Content.Load<Texture2D>("images/back2");
             hexTexture[1] = Content.Load<Texture2D>("images/desert");
@@ -195,6 +191,11 @@ namespace KingsNThings
             hex27 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 500, 450, 27);//27
             hex28 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 500, 550, 28);//28
             // TODO: use this.Content to load your game content here*/
+
+            marker.Add(new Button(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 3, 645, 570));
+            marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 645, 610));
+            marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 645, 650));
+            marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 645, 690));
             
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 400, _theGameBoard.getMap().getHexList()[0]));
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 300, _theGameBoard.getMap().getHexList()[1]));
@@ -233,11 +234,6 @@ namespace KingsNThings
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 450, _theGameBoard.getMap().getHexList()[34]));
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 350, _theGameBoard.getMap().getHexList()[35]));
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 250, _theGameBoard.getMap().getHexList()[36]));
-            
-            marker.Add(new Button(markerTexture[0], spriteBatch, 30, 30, 3, 645, 570));
-            marker.Add(new Button(markerTexture[1], spriteBatch, 30, 30, 3, 645, 610));
-            marker.Add(new Button(markerTexture[2], spriteBatch, 30, 30, 3, 645, 650));
-            marker.Add(new Button(markerTexture[3], spriteBatch, 30, 30, 3, 645, 690));
 
             //P1Tiles.Add(new Button(
         }
@@ -251,6 +247,21 @@ namespace KingsNThings
             // TODO: Unload any non ContentManager content here
         }
 
+        protected bool changePlayers()
+        {
+            Console.WriteLine(String.Format("me before change {0}.", me.getName()));
+            if (me.placedMarker)
+            {
+                if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
+                    me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
+                else
+                    return false;
+            }
+            Console.WriteLine(String.Format("me after change {0}.", me.getName()));
+
+            return true;
+        }
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -262,6 +273,9 @@ namespace KingsNThings
             KeyboardState state = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || state.IsKeyDown(Keys.Escape))
                 this.Exit();
+
+            if (!changePlayers())
+                _theGameBoard.play();
 
             // TODO: Add your update logic here
 
@@ -400,5 +414,17 @@ namespace KingsNThings
                 spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()) , new Vector2(Player.goldX, p.goldY), Color.Black);
             
         }
+
+        public static Button getMyMarker()
+        {
+            foreach(Button b in marker)
+            {
+                if (me.getMarkerID() == b.getButtonID())
+                    return b;
+            }
+
+            return null;
+        }
+             
     }
 }

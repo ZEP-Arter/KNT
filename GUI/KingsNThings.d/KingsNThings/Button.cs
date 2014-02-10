@@ -9,12 +9,11 @@ using GameLogic;
 
 namespace KingsNThings
 {
-    class Button
+    public class Button
     {
         protected Tile _hex;
 
         protected Texture2D image;
-        protected SpriteFont font;
         protected Rectangle location;
         protected SpriteBatch spriteBatch;
         protected int buttonType;
@@ -27,7 +26,15 @@ namespace KingsNThings
         protected Rectangle middle;
         protected Texture2D back;
 
-        public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y)
+        Button marker;
+
+        int buttonID;
+
+        Player owner;
+
+        bool markerSelected, isSet;
+
+        public Button(Texture2D texture, Player p, SpriteBatch sBatch, int width, int height, int number, int x, int y)
         {
             image = texture;
             location = new Rectangle(x, y, width, height);
@@ -40,9 +47,20 @@ namespace KingsNThings
             midright = new Point(110 + x, 50 + y);
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
+            markerSelected = false;
+            isSet = false;
+            owner = p;
+
+            Random r = new Random();
+
+            buttonID = r.Next(System.DateTime.Now.Millisecond);
+            System.Threading.Thread.Sleep(1000);
+
+            p.setMarkerID(buttonID);
             
         }
 
+        // maybe not using
         public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y, int hexnum)
         {
             image = texture;
@@ -59,6 +77,7 @@ namespace KingsNThings
             hexNumber = hexnum;
         }
 
+        //hexes
         public Button(Texture2D[] texture, SpriteBatch sBatch, int width, int height, int number, int x, int y, Tile t)
         {
             _hex = t;
@@ -102,6 +121,11 @@ namespace KingsNThings
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
         }
 
+        public int getButtonID()
+        {
+            return this.buttonID;
+        }
+
         public bool isClickedMarker(bool clickedTile, int number)
         {
             if (clickedTile == true && number == 3)
@@ -111,11 +135,24 @@ namespace KingsNThings
             else return false;
 
         }
+
+        private bool isMarkedSelected(Button _marker)
+        {
+            if (KNT_Game.me.getMarkerID() == _marker.buttonID && !isSet)
+            {
+                if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 3) //MARKER TILES
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         
         public void Location(int x, int y)
         {
-            location.X = x;
-            location.Y = y;
+            this.location.X = x;
+            this.location.Y = y;
             topleft = new Point(25 + x, 0 + y);
             midleft = new Point(0 + x, 50 + y);
             botleft = new Point(25 + x, 100 + y);
@@ -124,6 +161,7 @@ namespace KingsNThings
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
         }
+
         private bool IsInsideTriangle(Point A, Point B, Point C, Point P)
         {
             int planeAB = (A.X - P.X) * (B.Y - P.Y) - (B.X - P.X) * (A.Y - P.Y);
@@ -151,15 +189,27 @@ namespace KingsNThings
                     middle.Contains(new Point(mouse.X, mouse.Y)) ||
                     IsInsideTriangle(topright, midright, botright, new Point(mouse.X, mouse.Y))) && buttonType == 1) //HEX TILES
                 {
-                    clicked = true;
+                    marker = KNT_Game.getMyMarker();
+
+                    if (marker.markerSelected && this._hex.getStart())
+                    {
+                        marker.isSet = true;
+                        marker.markerSelected = false;
+                        marker.Location(25 + topleft.X, 5 + topleft.Y);
+                        KNT_Game.me.placedMarker = true;
+                    }
                 }
 
-                if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 3) //MARKER TILES
-                {
-                    clicked = true;
-
-                }
+                if (isMarkedSelected(this))
+                        markerSelected = true;
             }
+
+            if (markerSelected)
+            {
+                this.location.X = mouse.X;
+                this.location.Y = mouse.Y;
+            }
+           
 
             //Text = "Click Me";
             oldMouse = mouse;
@@ -202,6 +252,5 @@ namespace KingsNThings
 
             spriteBatch.End();
         }
-
     }
 }
