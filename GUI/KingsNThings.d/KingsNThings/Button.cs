@@ -61,7 +61,7 @@ namespace KingsNThings
         }
 
         // maybe not using
-        public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y, int hexnum)
+        public Button(Texture2D texture, SpriteBatch sBatch, int width, int height, int number, int x, int y)
         {
             image = texture;
             location = new Rectangle(x, y, width, height);
@@ -74,7 +74,7 @@ namespace KingsNThings
             midright = new Point(110 + x, 50 + y);
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
-            hexNumber = hexnum;
+            
         }
 
         //hexes
@@ -233,6 +233,13 @@ namespace KingsNThings
                 spriteBatch.Draw(image,
                     location,
                     Color.Silver);
+
+            }
+            else if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 4)
+            {
+                spriteBatch.Draw(image,
+                    location,
+                    Color.DimGray);
 
             }
             else
