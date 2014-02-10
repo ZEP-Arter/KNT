@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace GameLogic
 {
-    class DiceRoller
+    public class DiceRoller
     {
         public int fixDiceRoll(int i)
         {
@@ -17,13 +18,18 @@ namespace GameLogic
 
         public int rollDice()
         {
-            Random r = new Random();
+            rollingDice();
+
+            System.DateTime now = System.DateTime.Now;
+
+            Random r = new Random(now.Millisecond + (++numRolls));
 
             return dice[r.Next(dice.Count)];
         }
 
         private DiceRoller()
         {
+            numRolls = 0;
             dice = new List<int>(6);
             initDice();
         }
@@ -36,6 +42,30 @@ namespace GameLogic
             dice.Add(4);
             dice.Add(5);
             dice.Add(6);
+        }
+
+        private static void rollingDice()
+        {
+            Console.Write("Rolling .");
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.Write('.');
+            Thread.Sleep(200);
+            Console.WriteLine('.');
+            Thread.Sleep(200);
         }
 
         private static DiceRoller roll;
@@ -52,5 +82,6 @@ namespace GameLogic
         }
 
         List<int> dice;
+        private int numRolls;
     }
 }

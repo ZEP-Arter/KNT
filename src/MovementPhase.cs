@@ -63,7 +63,7 @@ namespace GameLogic
         {
             if(n == 0)
                 return null;
-            foreach(Tile t in map.getMap())
+            foreach (Tile t in map.getHexList())
             {
                 if(t.getHexNum() == n)
                     return t;
@@ -74,7 +74,7 @@ namespace GameLogic
         
         private void resetMovementLogic()
         {
-            foreach(Tile t in map.getMap())
+            foreach (Tile t in map.getHexList())
             {
                 t.resetMovementLogic();
             }

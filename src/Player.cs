@@ -9,7 +9,7 @@ namespace GameLogic
 	{
 		//ctor
 
-        public Player(string n)
+        public Player(string n, int yPos)
         {
             name = n;
 
@@ -17,16 +17,22 @@ namespace GameLogic
 
             turn = 0;
 
+            goldY = yPos;
+
             gold = 10;
         }
 
-        public Player(string n, NetworkPosition np)
+        public Player(string n, NetworkPosition np, int yPos)
         {
             name = n;
 
             _position = np;
 
             turn = 0;
+
+            gold = 10;
+
+            goldY = yPos;
         }
 
 		//public
@@ -117,6 +123,11 @@ namespace GameLogic
                 return -1;
             }
 
+            public int getGold()
+            {
+                return gold;
+            }
+
 
         //private
 
@@ -149,6 +160,10 @@ namespace GameLogic
 
         //total gold pieces
             private int gold;
+
+        // position of gold on scree
+            public const int goldX = 660;
+            public int goldY; // set at runtime;
     }
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p

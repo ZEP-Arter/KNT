@@ -29,9 +29,13 @@ namespace GameLogic
             public void addPlayer(string name)
             {
                 if (players.Count == 0)
-                    players.Add(new Player(name));
-                else
-                    players.Add(new Player(name, NetworkPosition.CLIENT));
+                    players.Add(new Player(name, 110));
+                else if( players.Count == 1 )
+                    players.Add(new Player(name, NetworkPosition.CLIENT, 245));
+                else if (players.Count == 2)
+                    players.Add(new Player(name, NetworkPosition.CLIENT, 380));
+                else if (players.Count == 3)
+                    players.Add(new Player(name, NetworkPosition.CLIENT, 515));
             }
 
             public Thing getRandomThingFromCup()
@@ -76,6 +80,11 @@ namespace GameLogic
 
                 players = order.Values.ToList<Player>();
             }
+
+            public List<Player> getPlayers()
+            {
+                return players;
+            }
 		
 		//private
 		
@@ -89,7 +98,7 @@ namespace GameLogic
 
                 while (players.Count != players.Capacity)
                 {
-                    addPlayer("Player " + n++);
+                    addPlayer(String.Format("Player {0}", n++));
                 }
 
                 bank = new Dictionary<string, List<Thing>>();

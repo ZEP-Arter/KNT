@@ -35,6 +35,7 @@ namespace KingsNThings
         SpriteFont font;
         Texture2D rack;
         GameBoard _theGameBoard;
+
         public KNT_Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,6 +44,12 @@ namespace KingsNThings
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
+        }
+
+        private void testPlay()
+        {
+            for (int i = 0; i < 100; i++)
+                Console.WriteLine(DiceRoller.Roll.rollDice());
         }
 
         /// <summary>
@@ -55,6 +62,7 @@ namespace KingsNThings
         {
             // TODO: Add your initialization logic here
             _theGameBoard = GameBoard.Game;
+            //testPlay();
             this.IsMouseVisible = true;
             base.Initialize();
         }
@@ -388,10 +396,8 @@ namespace KingsNThings
             MouseState mouse = Mouse.GetState();
             spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Blue);
             spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Blue);
-            spriteBatch.DrawString(font, "Player 1 Gold: " + tempgold, new Vector2(660, 110), Color.Blue);
-            spriteBatch.DrawString(font, "Player 2 Gold: " + tempgold, new Vector2(660, 245), Color.Blue);
-            spriteBatch.DrawString(font, "Player 3 Gold: " + tempgold, new Vector2(660, 380), Color.Blue);
-            spriteBatch.DrawString(font, "Player 4 Gold: " + tempgold, new Vector2(660, 515), Color.Blue);
+            foreach( Player p in _theGameBoard.getPlayers() )
+                spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()) , new Vector2(Player.goldX, p.goldY), Color.Black);
             
         }
     }
