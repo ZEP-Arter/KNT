@@ -22,6 +22,8 @@ namespace GameLogic
             gold = 10;
 
             placedMarker = false;
+
+            diceRoll = 0;
         }
 
         public Player(string n, NetworkPosition np, int yPos)
@@ -37,6 +39,8 @@ namespace GameLogic
             goldY = yPos;
 
             placedMarker = false;
+
+            diceRoll = 0;
         }
 
 		//public
@@ -142,6 +146,16 @@ namespace GameLogic
                 myMarker = id;
             }
 
+            public int getDiceRoll()
+            {
+                return diceRoll;
+            }
+
+            public void setDiceRoll(int roll)
+            {
+                diceRoll = roll;
+            }
+
 
         //private
 
@@ -160,6 +174,7 @@ namespace GameLogic
 
         //  turn position : since this is going to change I think it is best we have a var for it, not sure what type, keeping it as 'int' for now
             private int turn;
+            private int diceRoll;
 
 		//  things ( this will have to have a bool (isOnRack) // this is probs the things in play
             private List<Thing> things;
