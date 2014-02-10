@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    class Board
+    public class Board
     {
         //ctor 
 

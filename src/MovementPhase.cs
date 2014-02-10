@@ -10,6 +10,7 @@ namespace GameLogic
         public MovementPhase() :
             base("Movement")
         {
+            map = GameBoard.Game.getMap();
         }
 
         public override void playPhase(List<Player> players)

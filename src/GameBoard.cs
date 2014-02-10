@@ -95,8 +95,8 @@ namespace GameLogic
                 bank = new Dictionary<string, List<Thing>>();
                 playingCup = new List<Thing>();
                 currentPhase = 0;
-                initGamePhases();
                 init();
+                initGamePhases();
             }
 
             private void orderPlayers()
@@ -398,11 +398,8 @@ namespace GameLogic
                 playingCup.Add(new Creature("Forester", "Forest", 2, attr)); //Ranged
                 playingCup.Add(new Creature("Walking Tree", "Forest", 5, attr));
             }
-        
-            private void initMap()
-            {
-                   
-            }
+
+            public Board getMap() { return theBoard; }
 		
 		// private members
 		

@@ -8,7 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using KNT_Service;
+//using KNT_Service;
+using GameLogic;
 
 namespace KingsNThings
 {
@@ -18,12 +19,13 @@ namespace KingsNThings
     public class KNT_Game : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        KNTNet client;
+        //KNTNet client;
         SpriteBatch spriteBatch;
         private Texture2D board;
         private Texture2D[] hexTexture = new Texture2D[9];
         Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         //SpriteFont font;
+        GameBoard theGameBoard;
         public KNT_Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -32,9 +34,10 @@ namespace KingsNThings
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
-            client = new KNTNet();
+            theGameBoard = GameBoard.Game;
+            /*client = new KNTNet();
             Services.AddService(typeof(IKNTNet), client);
-            client.setupGame();
+            client.setupGame();*/
         }
 
         /// <summary>
