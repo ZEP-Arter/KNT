@@ -37,6 +37,8 @@ namespace KingsNThings
         Texture2D rack;
         GameBoard _theGameBoard;
         public static Player me;
+        bool positionsSet;
+        bool markersSet;
 
         public KNT_Game()
         {
@@ -46,6 +48,8 @@ namespace KingsNThings
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
+            positionsSet = false;
+            markersSet = false;
         }
 
         /// <summary>
@@ -58,7 +62,6 @@ namespace KingsNThings
         {
             // TODO: Add your initialization logic here
             _theGameBoard = GameBoard.Game;
-            _theGameBoard.play();
             me = _theGameBoard.getPlayers()[0];
             //testPlay();
             this.IsMouseVisible = true;
@@ -253,7 +256,14 @@ namespace KingsNThings
 
         protected bool changePlayers()
         {
-            if (me != null && me.placedMarker)
+            if (me != null && me.placedMarker && !markersSet)
+            {
+                if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
+                    me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
+                else
+                    return false;
+            }
+            else if (me != null && me.getDiceRoll() != 0 && !positionsSet)
             {
                 if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
                     me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
@@ -276,7 +286,26 @@ namespace KingsNThings
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || state.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            if (!changePlayers()) { }
+            if (!changePlayers()) 
+            {
+                if (!positionsSet)
+                {
+                    if (_theGameBoard.setPlayerOrder())
+                    {
+                        me = _theGameBoard.getPlayers()[0];
+                        positionsSet = true;
+                    }
+                    else
+                    {
+                        foreach (Player p in _theGameBoard.getPlayers())
+                        {
+                            p.setDiceRoll(0);
+                        }
+
+                        me = _theGameBoard.getPlayers()[0];
+                    }
+                }
+            }
                 //lol
 
             // TODO: Add your update logic here

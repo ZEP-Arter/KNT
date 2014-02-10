@@ -32,7 +32,7 @@ namespace KingsNThings
 
         Player owner;
 
-        bool markerSelected, isSet;
+        bool markerSelected, isSet, needDice;
 
         public Button(Texture2D texture, Player p, SpriteBatch sBatch, int width, int height, int number, int x, int y)
         {
@@ -49,6 +49,7 @@ namespace KingsNThings
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
             markerSelected = false;
             isSet = false;
+            needDice = false;
             owner = p;
 
             Random r = new Random();
@@ -74,6 +75,7 @@ namespace KingsNThings
             midright = new Point(110 + x, 50 + y);
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
+            needDice = false;
             
         }
 
@@ -119,6 +121,7 @@ namespace KingsNThings
             midright = new Point(110 + x, 50 + y);
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
+            needDice = false;
         }
 
         public int getButtonID()
@@ -138,13 +141,21 @@ namespace KingsNThings
 
         private bool isMarkedSelected(Button _marker)
         {
-            if (KNT_Game.me.getMarkerID() == _marker.buttonID && !isSet)
+            if (KNT_Game.me.getMarkerID() == _marker.buttonID && !isSet && KNT_Game.me.getDiceRoll() != 0)
             {
                 if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 3) //MARKER TILES
                 {
                     return true;
                 }
             }
+
+            return false;
+        }
+
+        private bool rollClicked()
+        {
+            if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 4)
+                return true;
 
             return false;
         }
@@ -170,6 +181,7 @@ namespace KingsNThings
             return sign(planeAB) == sign(planeBC) && sign(planeBC) == sign(planeCA);
 
         }
+
         private int sign(int n)
         {
             if (n != 0)
@@ -178,9 +190,13 @@ namespace KingsNThings
             }
             else return 0;
         }
+
         public virtual void Update()
         {
             mouse = Mouse.GetState();
+
+            if (KNT_Game.me.getDiceRoll() == 0)
+                needDice = true;
 
             if (mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton == ButtonState.Pressed)
             {
@@ -202,6 +218,13 @@ namespace KingsNThings
 
                 if (isMarkedSelected(this))
                         markerSelected = true;
+
+                if (rollClicked() && needDice)
+                {
+                    KNT_Game.me.setDiceRoll(DiceRoller.Roll.rollDice());
+                    needDice = false;
+                }
+
             }
 
             if (markerSelected)
@@ -242,19 +265,17 @@ namespace KingsNThings
                     Color.DimGray);
 
             }
+            else if (!needDice && buttonType == 4)
+            {
+                spriteBatch.Draw(image,
+                    location,
+                    Color.DimGray);
+            }
             else
             {
                 spriteBatch.Draw(image,
                     location,
                     Color.White);
-            }
-
-
-
-            if (clicked && buttonType == 3)
-            {
-                
-                
             }
 
             spriteBatch.End();
