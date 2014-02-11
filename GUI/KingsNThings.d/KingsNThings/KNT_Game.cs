@@ -21,12 +21,14 @@ namespace KingsNThings
         SpriteBatch spriteBatch;
         private Texture2D board;
         private Texture2D roll;
+        private Texture2D endTexture;
         private Texture2D[] hexTexture = new Texture2D[9];
         private Texture2D[] goldTexture = new Texture2D[6];
         private Texture2D[] markerTexture = new Texture2D[4];
         private Texture2D[] scripttileTexture = new Texture2D[40];
         //Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         Button rollbutton;
+        Button endButton;
         List<Button> P1Tiles = new List<Button>();
         List<Button> P2Tiles = new List<Button>();
         List<Button> P3Tiles = new List<Button>();
@@ -80,6 +82,7 @@ namespace KingsNThings
             board = Content.Load<Texture2D>("images/board");
             rack = Content.Load<Texture2D>("images/rack");
             roll = Content.Load<Texture2D>("images/roll");
+            endTexture = Content.Load<Texture2D>("images/end");
             /////////////////////////////////HEX TEXTURES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             hexTexture[0] = Content.Load<Texture2D>("images/back2");
             hexTexture[1] = Content.Load<Texture2D>("images/desert");
@@ -202,6 +205,16 @@ namespace KingsNThings
             marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 645, 610));
             marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 645, 650));
             marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 645, 690));
+
+            marker.Add(new Button(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 3, 685, 570));
+            marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 685, 610));
+            marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 685, 650));
+            marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 685, 690));
+
+            marker.Add(new Button(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 3, 725, 570));
+            marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 725, 610));
+            marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 725, 650));
+            marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 725, 690));
             
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 400, _theGameBoard.getMap().getHexList()[0]));
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 300, _theGameBoard.getMap().getHexList()[1]));
@@ -242,6 +255,7 @@ namespace KingsNThings
             hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 250, _theGameBoard.getMap().getHexList()[36]));
 
             rollbutton = new Button(roll, spriteBatch, 140, 60, 4, 460, 20);
+            endButton = new Button(endTexture, spriteBatch, 140, 60, 4, 300, 20);
             //P1Tiles.Add(new Button(
         }
 
@@ -377,8 +391,17 @@ namespace KingsNThings
             marker[1].Update();
             marker[2].Update();
             marker[3].Update();
+            marker[4].Update();
+            marker[5].Update();
+            marker[6].Update();
+            marker[7].Update();
+            marker[8].Update();
+            marker[9].Update();
+            marker[10].Update();
+            marker[11].Update();
 
             rollbutton.Update();
+            endButton.Update();
         }
 
         private void DrawBoard()
@@ -436,8 +459,17 @@ namespace KingsNThings
             marker[1].Draw();
             marker[2].Draw();
             marker[3].Draw();
+            marker[4].Draw();
+            marker[5].Draw();
+            marker[6].Draw();
+            marker[7].Draw();
+            marker[8].Draw();
+            marker[9].Draw();
+            marker[10].Draw();
+            marker[11].Draw();
 
             rollbutton.Draw();
+            endButton.Draw();
         }
 
         private void DrawText()

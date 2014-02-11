@@ -112,7 +112,6 @@ namespace KingsNThings
                 case "Swamp":           image = texture[8]; 
                                         break;
             }
-            //image = texture[1];
             location = new Rectangle(x, y, width, height);
             spriteBatch = sBatch;
             buttonType = number;
@@ -209,7 +208,7 @@ namespace KingsNThings
                 {
                     marker = KNT_Game.getMyMarker();
 
-                    if (marker.markerSelected && this._hex.getStart() &&
+                    if (marker.markerSelected && (this._hex.getStart() || this._hex.getPlayerAble() == KNT_Game.me) &&
                         (this._hex.getPlayerAble() == null || this._hex.getPlayerAble() == KNT_Game.me))
                     {
                         this._hex.selectedAsStarting(KNT_Game.me);

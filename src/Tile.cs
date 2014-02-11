@@ -27,6 +27,9 @@ namespace GameLogic
         public List<Thing> p2Stack;
         public List<Thing> p3Stack;
         public List<Thing> p4Stack;
+
+        //For Level is 0 if there is no Fort
+        private int fortLevel = 0;
         
         private bool rough = false;
 
