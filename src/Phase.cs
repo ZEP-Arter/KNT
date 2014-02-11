@@ -46,12 +46,34 @@ namespace GameLogic
 
         protected bool beginPhase()
         {
+            foreach (Player p in _players)
+                p.startPhase();
+
             if( currentState == State.BEGIN )
                 return true;
             else if (currentState == State.IN_PROGRESS)
                 return false;
 
             changeState();
+
+            return true;
+        }
+
+        protected void changePlayer()
+        {
+            if (_players.IndexOf(currentPlayer) != _players.Capacity - 1)
+                currentPlayer = _players[_players.IndexOf(currentPlayer) + 1];
+            else
+                currentPlayer = _players[0];
+        }
+
+        protected bool allDone()
+        {
+            foreach (Player p in _players)
+            {
+                if (!p.getInPhase())
+                    return false;
+            }
 
             return true;
         }

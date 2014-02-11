@@ -28,6 +28,8 @@ namespace GameLogic
             ownedTiles = new List<Tile>();
 
             holdingMarker = false;
+
+            inPhase = false;
         }
 
         public Player(string n, NetworkPosition np, int yPos)
@@ -49,6 +51,8 @@ namespace GameLogic
             ownedTiles = new List<Tile>();
 
             holdingMarker = false;
+
+            inPhase = false;
         }
 
 		//public
@@ -187,6 +191,20 @@ namespace GameLogic
                     holdingMarker = true;
             }
 
+            public bool getInPhase()
+            {
+                return inPhase;
+            }
+
+            public void donePhase()
+            {
+                inPhase = true;
+            }
+
+            public void startPhase()
+            {
+                inPhase = false;
+            }
 
         //private
 
@@ -230,6 +248,9 @@ namespace GameLogic
 
         //holding marker
             bool holdingMarker;
+
+        //currently not done playing phase
+            bool inPhase;
     }
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p

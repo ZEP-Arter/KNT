@@ -16,21 +16,26 @@ namespace GameLogic
         public override void playPhase(List<Player> players)
         {
             _players = players;
+
+            if (currentState != State.IN_PROGRESS)
+                beginPhase();
+
+            if (currentPlayer == null)
+                currentPlayer = players[0];
+
             collectGold();
         }
 
         public void collectGold()
         {
-            this.beginPhase();
+            if (currentPlayer.getInPhase())
+                changePlayer();
 
-            foreach (Player p in _players)
-            {
-                determineGold(p);
-                givePlayerGold(p);
-                // need something to determine end turn here
-            }
+            determineGold(currentPlayer);
+            givePlayerGold(currentPlayer);
 
-            this.endPhase();
+            if( allDone() )
+                endPhase();
         }
 
         private void determineGold(Player player)
@@ -58,6 +63,7 @@ namespace GameLogic
         {
             player.givePlayerGold(gold);
             gold = 0;
+            player.donePhase();
         }
 
         private void addGold(int amount)
@@ -67,7 +73,7 @@ namespace GameLogic
 
         public override Player getCurrentPlayer()
         {
-            return null;
+            return currentPlayer;
         }
 
         private int gold;

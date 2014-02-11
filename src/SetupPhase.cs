@@ -11,6 +11,7 @@ namespace GameLogic
             base("Setup")
         {
             positionsSet = false;
+            markersSet = false;
         }
 
         public override void playPhase(List<Player> players)
@@ -34,16 +35,11 @@ namespace GameLogic
             if (!positionsSet)
                 positionsSet = setPositions();
             //place starting markers
-            else if (placeStartingMarkers())
+            else if (!markersSet)
+                markersSet = placeStartingMarkers();
+            //check to see if everyone has finised their turn
+            else if( allDone() )
                 endPhase();
-        }
-
-        private void changePlayer()
-        {
-            if (_players.IndexOf(currentPlayer) != _players.Capacity - 1)
-                currentPlayer = _players[_players.IndexOf(currentPlayer) + 1];
-            else
-                currentPlayer = _players[0];
         }
 
         private bool placeStartingMarkers()
@@ -57,6 +53,7 @@ namespace GameLogic
             else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
                 currentPlayer.placedAllMarkers())
             {
+                currentPlayer.donePhase();
                 return true;
             }
 
@@ -92,6 +89,7 @@ namespace GameLogic
             return false;
         }
 
-        bool positionsSet;
+        bool positionsSet,
+             markersSet;
     }
 }
