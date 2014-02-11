@@ -42,7 +42,7 @@ namespace GameLogic
             }
         }
 
-        private void resolveCombat(Tile t)
+        public void resolveCombat(Tile t)
         {
             bool resolved = false;
             while (!resolved)

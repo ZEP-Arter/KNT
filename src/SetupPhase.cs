@@ -17,7 +17,7 @@ namespace GameLogic
         public override void playPhase(List<Player> players)
         {
             _players = players;
-            if( currentPlayer == null || positionsSet)
+            if( currentPlayer == null)
                 currentPlayer = _players[0];
             if( currentState != State.IN_PROGRESS )
                 beginPhase();
@@ -45,7 +45,13 @@ namespace GameLogic
         private bool placeStartingMarkers()
         {
             if (_players.IndexOf(currentPlayer) != _players.Capacity - 1 &&
-                !currentPlayer.placedAllMarkers())
+                currentPlayer.placedCurrentMarker())
+            {
+                changePlayer();
+                return false;
+            }
+            else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
+                currentPlayer.placedCurrentMarker())
             {
                 changePlayer();
                 return false;
@@ -56,8 +62,6 @@ namespace GameLogic
                 currentPlayer.donePhase();
                 return true;
             }
-
-            changePlayer();
 
             return false;
         }
@@ -75,7 +79,10 @@ namespace GameLogic
                 currentPlayer.getDiceRoll() != 0)
             {
                 if (GameBoard.Game.setPlayerOrder())
+                {
+                    currentPlayer = GameBoard.Game.getPlayers()[0];
                     return true;
+                }
                 else
                 {
                     //retry rolls

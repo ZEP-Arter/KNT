@@ -465,7 +465,8 @@ namespace KingsNThings
             foreach(MarkerButton b in marker)
             {
                 if (me.containsMarkerID(b.getButtonID()) &&
-                    me.handsFull())
+                    me.handsFull() &&
+                    b.getMarkerSelected())
                     return b;
             }
 

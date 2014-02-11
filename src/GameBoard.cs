@@ -122,6 +122,11 @@ namespace GameLogic
             {
                 return currentPhase.getName();
             }
+
+            public Phase getCurrentPhaseObject()
+            {
+                return currentPhase;
+            }
 		
 		//private
 		

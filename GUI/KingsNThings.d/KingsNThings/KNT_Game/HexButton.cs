@@ -30,20 +30,39 @@ namespace KingsNThings
                  middle.Contains(new Point(mouse.X, mouse.Y)) ||
                  IsInsideTriangle(topright, midright, botright, new Point(mouse.X, mouse.Y)))) //HEX TILES
             {
-                if ((marker = KNT_Game.getMyMarker()) != null)
+                switch (GameBoard.Game.getCurrentPhase())
                 {
+                    case "Setup":
+                        if ((marker = KNT_Game.getMyMarker()) != null)
+                        {
+                            Console.WriteLine("Got here");
+                            Console.WriteLine(marker.getMarkerSelected());
+                            if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
+                                (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me) && 
+                                this.hex.getPlayer() == null)
+                            {
+                                this.hex.selectedAsStarting(KNT_Game.me);
+                                KNT_Game.me.addOwnedTile(hex);
+                                marker.setIsSet(true);
+                                marker.setMarkerSelected(false);
+                                marker.Location(25 + topleft.X, 5 + topleft.Y);
+                                KNT_Game.me.placeMarker(marker.getButtonID());
+                                KNT_Game.me.setCurrentMarker(marker.getButtonID());
+                                KNT_Game.me.setHandsFull();
+                            }
+                        }
+                        break;
 
-                    if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
-                        (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me))
-                    {
-                        this.hex.selectedAsStarting(KNT_Game.me);
-                        KNT_Game.me.addOwnedTile(hex);
-                        marker.setIsSet(true);
-                        marker.setMarkerSelected(false);
-                        marker.Location(25 + topleft.X, 5 + topleft.Y);
-                        KNT_Game.me.placeMarker(marker.getButtonID());
-                        KNT_Game.me.setHandsFull();
-                    }
+                    case "Movement":
+
+                        break;
+
+                    case "Combat":
+                        if (this.hex.getCFlag())
+                        {
+                            ((CombatPhase)GameBoard.Game.getCurrentPhaseObject()).resolveCombat(this.hex);
+                        }
+                        break;
                 }
             }
         }

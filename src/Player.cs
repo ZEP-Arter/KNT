@@ -219,6 +219,24 @@ namespace GameLogic
                 ownedTiles.Add(hex);
             }
 
+            public bool placedCurrentMarker()
+            {
+                bool retVal = false;
+
+                if (currentMarkerID != 0)
+                {
+                    retVal = mymarkers[currentMarkerID];
+                    currentMarkerID = 0;
+                }
+
+                return retVal;
+            }
+
+            public void setCurrentMarker(int buttonID)
+            {
+                currentMarkerID = buttonID;
+            }
+
         //private
 
             private void removeFromRack(Thing thing)
@@ -258,6 +276,9 @@ namespace GameLogic
 
         // marker id's and has been placed
             Dictionary<int, bool> mymarkers;
+
+        //current marker
+            int currentMarkerID;
 
         //holding marker
             bool holdingMarker;

@@ -50,8 +50,10 @@ namespace KingsNThings
             if (isMarkedSelected())
             {
                 if (!markerSelected)
+                {
                     KNT_Game.me.setHandsFull();
-                markerSelected = true;
+                    markerSelected = true;
+                }
             }
         }
 
@@ -85,12 +87,12 @@ namespace KingsNThings
 
         private bool isMarkedSelected()
         {
-            if (KNT_Game.me.containsMarkerID(buttonID) &&
-                !isSet &&
-                KNT_Game.me.getDiceRoll() != 0 &&
-                !KNT_Game.me.handsFull())
+            if (location.Contains(new Point(mouse.X, mouse.Y))) //MARKER TILES
             {
-                if (location.Contains(new Point(mouse.X, mouse.Y))) //MARKER TILES
+                if (KNT_Game.me.containsMarkerID(buttonID) &&
+                    !isSet &&
+                    KNT_Game.me.getDiceRoll() != 0 &&
+                    !KNT_Game.me.handsFull())
                 {
                     return true;
                 }
@@ -106,8 +108,8 @@ namespace KingsNThings
         public void setIsSet(bool b) { isSet = b; }
 
         private Player owner;
-        private bool isSet,
-                     markerSelected;
+        private bool isSet = false;
+        private bool markerSelected = false;
         private int buttonID;
     }
 }

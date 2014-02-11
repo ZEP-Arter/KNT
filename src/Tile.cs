@@ -36,7 +36,7 @@ namespace GameLogic
 
         private bool playerControlBool = false;
 
-		private Player playerControl;
+		private Player playerControl = null;
         private Player playerAbleToStart = null;
         
         //Movement logic variable

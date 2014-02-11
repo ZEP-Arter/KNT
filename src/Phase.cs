@@ -94,7 +94,7 @@ namespace GameLogic
 
         string name;
         protected State currentState;
-        protected List<Player> _players;
+        volatile protected List<Player> _players;
         protected Player currentPlayer;
 
         public enum State
