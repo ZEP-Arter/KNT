@@ -15,7 +15,8 @@ namespace GameLogic
             CHARGE, //can charge in combat (large C)
             RANGED, // (large R)
             SPECIAL, // has special ability ( kleene star * )
-            PLUS_HITS // paranthesis around combat score is multi hit in combat ( can take more then one hit in combat )
+            PLUS_HITS, // paranthesis around combat score is multi hit in combat ( can take more then one hit in combat )
+            MELEE //neither Magic nor Ranged
         }
     }
 }

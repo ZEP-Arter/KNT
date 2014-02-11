@@ -30,8 +30,11 @@ namespace GameLogic
 
         //For Level is 0 if there is no Fort
         private int fortLevel = 0;
-        
+
+        private bool combatFlagged = false;
         private bool rough = false;
+
+        private bool playerControlBool = false;
 
 		private Player playerControl;
         private Player playerAbleToStart = null;
@@ -71,12 +74,14 @@ namespace GameLogic
 
         public void setPlayerControl(Player p)
         {
+            setPlayerControlBool(true);
             playerControl = p;
         }
 
         public void selectedAsStarting(Player p)
         {
             playerControl = p;
+            setPlayerControlBool(true);
             foreach (Tile t in GameBoard.Game.getMap().getHexList())
             {
                 int hNum = t.getHexNum();
@@ -90,9 +95,13 @@ namespace GameLogic
         }
        
         public void setPlayerAble(Player p) { playerAbleToStart = p; }
+        public void setPlayerControlBool(bool b) { playerControlBool = b; }
+        public void setCFlag(bool b) { combatFlagged = b; }
 
+        public bool getCFlag() { return combatFlagged; }
         public Player getPlayer() { return playerControl; }
         public Player getPlayerAble() { return playerAbleToStart; }
+        public bool getPlayerControlBool() { return playerControlBool; }
         public int[] getSurrounding() { return new int[] { nHex, neHex, seHex, sHex, swHex, nwHex }; }
         public int getHexNum() { return hexNumber; }
         public void resetMovementLogic() { traversed = false; }

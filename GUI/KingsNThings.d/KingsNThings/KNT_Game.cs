@@ -270,29 +270,6 @@ namespace KingsNThings
             // TODO: Unload any non ContentManager content here
         }
 
-<<<<<<< HEAD
-        protected bool changePlayers()
-        {
-            if (me != null && me.placedMarker && !markersSet)
-            {
-                if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
-                    me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
-                else
-                    return false;
-            }
-            else if (me != null && me.getDiceRoll() != 0 && !positionsSet)
-            {
-                if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
-                    me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
-                else
-                    return false;
-            }
-
-            return true;
-        }
-
-=======
->>>>>>> Better Abstraction
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -310,7 +287,7 @@ namespace KingsNThings
                 case "Setup":
                     currentPhase.playPhase(_theGameBoard.getPlayers());
                     me = currentPhase.getCurrentPlayer();
-                    Console.WriteLine(me.getName());
+                    //Console.WriteLine(me.getName());
                     break;
             }
 

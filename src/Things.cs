@@ -66,6 +66,6 @@ namespace GameLogic
 
         int goldValue; //if applicable
 
-        List<Attributes.CombatAttributes> attributes; //if applicable
+        public List<Attributes.CombatAttributes> attributes; //if applicable
     }
 }
