@@ -279,6 +279,7 @@ namespace KingsNThings
             }
             else if (me != null && me.getDiceRoll() != 0 && !positionsSet)
             {
+                System.Threading.Thread.Sleep(2000);
                 if (_theGameBoard.getPlayers().IndexOf(me) != _theGameBoard.getPlayers().Capacity - 1)
                     me = _theGameBoard.getPlayers()[_theGameBoard.getPlayers().IndexOf(me) + 1];
                 else
@@ -484,6 +485,10 @@ namespace KingsNThings
                 else
                     spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(Player.goldX, p.goldY), Color.Black);
             }
+
+            if (me != null && me.getDiceRoll() != 0 && !positionsSet)
+                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", me.getName(), me.getDiceRoll()), new Vector2(420, 100), Color.Blue);
+            spriteBatch.DrawString(font, String.Format("Phase: {0}", "Setup"), new Vector2(20, 20), Color.Black);
             
         }
 

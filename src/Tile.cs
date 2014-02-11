@@ -33,6 +33,8 @@ namespace GameLogic
         
         private bool rough = false;
 
+        private bool playerControlBool = false;
+
 		private Player playerControl;
         private Player playerAbleToStart = null;
         
@@ -71,12 +73,14 @@ namespace GameLogic
 
         public void setPlayerControl(Player p)
         {
+            setPlayerControlBool(true);
             playerControl = p;
         }
 
         public void selectedAsStarting(Player p)
         {
             playerControl = p;
+            setPlayerControlBool(true);
             foreach (Tile t in GameBoard.Game.getMap().getHexList())
             {
                 int hNum = t.getHexNum();
@@ -90,9 +94,11 @@ namespace GameLogic
         }
        
         public void setPlayerAble(Player p) { playerAbleToStart = p; }
+        public void setPlayerControlBool(bool b) { playerControlBool = b; }
 
         public Player getPlayer() { return playerControl; }
         public Player getPlayerAble() { return playerAbleToStart; }
+        public bool getPlayerControlBool() { return playerControlBool; }
         public int[] getSurrounding() { return new int[] { nHex, neHex, seHex, sHex, swHex, nwHex }; }
         public int getHexNum() { return hexNumber; }
         public void resetMovementLogic() { traversed = false; }
