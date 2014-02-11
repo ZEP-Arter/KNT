@@ -18,18 +18,18 @@ namespace GameLogic
 
         public int rollDice()
         {
-            rollingDice();
+            //rollingDice();
 
             System.DateTime now = System.DateTime.Now;
 
-            Random r = new Random(now.Millisecond + (++numRolls));
+            Random r = new Random(now.Millisecond*10000000);
 
             return dice[r.Next(dice.Count)];
         }
 
         private DiceRoller()
         {
-            numRolls = 0;
+            //numRolls = 0;
             dice = new List<int>(11);
             initDice();
         }
@@ -87,6 +87,6 @@ namespace GameLogic
         }
 
         List<int> dice;
-        private int numRolls;
+        //private int numRolls;
     }
 }

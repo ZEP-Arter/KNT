@@ -34,9 +34,9 @@ namespace KingsNThings
                 System.Threading.Thread.Sleep(1000);
             }
 
-                p.addMarkerID(buttonID);
+            owner.addMarkerID(buttonID);
 
-                Console.WriteLine(buttonID);
+            //Console.WriteLine(buttonID);
             
         }
 
@@ -83,7 +83,7 @@ namespace KingsNThings
             base.Update();
         }
 
-        public bool isMarkedSelected()
+        private bool isMarkedSelected()
         {
             if (KNT_Game.me.containsMarkerID(buttonID) &&
                 !isSet &&

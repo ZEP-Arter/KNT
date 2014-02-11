@@ -33,7 +33,7 @@ namespace KingsNThings
                 if ((marker = KNT_Game.getMyMarker()) != null)
                 {
 
-                    if (marker.isMarkedSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
+                    if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
                         (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me))
                     {
                         this.hex.selectedAsStarting(KNT_Game.me);
