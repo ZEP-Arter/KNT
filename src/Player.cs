@@ -27,6 +27,10 @@ namespace GameLogic
 
             ownedTiles = new List<Tile>();
 
+            things = new List<Thing>();
+
+            rack = new List<Thing>();
+
             holdingMarker = false;
 
             inPhase = false;
@@ -49,6 +53,10 @@ namespace GameLogic
             diceRoll = 0;
 
             ownedTiles = new List<Tile>();
+
+            things = new List<Thing>();
+
+            rack = new List<Thing>();
 
             holdingMarker = false;
 
@@ -204,6 +212,11 @@ namespace GameLogic
             public void startPhase()
             {
                 inPhase = false;
+            }
+
+            public void addOwnedTile(Tile hex)
+            {
+                ownedTiles.Add(hex);
             }
 
         //private
