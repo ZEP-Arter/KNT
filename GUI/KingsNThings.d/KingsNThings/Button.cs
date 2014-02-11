@@ -220,7 +220,7 @@ namespace KingsNThings
                     marker = KNT_Game.getMyMarker();
 
                     if (marker.markerSelected && (this._hex.getStart() || this._hex.getPlayerAble() == KNT_Game.me) &&
-                        (this._hex.getPlayerAble() == null || this._hex.getPlayerAble() == KNT_Game.me) && !this._hex.getPlayerControlBool())
+                        (this._hex.getPlayerAble() == null || this._hex.getPlayerAble() == KNT_Game.me))
                     {
                         this._hex.selectedAsStarting(KNT_Game.me);
                         marker.isSet = true;
