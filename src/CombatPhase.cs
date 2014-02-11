@@ -11,6 +11,7 @@ namespace GameLogic
             base("Combat")
         {
             map = GameBoard.Game.getMap();
+            combatUnresolved = false;
         }
 
         public override void playPhase(List<Player> players)
@@ -20,7 +21,6 @@ namespace GameLogic
 
         private void combat()
         {
-            combatUnresolved = false;
             foreach(Tile t in map.getHexList())
             {
                 if (t.getCFlag())

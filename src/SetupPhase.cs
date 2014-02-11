@@ -59,8 +59,8 @@ namespace GameLogic
             {
                 return true;
             }
-            else
-                changePlayer();
+
+            changePlayer();
 
             return false;
         }
