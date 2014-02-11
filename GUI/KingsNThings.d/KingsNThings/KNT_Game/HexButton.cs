@@ -30,18 +30,20 @@ namespace KingsNThings
                  middle.Contains(new Point(mouse.X, mouse.Y)) ||
                  IsInsideTriangle(topright, midright, botright, new Point(mouse.X, mouse.Y)))) //HEX TILES
             {
-                marker = KNT_Game.getMyMarker();
-
-                if (marker.markerSelected && (this._hex.getStart() || this._hex.getPlayerAble() == KNT_Game.me) &&
-                    (this._hex.getPlayerAble() == null || this._hex.getPlayerAble() == KNT_Game.me))
+                if ((marker = KNT_Game.getMyMarker()) != null)
                 {
-                    this._hex.selectedAsStarting(KNT_Game.me);
-                    KNT_Game.me.addOwnedTile(_hex);
-                    marker.isSet = true;
-                    marker.markerSelected = false;
-                    marker.Location(25 + topleft.X, 5 + topleft.Y);
-                    KNT_Game.me.placeMarker(marker.buttonID);
-                    KNT_Game.me.setHandsFull();
+
+                    if (marker.isMarkedSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
+                        (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me))
+                    {
+                        this.hex.selectedAsStarting(KNT_Game.me);
+                        KNT_Game.me.addOwnedTile(hex);
+                        marker.setIsSet(true);
+                        marker.setMarkerSelected(false);
+                        marker.Location(25 + topleft.X, 5 + topleft.Y);
+                        KNT_Game.me.placeMarker(marker.getButtonID());
+                        KNT_Game.me.setHandsFull();
+                    }
                 }
             }
         }
@@ -85,6 +87,6 @@ namespace KingsNThings
         private Tile hex;
         private int hexNumber;
         private Texture2D backside;
-        //private MarkerButton marker;
+        private MarkerButton marker;
     }
 }

@@ -16,7 +16,7 @@ namespace KingsNThings
 {
     public class MarkerButton : Button
     {
-        public MarkerButton(Texture2D texture, Player p, SpriteBatch sBatch, int width, int height, int number, int x, int y) :
+        public MarkerButton(Texture2D texture, Player p, SpriteBatch sBatch, int width, int height, int x, int y) :
             base(texture, sBatch, width, height, x, y)
         {
             markerSelected = false;
@@ -83,7 +83,7 @@ namespace KingsNThings
             base.Update();
         }
 
-        private bool isMarkedSelected()
+        public bool isMarkedSelected()
         {
             if (KNT_Game.me.containsMarkerID(buttonID) &&
                 !isSet &&
@@ -98,6 +98,12 @@ namespace KingsNThings
 
             return false;
         }
+
+        public bool getMarkerSelected() { return markerSelected; }
+        public void setMarkerSelected(bool b) { markerSelected = b; }
+
+        public bool getIsSet() { return isSet; }
+        public void setIsSet(bool b) { isSet = b; }
 
         private Player owner;
         private bool isSet,

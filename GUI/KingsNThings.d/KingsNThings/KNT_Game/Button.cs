@@ -86,7 +86,7 @@ namespace KingsNThings
             midright = new Point(110 + x, 50 + y);
             botright = new Point(85 + x, 100 + y);
             middle = new Rectangle(topleft.X, topleft.Y, 60, 100);
-            needDice = false;
+            //needDice = false;
             
         }
 
@@ -144,7 +144,7 @@ namespace KingsNThings
         protected abstract void isClicked();
         protected abstract void draw();
         
-        protected void Location(int x, int y)
+        public void Location(int x, int y)
         {
             this.location.X = x;
             this.location.Y = y;

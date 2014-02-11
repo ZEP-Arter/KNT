@@ -257,7 +257,7 @@ namespace KingsNThings
             hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36]));
 
             rollbutton = new DiceRollButton(roll, spriteBatch, 140, 60, 460, 20, font);
-            endButton = new Button(endTexture, spriteBatch, 140, 60, 300, 20);
+            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 60, 300, 20, font);
             //P1Tiles.Add(new Button(
         }
 
@@ -460,12 +460,12 @@ namespace KingsNThings
 
         }
 
-        public static Button getMyMarker()
+        public static MarkerButton getMyMarker()
         {
-            foreach(Button b in marker)
+            foreach(MarkerButton b in marker)
             {
                 if (me.containsMarkerID(b.getButtonID()) &&
-                    !me.handsFull())
+                    me.handsFull())
                     return b;
             }
 
