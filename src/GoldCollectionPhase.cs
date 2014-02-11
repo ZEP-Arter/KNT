@@ -8,7 +8,7 @@ namespace GameLogic
     public class GoldCollectionPhase : Phase
     {
         public GoldCollectionPhase()
-            : base("GoldCollection")
+            : base("Gold Collection")
         {
             gold = 0;
         }
@@ -63,6 +63,11 @@ namespace GameLogic
         private void addGold(int amount)
         {
             gold += amount;
+        }
+
+        public override Player getCurrentPlayer()
+        {
+            return null;
         }
 
         private int gold;

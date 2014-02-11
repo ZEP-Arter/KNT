@@ -80,6 +80,11 @@ namespace GameLogic
             }
         }
 
+        public override Player getCurrentPlayer()
+        {
+            return null;
+        }
+
         private List<Player> _players;
         private Board map;
     }

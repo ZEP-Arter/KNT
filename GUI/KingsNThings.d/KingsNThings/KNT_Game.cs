@@ -41,6 +41,7 @@ namespace KingsNThings
         public static Player me;
         bool positionsSet;
         bool markersSet;
+        Phase currentPhase;
 
         public KNT_Game()
         {
@@ -65,6 +66,7 @@ namespace KingsNThings
             // TODO: Add your initialization logic here
             _theGameBoard = GameBoard.Game;
             me = _theGameBoard.getPlayers()[0];
+            currentPhase = _theGameBoard.play();
             //testPlay();
             this.IsMouseVisible = true;
             base.Initialize();
@@ -268,6 +270,7 @@ namespace KingsNThings
             // TODO: Unload any non ContentManager content here
         }
 
+<<<<<<< HEAD
         protected bool changePlayers()
         {
             if (me != null && me.placedMarker && !markersSet)
@@ -289,6 +292,8 @@ namespace KingsNThings
             return true;
         }
 
+=======
+>>>>>>> Better Abstraction
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -301,29 +306,17 @@ namespace KingsNThings
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || state.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            if (!changePlayers()) 
+            switch(_theGameBoard.getCurrentPhase())
             {
-                if (!positionsSet)
-                {
-                    if (_theGameBoard.setPlayerOrder())
-                    {
-                        me = _theGameBoard.getPlayers()[0];
-                        positionsSet = true;
-                    }
-                    else
-                    {
-                        foreach (Player p in _theGameBoard.getPlayers())
-                        {
-                            p.setDiceRoll(0);
-                        }
-
-                        me = _theGameBoard.getPlayers()[0];
-                    }
-                }
+                case "Setup":
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    me = currentPhase.getCurrentPlayer();
+                    Console.WriteLine(me.getName());
+                    break;
             }
-                //lol
 
-            // TODO: Add your update logic here
+            if (currentPhase.getCurrentState() == Phase.State.END)
+                currentPhase = _theGameBoard.play();
 
             UpdateButtons();
             base.Update(gameTime);
@@ -478,6 +471,9 @@ namespace KingsNThings
             MouseState mouse = Mouse.GetState();
             spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Blue);
             spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Blue);
+            spriteBatch.DrawString(font, String.Format("Phase : {0}", _theGameBoard.getCurrentPhase()), new Vector2(20, 20), Color.Black);
+
+
             foreach (Player p in _theGameBoard.getPlayers())
             {
                 if( me != null && p.getName() == me.getName() )
@@ -490,13 +486,16 @@ namespace KingsNThings
                 spriteBatch.DrawString(font, String.Format("{0} rolled {1}", me.getName(), me.getDiceRoll()), new Vector2(420, 100), Color.Blue);
             spriteBatch.DrawString(font, String.Format("Phase: {0}", "Setup"), new Vector2(20, 20), Color.Black);
             
+            if(me != null && me.getDiceRoll() != 0 && !positionsSet)
+                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", me.getName(), me.getDiceRoll()), new Vector2(420, 100), Color.Blue);
+
         }
 
         public static Button getMyMarker()
         {
             foreach(Button b in marker)
             {
-                if (me.getMarkerID() == b.getButtonID())
+                if (me.containsMarkerID(b.getButtonID()))
                     return b;
             }
 

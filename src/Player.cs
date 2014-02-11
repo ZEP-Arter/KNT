@@ -21,9 +21,13 @@ namespace GameLogic
 
             gold = 10;
 
-            placedMarker = false;
+            mymarkers = new Dictionary<int,bool>();
 
             diceRoll = 0;
+
+            ownedTiles = new List<Tile>();
+
+            holdingMarker = false;
         }
 
         public Player(string n, NetworkPosition np, int yPos)
@@ -38,9 +42,13 @@ namespace GameLogic
 
             goldY = yPos;
 
-            placedMarker = false;
+            mymarkers = new Dictionary<int, bool>();
 
             diceRoll = 0;
+
+            ownedTiles = new List<Tile>();
+
+            holdingMarker = false;
         }
 
 		//public
@@ -136,14 +144,19 @@ namespace GameLogic
                 return gold;
             }
 
-            public int getMarkerID()
+            public bool containsMarkerID(int id)
             {
-                return myMarker;
+                return mymarkers.ContainsKey(id);
             }
 
-            public void setMarkerID(int id)
+            public void addMarkerID(int id)
             {
-                myMarker = id;
+                mymarkers.Add(id, false);
+            }
+
+            public void placeMarker(int id)
+            {
+                mymarkers[id] = true;
             }
 
             public int getDiceRoll()
@@ -154,6 +167,24 @@ namespace GameLogic
             public void setDiceRoll(int roll)
             {
                 diceRoll = roll;
+            }
+
+            public bool placedAllMarkers()
+            {
+                return !mymarkers.ContainsValue(false);
+            }
+
+            public bool handsFull()
+            {
+                return holdingMarker;
+            }
+
+            public void setHandsFull()
+            {
+                if (holdingMarker)
+                    holdingMarker = false;
+                else
+                    holdingMarker = true;
             }
 
 
@@ -194,11 +225,11 @@ namespace GameLogic
             public const int goldX = 660;
             public int goldY; // set at runtime;
 
-        // marker id
-            int myMarker;
+        // marker id's and has been placed
+            Dictionary<int, bool> mymarkers;
 
-        //placed marker
-            public bool placedMarker;
+        //holding marker
+            bool holdingMarker;
     }
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p

@@ -11,7 +11,7 @@ namespace GameLogic
         {
             name = n;
 
-            currentState = State.END;
+            currentState = State.BEGIN;
         }
 
         protected void changeState()
@@ -56,14 +56,26 @@ namespace GameLogic
             return true;
         }
 
+        public State getCurrentState()
+        {
+            return currentState;
+        }
+
+        public string getName()
+        {
+            return name;
+        }
+
         public abstract void playPhase(List<Player> players);
+        public abstract Player getCurrentPlayer();
 
 
         string name;
         protected State currentState;
         protected List<Player> _players;
+        protected Player currentPlayer;
 
-        protected enum State
+        public enum State
         {
             BEGIN,
             IN_PROGRESS,

@@ -8,7 +8,7 @@ namespace GameLogic
     public class RecruitThingsPhase : Phase
     {
         public RecruitThingsPhase() :
-            base("RecruitThings")
+            base("Recruit Things")
         {
             tradins = new List<Thing>();
         }
@@ -16,9 +16,10 @@ namespace GameLogic
         public override void playPhase(List<Player> players)
         {
             _players = players;
+            recruitThings();
         }
 
-        private void recruiteThigns()
+        private void recruitThings()
         {
             this.beginPhase();
 
@@ -85,6 +86,11 @@ namespace GameLogic
                 player.AddThingToRack(GameBoard.Game.getRandomThingFromCup());
                 --numTradins;
             }
+        }
+
+        public override Player getCurrentPlayer()
+        {
+            return null;
         }
 
         private List<Thing> tradins;

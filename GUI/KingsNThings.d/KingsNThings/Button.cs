@@ -55,10 +55,18 @@ namespace KingsNThings
 
             Random r = new Random();
 
-            buttonID = r.Next(System.DateTime.Now.Millisecond);
+            buttonID = r.Next(System.DateTime.Now.Millisecond * 1000, System.DateTime.Now.Millisecond * 10000);
             System.Threading.Thread.Sleep(1000);
 
-            p.setMarkerID(buttonID);
+            while (p.containsMarkerID(buttonID))
+            {
+                buttonID = r.Next(System.DateTime.Now.Millisecond);
+                System.Threading.Thread.Sleep(1000);
+            }
+
+                p.addMarkerID(buttonID);
+
+                Console.WriteLine(buttonID);
             
         }
 
@@ -142,7 +150,10 @@ namespace KingsNThings
 
         private bool isMarkedSelected(Button _marker)
         {
-            if (KNT_Game.me.getMarkerID() == _marker.buttonID && !isSet && KNT_Game.me.getDiceRoll() != 0)
+            if (KNT_Game.me.containsMarkerID(_marker.buttonID) &&
+                !isSet && 
+                KNT_Game.me.getDiceRoll() != 0 && 
+                !KNT_Game.me.handsFull())
             {
                 if (location.Contains(new Point(mouse.X, mouse.Y)) && buttonType == 3) //MARKER TILES
                 {
@@ -215,12 +226,16 @@ namespace KingsNThings
                         marker.isSet = true;
                         marker.markerSelected = false;
                         marker.Location(25 + topleft.X, 5 + topleft.Y);
-                        KNT_Game.me.placedMarker = true;
+                        KNT_Game.me.placeMarker(buttonID);
+                        KNT_Game.me.setHandsFull();
                     }
                 }
 
                 if (isMarkedSelected(this))
-                        markerSelected = true;
+                {
+                    KNT_Game.me.setHandsFull();
+                    markerSelected = true;
+                }
 
                 if (rollClicked() && needDice)
                 {

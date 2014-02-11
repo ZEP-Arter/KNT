@@ -11,21 +11,12 @@ namespace GameLogic
 		
 		//public
 
-            public void play() 
+            public Phase play() 
             {
-                setPlayerOrder();
-                //walk through all the phases until someone wins
-                /*
-                foreach (Phase phase in gamePhases)
-                {
-                    currentPhase = gamePhases.IndexOf(phase);
-
-                    playTurn(phase);
-                }
-
-                orderPlayers();
-                 * */
-                // did someone win??
+                if( currentPhase.getCurrentState() != Phase.State.END )
+                    return currentPhase;
+                else
+                    return getNextPhase();
             }
 
             public void addPlayer(string name)
@@ -38,6 +29,16 @@ namespace GameLogic
                     players.Add(new Player(name, NetworkPosition.CLIENT, 380));
                 else if (players.Count == 3)
                     players.Add(new Player(name, NetworkPosition.CLIENT, 515));
+            }
+
+            public Phase getNextPhase()
+            {
+                if( gamePhases.IndexOf(currentPhase) != gamePhases.Capacity - 1)
+                    currentPhase = gamePhases[gamePhases.IndexOf(currentPhase) + 1];
+                else
+                    currentPhase = gamePhases[1];
+
+                return currentPhase;
             }
 
             public Thing getRandomThingFromCup()
@@ -77,6 +78,7 @@ namespace GameLogic
 
                 foreach (Player p in players)
                 {
+                    Console.WriteLine(p.getDiceRoll());
                     if (!order.ContainsKey(p.getDiceRoll()))
                         order.Add(p.getDiceRoll(), p);
                     else
@@ -115,6 +117,11 @@ namespace GameLogic
             {
                 return players;
             }
+
+            public string getCurrentPhase()
+            {
+                return currentPhase.getName();
+            }
 		
 		//private
 		
@@ -133,9 +140,9 @@ namespace GameLogic
 
                 bank = new Dictionary<string, List<Thing>>();
                 playingCup = new List<Thing>();
-                currentPhase = 0;
                 init();
                 initGamePhases();
+                currentPhase = gamePhases[0];
             }
 
             private void orderPlayers()
@@ -272,7 +279,9 @@ namespace GameLogic
 
             private void initGamePhases()
             {
-                gamePhases = new List<Phase>(9);
+                // capacity should be 10
+                gamePhases = new List<Phase>(3);
+                gamePhases.Add(new SetupPhase());
                 gamePhases.Add(new GoldCollectionPhase());
                 gamePhases.Add(new RecruitThingsPhase());
                 //movemnet
@@ -475,7 +484,7 @@ namespace GameLogic
             List<Phase> gamePhases;
 
             // current phase;
-            int currentPhase;
+            Phase currentPhase;
 		
 		
 	} // end GameBorad Class
