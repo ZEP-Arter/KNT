@@ -22,6 +22,7 @@ namespace KingsNThings
             hex = t;
             hexNumber = hex.getHexNum();
             backside = texture[0];
+            spriteB = sBatch;
         }
 
         protected override void isClicked()
@@ -55,12 +56,23 @@ namespace KingsNThings
                     case "Recruit Things":
                         if(KNT_Game.getButtonInHand() != null)
                         {
-                            if(hex.doesPlayerHaveStack(KNT_Game.me))
+                            if(hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                             {
 
                             }
                             else 
                             {
+                                StackButton tempButton = KNT_Game.createStack(hex, 
+                                    ((ThingButton)KNT_Game.getButtonInHand()).getThing(), spriteB);
+                                if (KNT_Game.me.getPlayerNumber() == 1)
+                                    tempButton.Location(0 + topleft.X, 35 + topleft.Y);
+                                if (KNT_Game.me.getPlayerNumber() == 2)
+                                    tempButton.Location(25 + topleft.X, 35 + topleft.Y);
+                                if (KNT_Game.me.getPlayerNumber() == 3)
+                                    tempButton.Location(0 + topleft.X, 65 + topleft.Y);
+                                if (KNT_Game.me.getPlayerNumber() == 4)
+                                    tempButton.Location(25 + topleft.X, 65 + topleft.Y);
+
 
                             }
                         }
@@ -126,5 +138,6 @@ namespace KingsNThings
         private int hexNumber;
         private Texture2D backside;
         private MarkerButton marker;
+        private SpriteBatch spriteB;
     }
 }

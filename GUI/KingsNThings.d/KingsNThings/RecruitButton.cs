@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace KingsNThings
 {
-    class RecruitButton : Button
+    public class RecruitButton : Button
     {
         //DOES NOT HAVE A MONEY LIMIT
         public RecruitButton(Texture2D texture, SpriteBatch spriteBatch, int width, int height, int x, int y):

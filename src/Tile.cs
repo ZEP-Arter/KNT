@@ -23,7 +23,7 @@ namespace GameLogic
         //Shows whether the Tile can be selected as a starting point
         private bool startPossible = false;
         //Holds stacks of things for each player
-        public Dictionary<Player, List<Thing>> stacks;
+        public Dictionary<int, List<Thing>> stacks = new Dictionary<int,List<Thing>>();
         public List<Thing> p1Stack;
         public List<Thing> p2Stack;
         public List<Thing> p3Stack;
@@ -54,6 +54,11 @@ namespace GameLogic
             swHex       = a[4];
             nwHex       = a[5];
             hexType     = h;
+            stacks.Add(1, new List<Thing>());
+            stacks.Add(2, new List<Thing>());
+            stacks.Add(3, new List<Thing>());
+            stacks.Add(4, new List<Thing>());
+
             if(h == "Swamp" || h == "Forest" || h == "Mountain" || h == "Jungle")
                 rough = true;
         }
@@ -68,6 +73,10 @@ namespace GameLogic
             swHex       = a[4];
             nwHex       = a[5];
             hexType     = h;
+            stacks.Add(1, new List<Thing>());
+            stacks.Add(2, new List<Thing>());
+            stacks.Add(3, new List<Thing>());
+            stacks.Add(4, new List<Thing>());
             if(h == "Swamp" || h == "Forest" || h == "Mountain" || h == "Jungle")
                 rough = true;
             startPossible = s;
@@ -95,9 +104,9 @@ namespace GameLogic
             }
         }
 
-        public bool doesPlayerHaveStack(Player p)
+        public bool doesPlayerHaveStack(int i)
         {
-            if (stacks[p] != null)
+            if (stacks[i].Count == 0)
                 return false;
             else
                 return true;

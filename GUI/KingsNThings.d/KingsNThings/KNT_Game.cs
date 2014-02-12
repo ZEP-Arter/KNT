@@ -22,7 +22,7 @@ namespace KingsNThings
         private Texture2D board;
         private Texture2D roll;
         private Texture2D endTexture;
-        private Texture2D stackTexture;
+        private static Texture2D stackTexture;
         private Texture2D[] hexTexture = new Texture2D[9];
         private Texture2D[] goldTexture = new Texture2D[6];
         private Texture2D[] markerTexture = new Texture2D[4];
@@ -31,11 +31,7 @@ namespace KingsNThings
         Button rollbutton;
         Button endButton;
 
-        List<Button> StackButtons = new List<Button>();
-        List<Button> P1Tiles = new List<Button>();
-        List<Button> P2Tiles = new List<Button>();
-        List<Button> P3Tiles = new List<Button>();
-        List<Button> P4Tiles = new List<Button>();
+        public static List<Button> StackButtons = new List<Button>();
 
         Button recruitButton;
         public static List<Button> P1Tiles = new List<Button>();
@@ -530,18 +526,9 @@ namespace KingsNThings
             rollbutton.Draw();
             endButton.Draw();
             recruitButton.Draw();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
             foreach (Button b in StackButtons)
                 b.Draw();
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 
             foreach (Button b in P1Tiles)
                 b.Draw();
@@ -604,9 +591,11 @@ namespace KingsNThings
             return buttonInHand;
         }
 
-        public void createStack(Tile hex, Thing t)
+        public static StackButton createStack(Tile hex, Thing t, SpriteBatch s)
         {
-            StackButtons.Add(new StackButton(stackTexture, me, spriteBatch, t, hex, 30, 30, 0, 0));
+            StackButton stackB = new StackButton(stackTexture, me, s, t, hex, 30, 30, 0, 0);
+            StackButtons.Add(stackB);
+            return stackB;
         }
              
     }

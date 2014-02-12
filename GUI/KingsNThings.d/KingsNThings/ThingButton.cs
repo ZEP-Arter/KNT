@@ -14,17 +14,12 @@ namespace KingsNThings
             base(texture, sBatch, width, height, x, y)
         {
             owner = p;
-
             buttonID = t.getID();
-
-            t.setOwned();
-
+            thingOnButton = t;
+            thingOnButton.setOwned();
             owner.AddThingToRack(buttonID, t);
-
             thingSelected = false;
-
             isInPlay = false;
-
             originalPosition = location;
         }
 
@@ -106,6 +101,12 @@ namespace KingsNThings
             base.Update();
         }
 
+        public Thing getThing()
+        {
+            return thingOnButton;
+        }
+
+        private Thing thingOnButton;
         private Player owner;
         private Rectangle originalPosition;
         private int buttonID;

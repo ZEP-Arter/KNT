@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace KingsNThings
 {
-    class StackButton : Button
+    public class StackButton : Button
     {
         public StackButton(Texture2D texture, Player p, SpriteBatch sBatch, Thing t, Tile hex, int width, int height, int x, int y) :
             base(texture, sBatch, width, height, x, y)
         {
+            image = texture;
             thingsInStack = new List<Thing>();
             thingsInStack.Add(t);
             hexStackIsOn = hex;
@@ -52,7 +49,11 @@ namespace KingsNThings
 
         public override void Update()
         {
-
+            if (stackSelected)
+            {
+                this.location.X = mouse.X;
+                this.location.Y = mouse.Y;
+            }
             base.Update();
         }
 
@@ -69,6 +70,7 @@ namespace KingsNThings
             return false;
         }
 
+        private Texture2D image;
         private List<Thing> thingsInStack;
         private bool stackSelected = false;
         private Player owner = null;
