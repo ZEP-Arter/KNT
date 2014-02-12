@@ -70,8 +70,13 @@ namespace KingsNThings
                     Color.White);
             }
 
-            if( needDice && KNT_Game.me.getDiceRoll() != 0 )
-                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", KNT_Game.me.getName(), KNT_Game.me.getDiceRoll()), new Vector2(420, 100), Color.Blue);
+            if (needDice && KNT_Game.me.getDiceRoll() != 0)
+            {
+                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", KNT_Game.me.getName(), KNT_Game.me.getDiceRoll()), new Vector2(420, 100), Color.Black);
+                spriteBatch.DrawString(font, String.Format("{0} is playing.", KNT_Game.me.getName()), new Vector2(420, 120), Color.Black);
+            }
+            else if (needDice)
+                spriteBatch.DrawString(font, String.Format("{0} Please Roll.", KNT_Game.me.getName()), new Vector2(420, 100), Color.Blue);
         }
 
         private bool needDice;

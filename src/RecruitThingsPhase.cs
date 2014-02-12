@@ -55,7 +55,8 @@ namespace GameLogic
             while (numFreeRecruits >= 0)
             {
                 //play imidiatly or rack it
-                player.AddThingToRack(GameBoard.Game.getRandomThingFromCup());
+                Thing t = GameBoard.Game.getRandomThingFromCup();
+                player.AddThingToRack(t.getID(), t);
                 --numFreeRecruits;
             }
         }
@@ -70,8 +71,9 @@ namespace GameLogic
                 //if no break;
                 //if yes deduct 5 gold from player gold and increment total
                 //play imidiatly or rack it
+                Thing t = GameBoard.Game.getRandomThingFromCup();
                 player.givePlayerGold(-5);
-                player.AddThingToRack(GameBoard.Game.getRandomThingFromCup());
+                player.AddThingToRack(t.getID(), t);
                 totalSpent += 5;
             }
         }
@@ -83,7 +85,8 @@ namespace GameLogic
             while (numTradins >= 0)
             {
                 //play imidiatly or rack it
-                player.AddThingToRack(GameBoard.Game.getRandomThingFromCup());
+                Thing t = GameBoard.Game.getRandomThingFromCup();
+                player.AddThingToRack(t.getID(), t);
                 --numTradins;
             }
         }

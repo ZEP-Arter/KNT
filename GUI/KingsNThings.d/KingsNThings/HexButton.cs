@@ -37,7 +37,8 @@ namespace KingsNThings
                         {
                             if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
                                 (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me) && 
-                                this.hex.getPlayer() == null)
+                                this.hex.getPlayer() == null &&
+                                this.hex.getType() != "Sea")
                             {
                                 this.hex.selectedAsStarting(KNT_Game.me);
                                 KNT_Game.me.addOwnedTile(hex);

@@ -43,6 +43,8 @@ namespace KingsNThings
         bool markersSet;
         Phase currentPhase;
 
+        Button tempButton;
+
         public KNT_Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -203,61 +205,109 @@ namespace KingsNThings
             hex28 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 500, 550, 28);//28
             // TODO: use this.Content to load your game content here*/
 
-            marker.Add(new Button(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 3, 645, 570));
-            marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 645, 610));
-            marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 645, 650));
-            marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 645, 690));
+            marker.Add(new MarkerButton(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 645, 570));
+            marker.Add(new MarkerButton(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 645, 610));
+            marker.Add(new MarkerButton(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 645, 650));
+            marker.Add(new MarkerButton(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 645, 690));
 
-            marker.Add(new Button(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 3, 685, 570));
-            marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 685, 610));
-            marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 685, 650));
-            marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 685, 690));
+            marker.Add(new MarkerButton(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 685, 570));
+            marker.Add(new MarkerButton(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 685, 610));
+            marker.Add(new MarkerButton(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 685, 650));
+            marker.Add(new MarkerButton(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 685, 690));
 
-            marker.Add(new Button(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 3, 725, 570));
-            marker.Add(new Button(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 3, 725, 610));
-            marker.Add(new Button(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 3, 725, 650));
-            marker.Add(new Button(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 3, 725, 690));
+            marker.Add(new MarkerButton(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 725, 570));
+            marker.Add(new MarkerButton(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 725, 610));
+            marker.Add(new MarkerButton(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 725, 650));
+            marker.Add(new MarkerButton(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 725, 690));
             
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 400, _theGameBoard.getMap().getHexList()[0]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 300, _theGameBoard.getMap().getHexList()[1]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 340, 350, _theGameBoard.getMap().getHexList()[2]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 340, 450, _theGameBoard.getMap().getHexList()[3]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 500, _theGameBoard.getMap().getHexList()[4]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 180, 450, _theGameBoard.getMap().getHexList()[5]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 180, 350, _theGameBoard.getMap().getHexList()[6]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 180, 250, _theGameBoard.getMap().getHexList()[7]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 200, _theGameBoard.getMap().getHexList()[8]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 340, 250, _theGameBoard.getMap().getHexList()[9]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 420, 300, _theGameBoard.getMap().getHexList()[10]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 420, 400, _theGameBoard.getMap().getHexList()[11]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 420, 500, _theGameBoard.getMap().getHexList()[12]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 340, 550, _theGameBoard.getMap().getHexList()[13]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 600, _theGameBoard.getMap().getHexList()[14]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 180, 550, _theGameBoard.getMap().getHexList()[15]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 100, 500, _theGameBoard.getMap().getHexList()[16]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 100, 400, _theGameBoard.getMap().getHexList()[17]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 100, 300, _theGameBoard.getMap().getHexList()[18]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 100, 200, _theGameBoard.getMap().getHexList()[19]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 180, 150, _theGameBoard.getMap().getHexList()[20]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 100, _theGameBoard.getMap().getHexList()[21]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 340, 150, _theGameBoard.getMap().getHexList()[22]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 420, 200, _theGameBoard.getMap().getHexList()[23]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 500, 250, _theGameBoard.getMap().getHexList()[24]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 500, 350, _theGameBoard.getMap().getHexList()[25]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 500, 450, _theGameBoard.getMap().getHexList()[26]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 500, 550, _theGameBoard.getMap().getHexList()[27]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 420, 600, _theGameBoard.getMap().getHexList()[28]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 340, 650, _theGameBoard.getMap().getHexList()[29]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 260, 700, _theGameBoard.getMap().getHexList()[30]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 180, 650, _theGameBoard.getMap().getHexList()[31]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 100, 600, _theGameBoard.getMap().getHexList()[32]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 550, _theGameBoard.getMap().getHexList()[33]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 450, _theGameBoard.getMap().getHexList()[34]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 350, _theGameBoard.getMap().getHexList()[35]));
-            hex.Add(new Button(hexTexture, spriteBatch, 110, 100, 1, 20, 250, _theGameBoard.getMap().getHexList()[36]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 400, _theGameBoard.getMap().getHexList()[0]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 300, _theGameBoard.getMap().getHexList()[1]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 350, _theGameBoard.getMap().getHexList()[2]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 450, _theGameBoard.getMap().getHexList()[3]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 500, _theGameBoard.getMap().getHexList()[4]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 450, _theGameBoard.getMap().getHexList()[5]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 350, _theGameBoard.getMap().getHexList()[6]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 250, _theGameBoard.getMap().getHexList()[7]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 200, _theGameBoard.getMap().getHexList()[8]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 250, _theGameBoard.getMap().getHexList()[9]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 300, _theGameBoard.getMap().getHexList()[10]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 400, _theGameBoard.getMap().getHexList()[11]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 500, _theGameBoard.getMap().getHexList()[12]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 550, _theGameBoard.getMap().getHexList()[13]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 600, _theGameBoard.getMap().getHexList()[14]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 550, _theGameBoard.getMap().getHexList()[15]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 500, _theGameBoard.getMap().getHexList()[16]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 400, _theGameBoard.getMap().getHexList()[17]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 300, _theGameBoard.getMap().getHexList()[18]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 200, _theGameBoard.getMap().getHexList()[19]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 150, _theGameBoard.getMap().getHexList()[20]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 100, _theGameBoard.getMap().getHexList()[21]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 150, _theGameBoard.getMap().getHexList()[22]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 200, _theGameBoard.getMap().getHexList()[23]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 250, _theGameBoard.getMap().getHexList()[24]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 350, _theGameBoard.getMap().getHexList()[25]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 450, _theGameBoard.getMap().getHexList()[26]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 550, _theGameBoard.getMap().getHexList()[27]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 600, _theGameBoard.getMap().getHexList()[28]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 650, _theGameBoard.getMap().getHexList()[29]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 700, _theGameBoard.getMap().getHexList()[30]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 650, _theGameBoard.getMap().getHexList()[31]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 600, _theGameBoard.getMap().getHexList()[32]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 550, _theGameBoard.getMap().getHexList()[33]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 450, _theGameBoard.getMap().getHexList()[34]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 350, _theGameBoard.getMap().getHexList()[35]));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36]));
 
-            rollbutton = new Button(roll, spriteBatch, 140, 60, 4, 460, 20);
-            endButton = new Button(endTexture, spriteBatch, 140, 60, 4, 300, 20);
+            rollbutton = new DiceRollButton(roll, spriteBatch, 140, 60, 460, 20, font);
+            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 60, 300, 20, font);
+
+            P1Tiles.Add(new ThingButton(scripttileTexture[38], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 5));
+            P1Tiles.Add(new ThingButton(scripttileTexture[3], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 5));
+            P1Tiles.Add(new ThingButton(scripttileTexture[4], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 5));
+            P1Tiles.Add(new ThingButton(scripttileTexture[5], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 5));
+            P1Tiles.Add(new ThingButton(scripttileTexture[6], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 5));
+
+            P1Tiles.Add(new ThingButton(scripttileTexture[7], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 55));
+            P1Tiles.Add(new ThingButton(scripttileTexture[8], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 55));
+            P1Tiles.Add(new ThingButton(scripttileTexture[9], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 55));
+            P1Tiles.Add(new ThingButton(scripttileTexture[2], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 55));
+            P1Tiles.Add(new ThingButton(scripttileTexture[10], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 55));
+
+            P2Tiles.Add(new ThingButton(scripttileTexture[11], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 140));
+            P2Tiles.Add(new ThingButton(scripttileTexture[12], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 140));
+            P2Tiles.Add(new ThingButton(scripttileTexture[13], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 140));
+            P2Tiles.Add(new ThingButton(scripttileTexture[14], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 140));
+            P2Tiles.Add(new ThingButton(scripttileTexture[15], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 140));
+
+            P2Tiles.Add(new ThingButton(scripttileTexture[16], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 190));
+            P2Tiles.Add(new ThingButton(scripttileTexture[17], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 190));
+            P2Tiles.Add(new ThingButton(scripttileTexture[39], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 190));
+            P2Tiles.Add(new ThingButton(scripttileTexture[18], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 190));
+            P2Tiles.Add(new ThingButton(scripttileTexture[19], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 190));
+
+            P3Tiles.Add(new ThingButton(scripttileTexture[21], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 275));
+            P3Tiles.Add(new ThingButton(scripttileTexture[22], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 275));
+            P3Tiles.Add(new ThingButton(scripttileTexture[23], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 275));
+            P3Tiles.Add(new ThingButton(scripttileTexture[23], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 275));
+            P3Tiles.Add(new ThingButton(scripttileTexture[24], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 275));
+
+            P3Tiles.Add(new ThingButton(scripttileTexture[25], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 325));
+            P3Tiles.Add(new ThingButton(scripttileTexture[26], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 325));
+            P3Tiles.Add(new ThingButton(scripttileTexture[27], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 325));
+            P3Tiles.Add(new ThingButton(scripttileTexture[16], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 325));
+            P3Tiles.Add(new ThingButton(scripttileTexture[28], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 325));
+
+            P4Tiles.Add(new ThingButton(scripttileTexture[29], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 410));
+            P4Tiles.Add(new ThingButton(scripttileTexture[30], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 410));
+            P4Tiles.Add(new ThingButton(scripttileTexture[31], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 410));
+            P4Tiles.Add(new ThingButton(scripttileTexture[32], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 410));
+            P4Tiles.Add(new ThingButton(scripttileTexture[37], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 410));
+
+            P4Tiles.Add(new ThingButton(scripttileTexture[29], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 460));
+            P4Tiles.Add(new ThingButton(scripttileTexture[33], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 460));
+            P4Tiles.Add(new ThingButton(scripttileTexture[34], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 460));
+            P4Tiles.Add(new ThingButton(scripttileTexture[35], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 460));
+            P4Tiles.Add(new ThingButton(scripttileTexture[36], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 460));
             //P1Tiles.Add(new Button(
         }
 
@@ -281,10 +331,15 @@ namespace KingsNThings
             KeyboardState state = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || state.IsKeyDown(Keys.Escape))
                 this.Exit();
-
             switch(_theGameBoard.getCurrentPhase())
             {
                 case "Setup":
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    me = currentPhase.getCurrentPlayer();
+                    //Console.WriteLine(me.getName());
+                    break;
+                case "Gold Collection":
+                    Console.WriteLine("GoldCollection");
                     currentPhase.playPhase(_theGameBoard.getPlayers());
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());
@@ -317,6 +372,17 @@ namespace KingsNThings
 
         private void UpdateButtons()
         {
+            foreach (Button b in P1Tiles)
+                b.Update();
+
+            foreach (Button b in P2Tiles)
+                b.Update();
+
+            foreach (Button b in P3Tiles)
+                b.Update();
+
+            foreach (Button b in P4Tiles)
+                b.Update();
             
             hex[0].Update();
             hex[1].Update();
@@ -440,13 +506,25 @@ namespace KingsNThings
 
             rollbutton.Draw();
             endButton.Draw();
+
+            foreach (Button b in P1Tiles)
+                b.Draw();
+
+            foreach (Button b in P2Tiles)
+                b.Draw();
+
+            foreach (Button b in P3Tiles)
+                b.Draw();
+
+            foreach (Button b in P4Tiles)
+                b.Draw();
         }
 
         private void DrawText()
         {
             MouseState mouse = Mouse.GetState();
-            spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Blue);
-            spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Blue);
+            spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Black);
+            spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Black);
             spriteBatch.DrawString(font, String.Format("Phase : {0}", _theGameBoard.getCurrentPhase()), new Vector2(20, 20), Color.Black);
 
 
@@ -457,17 +535,16 @@ namespace KingsNThings
                 else
                     spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(Player.goldX, p.goldY), Color.Black);
             }
-            
-            if(me != null && me.getDiceRoll() != 0 && !positionsSet)
-                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", me.getName(), me.getDiceRoll()), new Vector2(420, 100), Color.Blue);
 
         }
 
-        public static Button getMyMarker()
+        public static MarkerButton getMyMarker()
         {
-            foreach(Button b in marker)
+            foreach(MarkerButton b in marker)
             {
-                if (me.containsMarkerID(b.getButtonID()))
+                if (me.containsMarkerID(b.getButtonID()) &&
+                    me.handsFull() &&
+                    b.getMarkerSelected())
                     return b;
             }
 

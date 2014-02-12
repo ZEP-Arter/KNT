@@ -16,6 +16,8 @@ namespace GameLogic
             attributes = attr;
 			
 			isOwned = false;
+
+            id = ThingNumber.getNextThingID();
 		}
 		
 		
@@ -45,6 +47,11 @@ namespace GameLogic
             return goldValue;
         }
 
+        public int getID()
+        {
+            return id;
+        }
+
 		protected void setName(string n)
 		{ name = n; }
 			
@@ -64,8 +71,20 @@ namespace GameLogic
         bool onRack;
 		bool isOwned;
 
+        private int id;
+
         int goldValue; //if applicable
 
         public List<Attributes.CombatAttributes> attributes; //if applicable
+    }
+
+    public static class ThingNumber
+    {
+        public static int getNextThingID()
+        {
+            return (++numThings);
+        }
+
+        private static int numThings = 0;
     }
 }

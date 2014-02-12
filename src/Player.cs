@@ -29,7 +29,7 @@ namespace GameLogic
 
             things = new List<Thing>();
 
-            rack = new List<Thing>();
+            rack = new Dictionary<int, Thing>();
 
             holdingMarker = false;
 
@@ -56,7 +56,7 @@ namespace GameLogic
 
             things = new List<Thing>();
 
-            rack = new List<Thing>();
+            rack = new Dictionary<int,Thing>();
 
             holdingMarker = false;
 
@@ -83,11 +83,11 @@ namespace GameLogic
             public int getTurn()
             { return turn; }
 
-            public Thing getThingFromRack(int pos)
+            public Thing getThingFromRack(int id)
             {
-                Thing thing = rack[pos];
+                Thing thing = rack[id];
 
-                removeFromRack(thing);
+                removeFromRack(id);
 
                 return thing;
             }
@@ -138,9 +138,9 @@ namespace GameLogic
                 gold += amount;
             }
 
-            public void AddThingToRack(Thing thing)
+            public void AddThingToRack(int id, Thing thing)
             {
-                rack.Add(thing);
+                rack.Add(id, thing);
             }
 
             public int CompareTo(Object toCompare)
@@ -159,6 +159,11 @@ namespace GameLogic
             public bool containsMarkerID(int id)
             {
                 return mymarkers.ContainsKey(id);
+            }
+
+            public bool rackContains(int buttonID)
+            {
+                return rack.ContainsKey(buttonID);
             }
 
             public void addMarkerID(int id)
@@ -240,9 +245,9 @@ namespace GameLogic
 
         //private
 
-            private void removeFromRack(Thing thing)
+            private void removeFromRack(int id)
             {
-                rack.Remove(thing);
+                rack.Remove(id);
             }
 		
 		//private members
@@ -262,7 +267,7 @@ namespace GameLogic
 		//  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
             private List<SpecialCharacter> characters;
 		// Rack
-            private List<Thing> rack;
+            private Dictionary<int,Thing> rack;
 		// ( cannot keep gold counters, special characters, and forts )
 
         //tiles owned
