@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
@@ -71,11 +72,16 @@ namespace KingsNThings
         private Player owner = null;
         private Tile hexStackIsOn = null;
 =======
+=======
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 
 namespace KingsNThings
 {
     class Class1
     {
+<<<<<<< HEAD
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
+=======
 >>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
     }
 }
