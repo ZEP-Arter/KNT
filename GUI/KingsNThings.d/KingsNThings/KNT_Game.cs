@@ -32,6 +32,7 @@ namespace KingsNThings
         Button endButton;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         List<Button> StackButtons = new List<Button>();
         List<Button> P1Tiles = new List<Button>();
         List<Button> P2Tiles = new List<Button>();
@@ -40,12 +41,17 @@ namespace KingsNThings
 =======
 =======
 >>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
+=======
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
         Button recruitButton;
         public static List<Button> P1Tiles = new List<Button>();
         public static List<Button> P2Tiles = new List<Button>();
         public static List<Button> P3Tiles = new List<Button>();
         public static List<Button> P4Tiles = new List<Button>();
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
+=======
 >>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 =======
 >>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
@@ -537,9 +543,12 @@ namespace KingsNThings
             endButton.Draw();
             recruitButton.Draw();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             foreach (Button b in StackButtons)
                 b.Draw();
+=======
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 =======
 >>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 
