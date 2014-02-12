@@ -21,6 +21,8 @@ namespace KingsNThings
             base(texture, spriteBatch, width, height, x, y)
         {
             canRecruit = false;
+            canFreeRecruit = true;
+            freeRecruits = 2;
             sBatch = spriteBatch;
         }
 
@@ -36,7 +38,13 @@ namespace KingsNThings
         {
             if (recruitClicked() && canRecruit)
             {
-                KNT_Game.me.takePlayerGold(5);
+                if (!canFreeRecruit)
+                {
+                    KNT_Game.me.takePlayerGold(5);
+                    freeRecruits = 2;
+                }
+                else
+                    --freeRecruits;
                 
                 if (KNT_Game.me.getPlayerNumber() == 1)
                 {
@@ -66,18 +74,25 @@ namespace KingsNThings
                     else
                          KNT_Game.P1Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 410));
                 }
+
                 canRecruit = false;
             }
         }
+
         public override void Update()
         {
             if (KNT_Game.me.getGold() >= 5 &&
-                !KNT_Game.me.isRackFull())
+                !KNT_Game.me.isRackFull() &&
+                GameBoard.Game.getCurrentPhase().Equals("Recruit Things"))
             {
                 canRecruit = true;
             }
+
+            canFreeRecruit = freeRecruits > 0 ? true : false;
+
             base.Update();
         }
+
         protected override void draw()
         {
             if (location.Contains(new Point(mouse.X, mouse.Y)))
@@ -102,7 +117,9 @@ namespace KingsNThings
                     Color.White);
             }
         }
-        private bool canRecruit;
+        private bool canRecruit,
+                     canFreeRecruit;
+        private int freeRecruits;
         SpriteBatch sBatch;
     }
 }

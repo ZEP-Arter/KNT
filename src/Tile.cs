@@ -111,6 +111,18 @@ namespace GameLogic
             else
                 return true;
         }
+
+        public void addToPlayerStack(int i, Thing thing)
+        {
+            if (stacks.ContainsKey(i))
+                stacks[i].Add(thing);
+            else
+            {
+                List<Thing> temp = new List<Thing>();
+                temp.Add(thing);
+                stacks.Add(i, temp);
+            }
+        }
        
         public void setPlayerAble(Player p) { playerAbleToStart = p; }
         public void setPlayerControlBool(bool b) { playerControlBool = b; }

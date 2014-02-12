@@ -58,20 +58,35 @@ namespace KingsNThings
                         {
                             if(hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                             {
-
+                                if (stack.canAddToStack())
+                                {
+                                    ((ThingButton)KNT_Game.getButtonInHand()).putInPlay();
+                                    hex.addToPlayerStack(KNT_Game.me.getPlayerNumber(), ((ThingButton)KNT_Game.getButtonInHand()).getThing());
+                                    stack.addThings(((ThingButton)KNT_Game.getButtonInHand()).getThing());
+                                }
                             }
                             else 
                             {
-                                StackButton tempButton = KNT_Game.createStack(hex, 
-                                    ((ThingButton)KNT_Game.getButtonInHand()).getThing(), spriteB);
-                                if (KNT_Game.me.getPlayerNumber() == 1)
-                                    tempButton.Location(0 + topleft.X, 35 + topleft.Y);
-                                if (KNT_Game.me.getPlayerNumber() == 2)
-                                    tempButton.Location(25 + topleft.X, 35 + topleft.Y);
-                                if (KNT_Game.me.getPlayerNumber() == 3)
-                                    tempButton.Location(0 + topleft.X, 65 + topleft.Y);
-                                if (KNT_Game.me.getPlayerNumber() == 4)
-                                    tempButton.Location(25 + topleft.X, 65 + topleft.Y);
+                                if (hex.getPlayer() != null && hex.getPlayer().getName() == KNT_Game.me.getName())
+                                {
+                                    stack = KNT_Game.createStack(hex,
+                                            ((ThingButton)KNT_Game.getButtonInHand()).getThing(), spriteB);
+
+                                    if (stack.canAddToStack())
+                                    {
+                                        ((ThingButton)KNT_Game.getButtonInHand()).putInPlay();
+                                        hex.addToPlayerStack(KNT_Game.me.getPlayerNumber(), ((ThingButton)KNT_Game.getButtonInHand()).getThing());
+                                    }
+
+                                    if (KNT_Game.me.getPlayerNumber() == 1)
+                                        stack.Location(0 + topleft.X, 35 + topleft.Y);
+                                    if (KNT_Game.me.getPlayerNumber() == 2)
+                                        stack.Location(25 + topleft.X, 35 + topleft.Y);
+                                    if (KNT_Game.me.getPlayerNumber() == 3)
+                                        stack.Location(0 + topleft.X, 65 + topleft.Y);
+                                    if (KNT_Game.me.getPlayerNumber() == 4)
+                                        stack.Location(25 + topleft.X, 65 + topleft.Y);
+                                }
 
 
                             }
@@ -139,5 +154,6 @@ namespace KingsNThings
         private Texture2D backside;
         private MarkerButton marker;
         private SpriteBatch spriteB;
+        private StackButton stack;
     }
 }

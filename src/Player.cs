@@ -27,7 +27,7 @@ namespace GameLogic
 
             ownedTiles = new List<Tile>();
 
-            things = new List<Thing>();
+            thingsInPlay = new List<Thing>();
 
             rack = new Dictionary<int, Thing>();
 
@@ -56,7 +56,7 @@ namespace GameLogic
 
             ownedTiles = new List<Tile>();
 
-            things = new List<Thing>();
+            thingsInPlay = new List<Thing>();
 
             rack = new Dictionary<int,Thing>();
 
@@ -97,11 +97,12 @@ namespace GameLogic
             }
             public bool isRackFull()
             {
-                if (rack.Count <= 10)
+                if (rack.Count >= 10)
                 {
                     return true;
                 }
-                else return false;
+                
+                return false;
             }
             public int getNumberOfOwnedTiles()
             {
@@ -117,7 +118,7 @@ namespace GameLogic
             {
                 List<Thing> forts = new List<Thing>();
 
-                foreach (Thing t in things)
+                foreach (Thing t in thingsInPlay)
                 {
                     if (t.GetType().Equals("Fort"))
                         forts.Add(t);
@@ -130,7 +131,7 @@ namespace GameLogic
             {
                 List<Thing> sic = new List<Thing>();
 
-                foreach (Thing t in things)
+                foreach (Thing t in thingsInPlay)
                 {
                     if (t.GetType().Equals("Special Income"))
                         sic.Add(t);
@@ -268,6 +269,12 @@ namespace GameLogic
                 currentMarkerID = buttonID;
             }
 
+            public void playThing(int id)
+            {
+                thingsInPlay.Add(rack[id]);
+                removeFromRack(id);
+            }
+
         //private
 
             private void removeFromRack(int id)
@@ -288,7 +295,7 @@ namespace GameLogic
             private int diceRoll;
 
 		//  things ( this will have to have a bool (isOnRack) // this is probs the things in play
-            private List<Thing> things;
+            private List<Thing> thingsInPlay;
 		//  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
             private List<SpecialCharacter> characters;
 		// Rack

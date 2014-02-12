@@ -14,7 +14,7 @@ namespace KingsNThings
             base(texture, sBatch, width, height, x, y)
         {
             image = texture;
-            thingsInStack = new List<Thing>();
+            thingsInStack = new List<Thing>(10);
             thingsInStack.Add(t);
             hexStackIsOn = hex;
             owner = p;
@@ -27,7 +27,15 @@ namespace KingsNThings
 
         public void addThings(Thing t)
         {
-            thingsInStack.Add(t);
+            if ( canAddToStack() )
+                thingsInStack.Add(t);
+        }
+
+        public bool canAddToStack()
+        {
+            if (thingsInStack.Count + 1 <= thingsInStack.Capacity - 1)
+                return true;
+            return false;
         }
 
         protected override void isClicked()
@@ -61,7 +69,9 @@ namespace KingsNThings
         {
             if (location.Contains(new Point(mouse.X, mouse.Y)))
             {
-                if (!KNT_Game.me.handsFull())
+                if (!KNT_Game.me.handsFull() &&
+                    thingsInStack.Count > 0 &&
+                    GameBoard.Game.getCurrentPhase().Equals("Movement"))
                 {
                     return true;
                 }

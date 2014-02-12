@@ -76,13 +76,13 @@ namespace KingsNThings
 
         protected override void draw()
         {
-            if (location.Contains(new Point(mouse.X, mouse.Y)))
+            if (location.Contains(new Point(mouse.X, mouse.Y)) && !isInPlay)
             {
                 spriteBatch.Draw(image,
                                  new Rectangle(location.X - 15, location.Y, 50, 50),
                                  Color.White);
             }
-            else
+            else if (!isInPlay)
             {
                 spriteBatch.Draw(image,
                                  location,
@@ -99,6 +99,27 @@ namespace KingsNThings
             }
 
             base.Update();
+        }
+
+        public bool inPlay()
+        {
+            return isInPlay;
+        }
+
+        public void putInPlay()
+        {
+            if (!isInPlay)
+            {
+                isInPlay = true;
+                thingSelected = false;
+                KNT_Game.me.playThing(buttonID);
+                KNT_Game.me.setHandsFull();
+            }
+            else if ( KNT_Game.me.rackContains(buttonID) && isInPlay )
+            {
+                KNT_Game.emptyHand();
+                isInPlay = false;
+            }
         }
 
         public Thing getThing()

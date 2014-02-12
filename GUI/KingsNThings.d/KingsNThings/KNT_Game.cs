@@ -266,9 +266,9 @@ namespace KingsNThings
             hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 350, _theGameBoard.getMap().getHexList()[35]));
             hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36]));
 
-            rollbutton = new DiceRollButton(roll, spriteBatch, 140, 60, 500, 20, font);
-            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 60, 340, 20, font);
-            recruitButton = new RecruitButton(Content.Load<Texture2D>("images/recruit"), spriteBatch, 140, 60, 180, 20);
+            rollbutton = new DiceRollButton(roll, spriteBatch, 140, 50, 500, 25, font);
+            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 50, 340, 25, font);
+            recruitButton = new RecruitButton(Content.Load<Texture2D>("images/recruit"), spriteBatch, 140, 50, 180, 25);
 
             P1Tiles.Add(new ThingButton(scripttileTexture[38], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 5));
             P1Tiles.Add(new ThingButton(scripttileTexture[3], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 5));
@@ -548,7 +548,7 @@ namespace KingsNThings
             MouseState mouse = Mouse.GetState();
             spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Black);
             spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Black);
-            spriteBatch.DrawString(font, String.Format("Phase : {0}", _theGameBoard.getCurrentPhase()), new Vector2(20, 20), Color.Black);
+            spriteBatch.DrawString(font, String.Format("Phase : {0}", _theGameBoard.getCurrentPhase()), new Vector2(10, 1), Color.Black);
 
 
             foreach (Player p in _theGameBoard.getPlayers())
