@@ -13,10 +13,12 @@ namespace GameLogic
 
             public Phase play() 
             {
-                if( currentPhase.getCurrentState() != Phase.State.END )
+                if (currentPhase.getCurrentState() != Phase.State.END)
                     return currentPhase;
                 else
+                {
                     return getNextPhase();
+                }
             }
 
             public void addPlayer(string name)

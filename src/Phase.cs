@@ -34,12 +34,13 @@ namespace GameLogic
 
         protected bool endPhase()
         {
-            if (currentState == State.END)
+            /*if (currentState == State.END)
                 return true;
             else if (currentState == State.BEGIN)
-                return false;
+                return false;*/
 
-            changeState();
+            //changeState();
+            currentState = State.END;
 
             return true;
         }

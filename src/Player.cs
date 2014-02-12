@@ -226,6 +226,7 @@ namespace GameLogic
                 if (currentMarkerID != 0)
                 {
                     retVal = mymarkers[currentMarkerID];
+                    placeMarker(currentMarkerID);
                     currentMarkerID = 0;
                 }
 

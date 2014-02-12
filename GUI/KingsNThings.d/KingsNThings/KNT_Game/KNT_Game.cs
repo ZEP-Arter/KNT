@@ -281,10 +281,15 @@ namespace KingsNThings
             KeyboardState state = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || state.IsKeyDown(Keys.Escape))
                 this.Exit();
-
             switch(_theGameBoard.getCurrentPhase())
             {
                 case "Setup":
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    me = currentPhase.getCurrentPlayer();
+                    //Console.WriteLine(me.getName());
+                    break;
+                case "Gold Collection":
+                    Console.WriteLine("GoldCollection");
                     currentPhase.playPhase(_theGameBoard.getPlayers());
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());

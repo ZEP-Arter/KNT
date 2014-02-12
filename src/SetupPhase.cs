@@ -37,30 +37,39 @@ namespace GameLogic
             //place starting markers
             else if (!markersSet)
                 markersSet = placeStartingMarkers();
+            //else if (!fortSet)
             //check to see if everyone has finised their turn
-            else if( allDone() )
+            if (allDone())
                 endPhase();
         }
 
         private bool placeStartingMarkers()
         {
-            if (_players.IndexOf(currentPlayer) != _players.Capacity - 1 &&
-                currentPlayer.placedCurrentMarker())
-            {
-                changePlayer();
-                return false;
-            }
-            else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
-                currentPlayer.placedCurrentMarker())
-            {
-                changePlayer();
-                return false;
-            }
-            else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
+            if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
                 currentPlayer.placedAllMarkers())
             {
-                currentPlayer.donePhase();
+                Console.WriteLine("4th");
+                foreach (Player p in _players)
+                    p.donePhase();
+                changePlayer();
                 return true;
+            }
+            else if (_players.IndexOf(currentPlayer) != _players.Capacity - 1 &&
+                currentPlayer.placedCurrentMarker())
+            {
+                if (currentPlayer.placedAllMarkers())
+                {
+                    Console.WriteLine("Once");
+                    currentPlayer.donePhase();
+                }
+                changePlayer();
+                return false;
+            }
+            else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
+                currentPlayer.placedCurrentMarker())
+            {
+                changePlayer();
+                return false;
             }
 
             return false;
