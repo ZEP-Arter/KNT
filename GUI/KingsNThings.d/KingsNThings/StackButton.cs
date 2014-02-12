@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+<<<<<<< HEAD
 using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
@@ -69,5 +70,12 @@ namespace KingsNThings
         private bool stackSelected = false;
         private Player owner = null;
         private Tile hexStackIsOn = null;
+=======
+
+namespace KingsNThings
+{
+    class Class1
+    {
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
     }
 }

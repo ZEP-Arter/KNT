@@ -26,15 +26,23 @@ namespace KingsNThings
         private Texture2D[] hexTexture = new Texture2D[9];
         private Texture2D[] goldTexture = new Texture2D[6];
         private Texture2D[] markerTexture = new Texture2D[4];
-        private Texture2D[] scripttileTexture = new Texture2D[40];
+        public static Texture2D[] scripttileTexture = new Texture2D[40];
         //Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         Button rollbutton;
         Button endButton;
+<<<<<<< HEAD
         List<Button> StackButtons = new List<Button>();
         List<Button> P1Tiles = new List<Button>();
         List<Button> P2Tiles = new List<Button>();
         List<Button> P3Tiles = new List<Button>();
         List<Button> P4Tiles = new List<Button>();
+=======
+        Button recruitButton;
+        public static List<Button> P1Tiles = new List<Button>();
+        public static List<Button> P2Tiles = new List<Button>();
+        public static List<Button> P3Tiles = new List<Button>();
+        public static List<Button> P4Tiles = new List<Button>();
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
         List<Button> hex = new List<Button>();
         static List<Button> marker = new List<Button>();
         SpriteFont font;
@@ -262,8 +270,9 @@ namespace KingsNThings
             hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 350, _theGameBoard.getMap().getHexList()[35]));
             hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36]));
 
-            rollbutton = new DiceRollButton(roll, spriteBatch, 140, 60, 460, 20, font);
-            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 60, 300, 20, font);
+            rollbutton = new DiceRollButton(roll, spriteBatch, 140, 60, 500, 20, font);
+            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 60, 340, 20, font);
+            recruitButton = new RecruitButton(Content.Load<Texture2D>("images/recruit"), spriteBatch, 140, 60, 180, 20);
 
             P1Tiles.Add(new ThingButton(scripttileTexture[38], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 5));
             P1Tiles.Add(new ThingButton(scripttileTexture[3], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 5));
@@ -450,6 +459,8 @@ namespace KingsNThings
 
             rollbutton.Update();
             endButton.Update();
+            recruitButton.Update();
+
         }
 
         private void DrawBoard()
@@ -518,6 +529,7 @@ namespace KingsNThings
 
             rollbutton.Draw();
             endButton.Draw();
+            recruitButton.Draw();
 
             foreach (Button b in StackButtons)
                 b.Draw();

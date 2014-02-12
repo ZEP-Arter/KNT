@@ -9,7 +9,7 @@ namespace GameLogic
 	{
 		//ctor
 
-        public Player(string n, int yPos)
+        public Player(string n, int yPos, int number)
         {
             name = n;
 
@@ -34,9 +34,11 @@ namespace GameLogic
             holdingMarker = false;
 
             inPhase = false;
+
+            playerNumber = number;
         }
 
-        public Player(string n, NetworkPosition np, int yPos)
+        public Player(string n, NetworkPosition np, int yPos, int number)
         {
             name = n;
 
@@ -61,6 +63,8 @@ namespace GameLogic
             holdingMarker = false;
 
             inPhase = false;
+
+            playerNumber = number;
         }
 
 		//public
@@ -91,7 +95,14 @@ namespace GameLogic
 
                 return thing;
             }
-
+            public bool isRackFull()
+            {
+                if (rack.Count <= 10)
+                {
+                    return true;
+                }
+                else return false;
+            }
             public int getNumberOfOwnedTiles()
             {
                 return ownedTiles.Count;
@@ -137,7 +148,10 @@ namespace GameLogic
             {
                 gold += amount;
             }
-
+            public void takePlayerGold(int amount)
+            {
+                gold -= amount;
+            }
             public void AddThingToRack(int id, Thing thing)
             {
                 rack.Add(id, thing);
@@ -150,12 +164,15 @@ namespace GameLogic
 
                 return -1;
             }
-
+            
             public int getGold()
             {
                 return gold;
             }
-
+            public int getPlayerNumber()
+            {
+                return playerNumber;
+            }
             public bool containsMarkerID(int id)
             {
                 return mymarkers.ContainsKey(id);
@@ -228,7 +245,10 @@ namespace GameLogic
             {
                 ownedTiles.Add(hex);
             }
-
+            public int numberOfRackTiles()
+            {
+                return rack.Count();
+            }
             public bool placedCurrentMarker()
             {
                 bool retVal = false;
@@ -296,6 +316,9 @@ namespace GameLogic
 
         //currently not done playing phase
             bool inPhase;
+        //Uses a number to distinguish which player it is
+            int playerNumber;
+
     }
 
     // @ericadamski : we may be able to get ride of this I am not sure yet :p
