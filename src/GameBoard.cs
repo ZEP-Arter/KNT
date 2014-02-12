@@ -24,13 +24,13 @@ namespace GameLogic
             public void addPlayer(string name)
             {
                 if (players.Count == 0)
-                    players.Add(new Player(name, 110));
+                    players.Add(new Player(name, 110, 1));
                 else if( players.Count == 1 )
-                    players.Add(new Player(name, NetworkPosition.CLIENT, 245));
+                    players.Add(new Player(name, NetworkPosition.CLIENT, 245, 2));
                 else if (players.Count == 2)
-                    players.Add(new Player(name, NetworkPosition.CLIENT, 380));
+                    players.Add(new Player(name, NetworkPosition.CLIENT, 380, 3));
                 else if (players.Count == 3)
-                    players.Add(new Player(name, NetworkPosition.CLIENT, 515));
+                    players.Add(new Player(name, NetworkPosition.CLIENT, 515, 4));
             }
 
             public Phase getNextPhase()
