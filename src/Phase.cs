@@ -50,12 +50,7 @@ namespace GameLogic
             foreach (Player p in _players)
                 p.startPhase();
 
-            if( currentState == State.BEGIN )
-                return true;
-            else if (currentState == State.IN_PROGRESS)
-                return false;
-
-            changeState();
+            currentState = State.IN_PROGRESS;
 
             return true;
         }

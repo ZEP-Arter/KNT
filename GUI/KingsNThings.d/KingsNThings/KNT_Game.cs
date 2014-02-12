@@ -267,7 +267,7 @@ namespace KingsNThings
             hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36]));
 
             rollbutton = new DiceRollButton(roll, spriteBatch, 140, 50, 500, 25, font);
-            endButton = new DiceRollButton(endTexture, spriteBatch, 140, 50, 340, 25, font);
+            endButton = new EndButton(endTexture, spriteBatch, 140, 50, 340, 25);
             recruitButton = new RecruitButton(Content.Load<Texture2D>("images/recruit"), spriteBatch, 140, 50, 180, 25);
 
             P1Tiles.Add(new ThingButton(scripttileTexture[38], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 5));
@@ -340,6 +340,9 @@ namespace KingsNThings
             KeyboardState state = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || state.IsKeyDown(Keys.Escape))
                 this.Exit();
+
+            UpdateButtons();
+
             switch(_theGameBoard.getCurrentPhase())
             {
                 case "Setup":
@@ -353,8 +356,17 @@ namespace KingsNThings
                     //Console.WriteLine(me.getName());
                     break;
                 case "Recruit Things":
-                    Console.WriteLine("Recruit");
                     currentPhase.playPhase(_theGameBoard.getPlayers());
+                        if( me.getInPhase() )
+                            ((RecruitThingsPhase)currentPhase).recruitThings();
+                    me = currentPhase.getCurrentPlayer();
+                    //Console.WriteLine(me.getName());
+                    break;
+                case "Movement":
+                    Console.WriteLine("Movement");
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    if (me.getInPhase())
+                        ((RecruitThingsPhase)currentPhase).recruitThings();
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());
                     break;
@@ -363,7 +375,6 @@ namespace KingsNThings
             if (currentPhase.getCurrentState() == Phase.State.END)
                 currentPhase = _theGameBoard.play();
 
-            UpdateButtons();
             base.Update(gameTime);
         }
 

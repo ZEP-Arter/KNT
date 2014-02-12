@@ -11,6 +11,9 @@ namespace GameLogic
             base("Recruit Things")
         {
             tradins = new List<Thing>();
+            doneFree = false;
+            donePaid = false;
+            doneTrades = false;
         }
 
         public override void playPhase(List<Player> players)
@@ -20,28 +23,27 @@ namespace GameLogic
                 beginPhase();
 
             if (currentPlayer == null)
+            {
                 currentPlayer = players[0];
-            recruitThings();
+                numFreeRecruits = (currentPlayer.getNumberOfOwnedTiles() % 2) != 0 ? (currentPlayer.getNumberOfOwnedTiles() / 2) + 1 : (currentPlayer.getNumberOfOwnedTiles() / 2);
+            }
+
         }
 
-        private void recruitThings()
+        public void recruitThings()
         {
-            this.beginPhase();
-
-            foreach (Player p in _players)
+            if (currentPlayer.getInPhase())
             {
-                //if skip break;
-                //prompt to take trad ins'?
-                //displayTradeIns(p);
-                //prompt to take free things?
-                //if yes free(p);
-                //prompt to take paid things?
-                //if yes paid(p);
-                //if yes trades(p);
-                //need something to determine end turn here
+                changePlayer();
+                numFreeRecruits = (currentPlayer.getNumberOfOwnedTiles() % 2) != 0 ? (currentPlayer.getNumberOfOwnedTiles() / 2) + 1 : (currentPlayer.getNumberOfOwnedTiles() / 2);
+                doneFree = false;
             }
-            if (false)
-                this.endPhase();
+            else if (!doneFree)
+                free(currentPlayer);
+            else if (!donePaid)
+                paid(currentPlayer);
+            if (allDone())
+                endPhase();
         }
 
         private void displayTradeIns(Player player)
@@ -52,25 +54,24 @@ namespace GameLogic
 
         private void free(Player player)
         {
-            int numFreeRecruits = (player.getNumberOfOwnedTiles() % 2) != 0 ? (player.getNumberOfOwnedTiles() / 2) + 1 : (player.getNumberOfOwnedTiles() / 2);
-
             if (numFreeRecruits > 5)
                 numFreeRecruits = 5;
 
-            while (numFreeRecruits >= 0)
+            //play imidiatly or rack it
+            if (numFreeRecruits != 0)
             {
-                //play imidiatly or rack it
                 Thing t = GameBoard.Game.getRandomThingFromCup();
                 player.AddThingToRack(t.getID(), t);
                 --numFreeRecruits;
             }
+            
+            if(numFreeRecruits == 0)
+                doneFree = true;
         }
 
         private void paid(Player player)
         {
-            int totalSpent = 0;
-
-            while (totalSpent != 25)
+            if (player.getGold() >= 5)
             {
                 //prompt to buy a recruit
                 //if no break;
@@ -79,8 +80,9 @@ namespace GameLogic
                 Thing t = GameBoard.Game.getRandomThingFromCup();
                 player.givePlayerGold(-5);
                 player.AddThingToRack(t.getID(), t);
-                totalSpent += 5;
             }
+            else
+                donePaid = true;
         }
 
         private void trades(Player player)
@@ -96,11 +98,20 @@ namespace GameLogic
             }
         }
 
+        public bool canBeDone()
+        {
+            return doneFree;
+        }
+
         public override Player getCurrentPlayer()
         {
             return currentPlayer;
         }
 
         private List<Thing> tradins;
+        private bool doneFree,
+                     donePaid,
+                     doneTrades;
+        int numFreeRecruits;// = (player.getNumberOfOwnedTiles() % 2) != 0 ? (player.getNumberOfOwnedTiles() / 2) + 1 : (player.getNumberOfOwnedTiles() / 2);
     }
 }
