@@ -28,8 +28,8 @@ namespace GameLogic
                 //if skip break;
                 
             }
-
-            this.endPhase();
+            if (allDone())
+                endPhase();
         }
         
         private void checkMovement(int hexNum, int moveLeft)

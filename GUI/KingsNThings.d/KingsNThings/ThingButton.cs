@@ -73,7 +73,7 @@ namespace KingsNThings
             {
                 if (!thingSelected)
                 {
-                    KNT_Game.me.setHandsFull();
+                    KNT_Game.setButtonInHand(this);
                     thingSelected = true;
                 }
             }

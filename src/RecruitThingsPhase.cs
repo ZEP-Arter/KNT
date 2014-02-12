@@ -16,6 +16,11 @@ namespace GameLogic
         public override void playPhase(List<Player> players)
         {
             _players = players;
+            if (currentState != State.IN_PROGRESS)
+                beginPhase();
+
+            if (currentPlayer == null)
+                currentPlayer = players[0];
             recruitThings();
         }
 
@@ -35,8 +40,8 @@ namespace GameLogic
                 //if yes trades(p);
                 //need something to determine end turn here
             }
-
-            this.endPhase();
+            if (false)
+                this.endPhase();
         }
 
         private void displayTradeIns(Player player)
@@ -93,7 +98,7 @@ namespace GameLogic
 
         public override Player getCurrentPlayer()
         {
-            return null;
+            return currentPlayer;
         }
 
         private List<Thing> tradins;

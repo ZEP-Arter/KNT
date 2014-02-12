@@ -23,6 +23,7 @@ namespace GameLogic
         //Shows whether the Tile can be selected as a starting point
         private bool startPossible = false;
         //Holds stacks of things for each player
+        public Dictionary<Player, List<Thing>> stacks;
         public List<Thing> p1Stack;
         public List<Thing> p2Stack;
         public List<Thing> p3Stack;
@@ -92,6 +93,14 @@ namespace GameLogic
                         t.setPlayerAble(p);
                 }
             }
+        }
+
+        public bool doesPlayerHaveStack(Player p)
+        {
+            if (stacks[p] != null)
+                return false;
+            else
+                return true;
         }
        
         public void setPlayerAble(Player p) { playerAbleToStart = p; }

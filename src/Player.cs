@@ -204,6 +204,11 @@ namespace GameLogic
                     holdingMarker = true;
             }
 
+            public void setHandsFull(bool b)
+            {
+                holdingMarker = b;
+            }
+
             public bool getInPhase()
             {
                 return inPhase;

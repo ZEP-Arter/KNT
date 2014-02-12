@@ -22,6 +22,7 @@ namespace KingsNThings
         private Texture2D board;
         private Texture2D roll;
         private Texture2D endTexture;
+        private Texture2D stackTexture;
         private Texture2D[] hexTexture = new Texture2D[9];
         private Texture2D[] goldTexture = new Texture2D[6];
         private Texture2D[] markerTexture = new Texture2D[4];
@@ -29,6 +30,7 @@ namespace KingsNThings
         //Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         Button rollbutton;
         Button endButton;
+        List<Button> StackButtons = new List<Button>();
         List<Button> P1Tiles = new List<Button>();
         List<Button> P2Tiles = new List<Button>();
         List<Button> P3Tiles = new List<Button>();
@@ -42,6 +44,7 @@ namespace KingsNThings
         bool positionsSet;
         bool markersSet;
         Phase currentPhase;
+        public static Button buttonInHand;
 
         Button tempButton;
 
@@ -87,6 +90,7 @@ namespace KingsNThings
             rack = Content.Load<Texture2D>("images/rack");
             roll = Content.Load<Texture2D>("images/roll");
             endTexture = Content.Load<Texture2D>("images/end");
+            stackTexture = Content.Load<Texture2D>("images/back");
             /////////////////////////////////HEX TEXTURES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             hexTexture[0] = Content.Load<Texture2D>("images/back2");
             hexTexture[1] = Content.Load<Texture2D>("images/desert");
@@ -339,7 +343,12 @@ namespace KingsNThings
                     //Console.WriteLine(me.getName());
                     break;
                 case "Gold Collection":
-                    Console.WriteLine("GoldCollection");
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    me = currentPhase.getCurrentPlayer();
+                    //Console.WriteLine(me.getName());
+                    break;
+                case "Recruit Things":
+                    Console.WriteLine("Recruit");
                     currentPhase.playPhase(_theGameBoard.getPlayers());
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());
@@ -436,6 +445,9 @@ namespace KingsNThings
             marker[10].Update();
             marker[11].Update();
 
+            foreach (Button b in StackButtons)
+                b.Update();
+
             rollbutton.Update();
             endButton.Update();
         }
@@ -507,6 +519,9 @@ namespace KingsNThings
             rollbutton.Draw();
             endButton.Draw();
 
+            foreach (Button b in StackButtons)
+                b.Draw();
+
             foreach (Button b in P1Tiles)
                 b.Draw();
 
@@ -549,6 +564,28 @@ namespace KingsNThings
             }
 
             return null;
+        }
+
+        public static void setButtonInHand(Button b)
+        {
+            buttonInHand = b;
+            me.setHandsFull(true);
+        }
+
+        public static void emptyHand()
+        {
+            buttonInHand = null;
+            me.setHandsFull(false);
+        }
+
+        public static Button getButtonInHand()
+        {
+            return buttonInHand;
+        }
+
+        public void createStack(Tile hex, Thing t)
+        {
+            StackButtons.Add(new StackButton(stackTexture, me, spriteBatch, t, hex, 30, 30, 0, 0));
         }
              
     }

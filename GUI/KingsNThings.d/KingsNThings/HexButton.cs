@@ -52,6 +52,20 @@ namespace KingsNThings
                         }
                         break;
 
+                    case "Recruit Things":
+                        if(KNT_Game.getButtonInHand() != null)
+                        {
+                            if(hex.doesPlayerHaveStack(KNT_Game.me))
+                            {
+
+                            }
+                            else 
+                            {
+
+                            }
+                        }
+                        break;
+
                     case "Movement":
 
                         break;
@@ -75,6 +89,12 @@ namespace KingsNThings
                 spriteBatch.Draw(image,
                     location,
                     Color.Silver);
+            }
+            else if(hex.traversed)
+            {
+                spriteBatch.Draw(image,
+                    location,
+                    Color.Blue);
             }
             else
             {
