@@ -30,31 +30,19 @@ namespace KingsNThings
         //Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         Button rollbutton;
         Button endButton;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         List<Button> StackButtons = new List<Button>();
         List<Button> P1Tiles = new List<Button>();
         List<Button> P2Tiles = new List<Button>();
         List<Button> P3Tiles = new List<Button>();
         List<Button> P4Tiles = new List<Button>();
-=======
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
+
         Button recruitButton;
         public static List<Button> P1Tiles = new List<Button>();
         public static List<Button> P2Tiles = new List<Button>();
         public static List<Button> P3Tiles = new List<Button>();
         public static List<Button> P4Tiles = new List<Button>();
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
-=======
->>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
+
         List<Button> hex = new List<Button>();
         static List<Button> marker = new List<Button>();
         SpriteFont font;
@@ -544,9 +532,12 @@ namespace KingsNThings
             recruitButton.Draw();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             foreach (Button b in StackButtons)
                 b.Draw();
+=======
+>>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 =======
 >>>>>>> 1f9c6ab790f8831c2c9d098945e733cc42e5ce20
 =======
