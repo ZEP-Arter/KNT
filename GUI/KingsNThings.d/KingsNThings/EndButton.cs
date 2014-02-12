@@ -32,6 +32,8 @@ namespace KingsNThings
             if (GameBoard.Game.getCurrentPhase().Equals("Recruit Things") &&
                 ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).canBeDone())
                 canEnd = true;
+            else if(GameBoard.Game.getCurrentPhase().Equals("Movement"))
+                canEnd = true;
             else
                 canEnd = false;
         }

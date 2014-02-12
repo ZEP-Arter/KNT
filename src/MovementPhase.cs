@@ -10,29 +10,28 @@ namespace GameLogic
         public MovementPhase() :
             base("Movement")
         {
-            map = GameBoard.Game.getMap();
+            //map = GameBoard.Game.getMap();
         }
 
         public override void playPhase(List<Player> players)
         {
             _players = players;
+            if (currentPlayer == null)
+                currentPlayer = _players[0];
+            if (currentState != Phase.State.IN_PROGRESS)
+                this.beginPhase();
+
+            movement();
         }
 
         private void movement()
         {
-            this.beginPhase();
 
-            foreach (Player p in _players)
-            {
-                //prompt to skip phase?
-                //if skip break;
-                
-            }
             if (allDone())
-                endPhase();
+                this.endPhase();
         }
         
-        private void checkMovement(int hexNum, int moveLeft)
+        public void checkMovement(int hexNum, int moveLeft)
         {
             Tile currentTile = getTileFromNum(hexNum);
             currentTile.traversed = true;
@@ -61,6 +60,7 @@ namespace GameLogic
                 
         private Tile getTileFromNum(int n)
         {
+            map = GameBoard.Game.getMap();
             if(n == 0)
                 return null;
             foreach (Tile t in map.getHexList())
@@ -82,10 +82,9 @@ namespace GameLogic
 
         public override Player getCurrentPlayer()
         {
-            return null;
+            return currentPlayer;
         }
 
-        private List<Player> _players;
         private Board map;
     }
 }

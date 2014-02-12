@@ -19,7 +19,7 @@ namespace GameLogic
         //Type of Hex: Jungle, Frozen Waste, Desert, Plains, Forest, Sea, Swamp, Mountain
         private string hexType;
         //Shows whether the Tile is face up or face down
-        private bool faceUp = false;
+        private bool faceUp = true;
         //Shows whether the Tile can be selected as a starting point
         private bool startPossible = false;
         //Holds stacks of things for each player

@@ -36,7 +36,27 @@ namespace KingsNThings
         {
             if (recruitClicked() && canRecruit)
             {
-                ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).recruitThings();
+                Thing thing = ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).recruitThings();
+
+                if (thing != null)
+                {
+                    if (KNT_Game.me.getPlayerNumber() == 1)
+                    {
+                        KNT_Game.P1Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 55));
+                    }
+                    else if (KNT_Game.me.getPlayerNumber() == 2)
+                    {
+                        KNT_Game.P2Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 190));
+                    }
+                    else if (KNT_Game.me.getPlayerNumber() == 3)
+                    {
+                        KNT_Game.P3Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 325));
+                    }
+                    else if (KNT_Game.me.getPlayerNumber() == 4)
+                    {
+                        KNT_Game.P4Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 460));
+                    }
+                }
                 /*
                 if (KNT_Game.me.getPlayerNumber() == 1)
                 {
@@ -73,7 +93,7 @@ namespace KingsNThings
 
         public override void Update()
         {
-            if (KNT_Game.me.getGold() >= 5 &&
+            if (KNT_Game.me != null && KNT_Game.me.getGold() >= 5 &&
                 !KNT_Game.me.isRackFull() &&
                 GameBoard.Game.getCurrentPhase().Equals("Recruit Things"))
             {

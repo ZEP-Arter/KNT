@@ -33,7 +33,8 @@ namespace KingsNThings
 
         public override void Update()
         {
-            if (KNT_Game.me.getDiceRoll() == 0)
+
+            if (KNT_Game.me != null && KNT_Game.me.getDiceRoll() == 0)
                 needDice = true;
 
             base.Update();

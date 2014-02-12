@@ -38,6 +38,11 @@ namespace KingsNThings
             return false;
         }
 
+        public void moveStack(Tile t)
+        {
+            hexStackIsOn = t;
+        }
+
         protected override void isClicked()
         {
             if (isStackSelected())
@@ -79,6 +84,9 @@ namespace KingsNThings
 
             return false;
         }
+
+        public Tile getHexStackIsOn()
+        { return hexStackIsOn; }
 
         private Texture2D image;
         private List<Thing> thingsInStack;

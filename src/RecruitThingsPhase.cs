@@ -30,7 +30,7 @@ namespace GameLogic
 
         }
 
-        public void recruitThings()
+        public Thing recruitThings()
         {
             if (currentPlayer.getInPhase())
             {
@@ -39,11 +39,13 @@ namespace GameLogic
                 doneFree = false;
             }
             else if (!doneFree)
-                free(currentPlayer);
+                return free(currentPlayer);
             else if (!donePaid)
-                paid(currentPlayer);
+                return paid(currentPlayer);
             if (allDone())
                 endPhase();
+
+            return null;
         }
 
         private void displayTradeIns(Player player)
@@ -52,37 +54,43 @@ namespace GameLogic
             //add things to the the tradins list
         }
 
-        private void free(Player player)
+        private Thing free(Player player)
         {
+            Thing t = null;
+
             if (numFreeRecruits > 5)
                 numFreeRecruits = 5;
 
             //play imidiatly or rack it
             if (numFreeRecruits != 0)
             {
-                Thing t = GameBoard.Game.getRandomThingFromCup();
-                player.AddThingToRack(t.getID(), t);
+                t = GameBoard.Game.getRandomThingFromCup();
                 --numFreeRecruits;
             }
             
             if(numFreeRecruits == 0)
                 doneFree = true;
+
+            return t;
         }
 
-        private void paid(Player player)
+        private Thing paid(Player player)
         {
+            Thing t = null;
+
             if (player.getGold() >= 5)
             {
                 //prompt to buy a recruit
                 //if no break;
                 //if yes deduct 5 gold from player gold and increment total
                 //play imidiatly or rack it
-                Thing t = GameBoard.Game.getRandomThingFromCup();
+                t = GameBoard.Game.getRandomThingFromCup();
                 player.givePlayerGold(-5);
-                player.AddThingToRack(t.getID(), t);
             }
             else
                 donePaid = true;
+
+            return t;
         }
 
         private void trades(Player player)

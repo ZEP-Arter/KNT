@@ -94,6 +94,19 @@ namespace KingsNThings
                         break;
 
                     case "Movement":
+                        if(hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))// && !KNT_Game.me.handsFull())
+                        {
+                            foreach(Tile t in GameBoard.Game.getMap().getHexList())
+                                t.resetMovementLogic();
+                            ((MovementPhase)GameBoard.Game.getCurrentPhaseObject()).checkMovement(hexNumber, 4);
+                        }
+                        else if (hex.traversed && KNT_Game.me.handsFull() && !hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
+                        {
+                            ((StackButton)KNT_Game.getButtonInHand()).getHexStackIsOn().stacks[KNT_Game.me.getPlayerNumber()] = new List<Thing>();
+                            ((StackButton)KNT_Game.getButtonInHand()).moveStack(hex);
+                            foreach (Tile t in GameBoard.Game.getMap().getHexList())
+                                t.resetMovementLogic();
+                        }
 
                         break;
 

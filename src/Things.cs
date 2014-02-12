@@ -41,7 +41,7 @@ namespace GameLogic
 
         public int getGoldValue()
         {
-            if (goldValue == null)
+            if (goldValue == 0)
                 return -1;
 
             return goldValue;

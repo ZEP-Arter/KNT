@@ -365,8 +365,6 @@ namespace KingsNThings
                 case "Movement":
                     Console.WriteLine("Movement");
                     currentPhase.playPhase(_theGameBoard.getPlayers());
-                    if (me.getInPhase())
-                        ((RecruitThingsPhase)currentPhase).recruitThings();
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());
                     break;
