@@ -13,13 +13,19 @@ namespace KNT_Service
     [ServiceContract]
     public interface IKNTNet
     {
-
         [OperationContract]
         string GetData(string value);
 
         [OperationContract]
-        GameBoard setupGame();
+        Player addPlayer(string name);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        Phase getCurrentPhase();
+
+        [OperationContract]
+        GameBoard CreateGame();
+
+        [OperationContract]
+        List<Player> getPlayers();
     }
 }

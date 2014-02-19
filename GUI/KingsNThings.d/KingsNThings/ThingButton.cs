@@ -68,7 +68,7 @@ namespace KingsNThings
             {
                 if (!thingSelected)
                 {
-                    KNT_Game.setButtonInHand(this);
+                    game.setButtonInHand(this);
                     thingSelected = true;
                 }
             }
@@ -117,7 +117,7 @@ namespace KingsNThings
             }
             else if ( KNT_Game.me.rackContains(buttonID) && isInPlay )
             {
-                KNT_Game.emptyHand();
+                game.emptyHand();
                 isInPlay = false;
             }
         }
@@ -133,5 +133,6 @@ namespace KingsNThings
         private int buttonID;
         private bool thingSelected,
                      isInPlay;
+        private KNT_Game game;
     }
 }

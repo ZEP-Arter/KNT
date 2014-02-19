@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GameLogic
 {
-
-	public class GameBoard
+    [DataContract]
+	public sealed class GameBoard
 	{
 		
 		//public
-
+            
             public Phase play() 
             {
                 if (currentPhase.getCurrentState() != Phase.State.END)
@@ -142,7 +143,7 @@ namespace GameLogic
 
                 while (players.Count != players.Capacity)
                 {
-                    addPlayer(String.Format("Player {0}", n++));
+                   addPlayer(String.Format("Player {0}", n++));
                 }
 
                 bank = new Dictionary<string, List<Thing>>();
@@ -458,23 +459,43 @@ namespace GameLogic
             public Board getMap() { return theBoard; }
 		
 		// private members
-		
-			// singleton Access
-			private static GameBoard game;
-
 
             public static GameBoard Game
             {
                 get
                 {
-                    if (game == null)
-                        game = new GameBoard();
-                    return game;
+                    return Nested.instance;
+                }
+            }
+
+            public static void Create()
+            {
+                Console.WriteLine("-Singleton Instance");
+                Nested.init();
+            }
+
+            internal class Nested
+            {
+                private static object syncRoot = new object();
+
+                static Nested()
+                { }
+
+                internal static GameBoard instance;
+
+                internal static void init()
+                {
+                    lock (syncRoot)
+                    {
+                        Console.WriteLine("-- Nested Init");
+                        if( instance == null )
+                            instance = new GameBoard();
+                    }
                 }
             }
 		
 			// List of Players
-            List<Player> players;
+            public List<Player> players;
 		
 			// Board Obj
             Board theBoard;

@@ -49,7 +49,7 @@ namespace KingsNThings
             {
                 if (!stackSelected)
                 {
-                    KNT_Game.setButtonInHand(this);
+                    game.setButtonInHand(this);
                     stackSelected = true;
                 }
             }
@@ -93,5 +93,6 @@ namespace KingsNThings
         private bool stackSelected = false;
         private Player owner = null;
         private Tile hexStackIsOn = null;
+        private KNT_Game game;
 	}
 }

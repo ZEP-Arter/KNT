@@ -10,10 +10,10 @@ namespace KingsNThings
         /// </summary>
         static void Main(string[] args)
         {
-            using (KNT_Game game = new KNT_Game())
-            {
-                game.Run();
-            }
+            //using (KNT_Game game = new KNT_Game())
+            //{
+            //    game.Run();
+            //}
         }
     }
 #endif

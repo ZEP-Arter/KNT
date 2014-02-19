@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace GameLogic
 {
+    [DataContract]
 	public class Player : IComparable
 	{
 		//ctor
@@ -246,10 +248,12 @@ namespace GameLogic
             {
                 ownedTiles.Add(hex);
             }
+
             public int numberOfRackTiles()
             {
                 return rack.Count();
             }
+
             public bool placedCurrentMarker()
             {
                 bool retVal = false;
@@ -285,28 +289,29 @@ namespace GameLogic
 		//private members
 		//
 		//	name
-			private string name;
+			string name;
         
         //  network position
             private NetworkPosition _position;
 
-        //  turn position : since this is going to change I think it is best we have a var for it, not sure what type, keeping it as 'int' for now
-            private int turn;
-            private int diceRoll;
+            //  turn position : since this is going to change I think it is best we have a var for it, not sure what type, keeping it as 'int' for now
+            int turn;
 
-		//  things ( this will have to have a bool (isOnRack) // this is probs the things in play
-            private List<Thing> thingsInPlay;
-		//  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
-            private List<SpecialCharacter> characters;
-		// Rack
-            private Dictionary<int,Thing> rack;
+            int diceRoll;
+
+            //  things ( this will have to have a bool (isOnRack) // this is probs the things in play
+            List<Thing> thingsInPlay;
+            //  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
+            List<SpecialCharacter> characters;
+            // Rack
+            Dictionary<int,Thing> rack;
 		// ( cannot keep gold counters, special characters, and forts )
 
         //tiles owned
             List<Tile> ownedTiles;
 
         //total gold pieces
-            private int gold;
+            int gold;
 
         // position of gold on scree
             public const int goldX = 660;
@@ -315,15 +320,15 @@ namespace GameLogic
         // marker id's and has been placed
             Dictionary<int, bool> mymarkers;
 
-        //current marker
+            //current marker
             int currentMarkerID;
 
-        //holding marker
+            //holding marker
             bool holdingMarker;
 
-        //currently not done playing phase
+            //currently not done playing phase
             bool inPhase;
-        //Uses a number to distinguish which player it is
+            //Uses a number to distinguish which player it is
             int playerNumber;
 
     }

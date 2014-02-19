@@ -54,28 +54,28 @@ namespace KingsNThings
                         break;
 
                     case "Recruit Things":
-                        if(KNT_Game.getButtonInHand() != null)
+                        if (game.getButtonInHand() != null)
                         {
                             if(hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                             {
                                 if (stack.canAddToStack())
                                 {
-                                    ((ThingButton)KNT_Game.getButtonInHand()).putInPlay();
-                                    hex.addToPlayerStack(KNT_Game.me.getPlayerNumber(), ((ThingButton)KNT_Game.getButtonInHand()).getThing());
-                                    stack.addThings(((ThingButton)KNT_Game.getButtonInHand()).getThing());
+                                    ((ThingButton)game.getButtonInHand()).putInPlay();
+                                    hex.addToPlayerStack(KNT_Game.me.getPlayerNumber(), ((ThingButton)game.getButtonInHand()).getThing());
+                                    stack.addThings(((ThingButton)game.getButtonInHand()).getThing());
                                 }
                             }
                             else 
                             {
                                 if (hex.getPlayer() != null && hex.getPlayer().getName() == KNT_Game.me.getName())
                                 {
-                                    stack = KNT_Game.createStack(hex,
-                                            ((ThingButton)KNT_Game.getButtonInHand()).getThing(), spriteB);
+                                    stack = game.createStack(hex,
+                                            ((ThingButton)game.getButtonInHand()).getThing(), spriteB);
 
                                     if (stack.canAddToStack())
                                     {
-                                        ((ThingButton)KNT_Game.getButtonInHand()).putInPlay();
-                                        hex.addToPlayerStack(KNT_Game.me.getPlayerNumber(), ((ThingButton)KNT_Game.getButtonInHand()).getThing());
+                                        ((ThingButton)game.getButtonInHand()).putInPlay();
+                                        hex.addToPlayerStack(KNT_Game.me.getPlayerNumber(), ((ThingButton)game.getButtonInHand()).getThing());
                                     }
 
                                     if (KNT_Game.me.getPlayerNumber() == 1)
@@ -102,8 +102,8 @@ namespace KingsNThings
                         }
                         else if (hex.traversed && KNT_Game.me.handsFull() && !hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                         {
-                            ((StackButton)KNT_Game.getButtonInHand()).getHexStackIsOn().stacks[KNT_Game.me.getPlayerNumber()] = new List<Thing>();
-                            ((StackButton)KNT_Game.getButtonInHand()).moveStack(hex);
+                            ((StackButton)game.getButtonInHand()).getHexStackIsOn().stacks[KNT_Game.me.getPlayerNumber()] = new List<Thing>();
+                            ((StackButton)game.getButtonInHand()).moveStack(hex);
                             foreach (Tile t in GameBoard.Game.getMap().getHexList())
                                 t.resetMovementLogic();
                         }
@@ -168,5 +168,6 @@ namespace KingsNThings
         private MarkerButton marker;
         private SpriteBatch spriteB;
         private StackButton stack;
+        private KNT_Game game;
     }
 }
