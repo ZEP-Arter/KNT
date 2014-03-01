@@ -57,7 +57,7 @@ namespace KNT_Service
 
         GameLogic.Tile _tile;
 
-        Tile(GameLogic.Tile t)
+        public Tile(GameLogic.Tile t)
         {
             _tile = t;
             init();

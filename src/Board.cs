@@ -58,6 +58,7 @@ namespace GameLogic
         }
         
         public List<Tile> getHexList() { return tiles; }
+        public void setHexList(List<Tile> t) { tiles = t; }
 
         //private
 
