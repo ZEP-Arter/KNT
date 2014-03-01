@@ -134,12 +134,14 @@ namespace GameLogic
         public bool getPlayerControlBool() { return playerControlBool; }
         public int[] getSurrounding() { return new int[] { nHex, neHex, seHex, sHex, swHex, nwHex }; }
         public int getHexNum() { return hexNumber; }
+        public string getHexType() { return hexType; }
         public void resetMovementLogic() { traversed = false; }
         public bool isRough() { return rough; }
         public string getType() { return hexType; }
         public bool getFaceUp() { return faceUp; }
         public bool getStart() { return startPossible; }
         public void flipTile() { faceUp = true; }
+        public int getFortLevel() { return fortLevel; }
 
     }
 }
