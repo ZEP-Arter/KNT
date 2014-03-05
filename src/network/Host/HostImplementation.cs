@@ -12,7 +12,7 @@ namespace KNT_Host
     {
         public void CreateGame()
         {
-            baseAddress = new Uri("http://localhost:15608/KNTNte.svc");
+            baseAddress = new Uri("http://localhost:15608/KNTNet.svc");
 
             selfHost = new ServiceHost(typeof(KNTNet), baseAddress);
 
@@ -41,6 +41,10 @@ namespace KNT_Host
                 Console.WriteLine("An Exception ocurred: {0}", ex.Message);
                 selfHost.Abort();
             }
+        }
+
+        public void UpdateGame()
+        {
         }
 
         ServiceHost selfHost;

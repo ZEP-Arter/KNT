@@ -69,6 +69,11 @@ namespace KingsNThings
             throw new NotImplementedException();
         }
 
+        public void UpdateGame()
+        {
+
+        }
+
         ServiceHost selfHost;
         Uri baseAddress;
         //Player me;

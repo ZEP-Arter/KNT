@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace GameLogic
 {
+    [DataContract(IsReference = false)]
     public class Board
     {
         //ctor 
@@ -56,14 +58,13 @@ namespace GameLogic
             tiles.Add(new Tile(36, new int[]{37, 19, 18, 35, 0 , 0 }, "Frozen Waste"));
             tiles.Add(new Tile(37, new int[]{0 , 20, 19, 36, 0 , 0 }, "Desert"));
         }
-        
+
         public List<Tile> getHexList() { return tiles; }
-        public void setHexList(List<Tile> t) { tiles = t; }
 
         //private
 
         //private members
-
+            [DataMember]
             List<Tile> tiles;
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Threading.Tasks;
+using GameLogic.Managers;
 
 namespace KingsNThings
 {
@@ -36,7 +37,7 @@ namespace KingsNThings
         {
             if (recruitClicked() && canRecruit)
             {
-                Thing thing = ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).recruitThings();
+                Thing thing = ((RecruitThingsPhase)GameBoard.Game.getCurrentPhase()).recruitThings();
 
                 if (thing != null)
                 {

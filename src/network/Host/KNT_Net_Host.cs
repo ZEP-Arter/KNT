@@ -12,5 +12,6 @@ namespace KNT_Host
     {
         void CreateGame();
         void Poll();
+        void UpdateGame(); // <- this might be the function that does the notification ( like the observer DP )
     }
 }

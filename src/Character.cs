@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace GameLogic
 {
+    [DataContract]
     class SpecialCharacter : Thing
     {
 		//ctor
@@ -20,6 +22,6 @@ namespace GameLogic
 		//private members
 		
 			// special abilities
-			private List<string> abilities; // maybe make this a class in itself ( 'abilities' ) not sure yet as to what the contain
+			//private List<string> abilities; // maybe make this a class in itself ( 'abilities' ) not sure yet as to what the contain
     }
 }

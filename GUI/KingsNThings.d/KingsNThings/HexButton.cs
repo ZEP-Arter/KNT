@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GameLogic.Managers;
 
 namespace KingsNThings
 {
@@ -31,7 +32,7 @@ namespace KingsNThings
                  middle.Contains(new Point(mouse.X, mouse.Y)) ||
                  IsInsideTriangle(topright, midright, botright, new Point(mouse.X, mouse.Y)))) //HEX TILES
             {
-                switch (GameBoard.Game.getCurrentPhase())
+                switch (GameBoard.Game.getCurrentPhase().getName())
                 {
                     case "Setup":
                         if ((marker = KNT_Game.getMyMarker()) != null)
@@ -98,7 +99,7 @@ namespace KingsNThings
                         {
                             foreach(Tile t in GameBoard.Game.getMap().getHexList())
                                 t.resetMovementLogic();
-                            ((MovementPhase)GameBoard.Game.getCurrentPhaseObject()).checkMovement(hexNumber, 4);
+                            ((MovementPhase)GameBoard.Game.getCurrentPhase()).checkMovement(hexNumber, 4);
                         }
                         else if (hex.traversed && KNT_Game.me.handsFull() && !hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                         {
@@ -113,7 +114,7 @@ namespace KingsNThings
                     case "Combat":
                         if (this.hex.getCFlag())
                         {
-                            ((CombatPhase)GameBoard.Game.getCurrentPhaseObject()).resolveCombat(this.hex);
+                            ((CombatPhase)GameBoard.Game.getCurrentPhase()).resolveCombat(this.hex);
                         }
                         break;
                 }

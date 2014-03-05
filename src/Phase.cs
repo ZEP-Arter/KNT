@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    [DataContract]
+    [DataContract(IsReference = false)]
     public abstract class Phase
     {
         public Phase(string n)
@@ -89,12 +89,19 @@ namespace GameLogic
         public abstract void playPhase(List<Player> players);
         public abstract Player getCurrentPlayer();
 
-
+        [DataMember]
         string name;
+
+        [DataMember]
         protected State currentState;
+
+        [DataMember]
         volatile protected List<Player> _players;
+
+        [DataMember]
         protected Player currentPlayer;
 
+        [DataContract]
         public enum State
         {
             BEGIN,

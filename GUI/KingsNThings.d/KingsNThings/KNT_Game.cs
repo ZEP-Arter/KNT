@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GameLogic;
+using GameLogic.Managers;
 
 namespace KingsNThings
 {
@@ -73,6 +74,7 @@ namespace KingsNThings
         protected override void Initialize()
         {
             this.IsMouseVisible = true;
+
             base.Initialize();
         }
 
@@ -349,7 +351,7 @@ namespace KingsNThings
 
             UpdateButtons();
 
-            switch (GameBoard.Game.getCurrentPhase())
+            switch (GameBoard.Game.getCurrentPhase().getName())
             {
                 case "Setup":
                     currentPhase.playPhase(GameBoard.Game.getPlayers());
@@ -563,7 +565,7 @@ namespace KingsNThings
             MouseState mouse = Mouse.GetState();
             spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Black);
             spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Black);
-            spriteBatch.DrawString(font, String.Format("Phase : {0}", GameBoard.Game.getCurrentPhase()), new Vector2(10, 1), Color.Black);
+            spriteBatch.DrawString(font, String.Format("Phase : {0}", GameBoard.Game.getCurrentPhase().getName()), new Vector2(10, 1), Color.Black);
 
 
             foreach (Player p in GameBoard.Game.getPlayers())

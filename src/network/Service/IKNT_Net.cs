@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using GameLogic;
+using GameLogic.Managers;
 
 namespace KNT_Service
 {
@@ -14,18 +15,24 @@ namespace KNT_Service
     public interface IKNTNet
     {
         [OperationContract]
-        string GetData(string value);
-
-        [OperationContract]
         Player addPlayer(string name);
 
         [OperationContract]
         Phase getCurrentPhase();
 
         [OperationContract]
-        GameBoard CreateGame();
+        void setCurrentPhase();
 
         [OperationContract]
         List<Player> getPlayers();
+
+        [OperationContract]
+        Player getCurrentPlayer();
+
+        [OperationContract]
+        Board getMap();
+
+        [OperationContract]
+        GameBoard connect(string player);
     }
 }

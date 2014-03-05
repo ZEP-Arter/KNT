@@ -5,6 +5,7 @@ using System.Text;
 using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using GameLogic.Managers;
 
 namespace KingsNThings
 {
@@ -30,7 +31,7 @@ namespace KingsNThings
         private void isCanEnd()
         {
             if (GameBoard.Game.getCurrentPhase().Equals("Recruit Things") &&
-                ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).canBeDone())
+                ((RecruitThingsPhase)GameBoard.Game.getCurrentPhase()).canBeDone())
                 canEnd = true;
             else if(GameBoard.Game.getCurrentPhase().Equals("Movement"))
                 canEnd = true;
@@ -70,7 +71,7 @@ namespace KingsNThings
             }
             else
             {
-                switch (GameBoard.Game.getCurrentPhase())
+                switch (GameBoard.Game.getCurrentPhase().getName())
                 {
                     case "Recruit Things":
                         spriteBatch.Draw(image, location, Color.White);

@@ -5,6 +5,7 @@ using System.Text;
 using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using GameLogic.Managers;
 
 namespace KingsNThings
 {

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    [DataContract]
+    [DataContract(IsReference = false)]
 	public class Player : IComparable
 	{
 		//ctor
@@ -14,8 +14,6 @@ namespace GameLogic
         public Player(string n, int yPos, int number)
         {
             name = n;
-
-            _position = NetworkPosition.HOST;
 
             turn = 0;
 
@@ -40,35 +38,6 @@ namespace GameLogic
             playerNumber = number;
         }
 
-        public Player(string n, NetworkPosition np, int yPos, int number)
-        {
-            name = n;
-
-            _position = np;
-
-            turn = 0;
-
-            gold = 10;
-
-            goldY = yPos;
-
-            mymarkers = new Dictionary<int, bool>();
-
-            diceRoll = 0;
-
-            ownedTiles = new List<Tile>();
-
-            thingsInPlay = new List<Thing>();
-
-            rack = new Dictionary<int,Thing>();
-
-            holdingMarker = false;
-
-            inPhase = false;
-
-            playerNumber = number;
-        }
-
 		//public
 		
 			public string getName()
@@ -76,12 +45,6 @@ namespace GameLogic
 		
 			public void setName(string n)
 			{ name = n; }
-
-            public void setNetPosition(NetworkPosition pos)
-            { _position = pos; }
-
-            public NetworkPosition getNetPosition()
-            { return _position; }
 
             public void setTurn(int turnNum)
             { turn = turnNum; }
@@ -279,6 +242,16 @@ namespace GameLogic
                 removeFromRack(id);
             }
 
+            public List<Thing> getThingsInPlay()
+            {
+                return thingsInPlay;
+            }
+
+            public Dictionary<int, Thing> getRack()
+            {
+                return rack;
+            }
+
         //private
 
             private void removeFromRack(int id)
@@ -289,54 +262,59 @@ namespace GameLogic
 		//private members
 		//
 		//	name
+            [DataMember]
 			string name;
-        
-        //  network position
-            private NetworkPosition _position;
 
             //  turn position : since this is going to change I think it is best we have a var for it, not sure what type, keeping it as 'int' for now
+            [DataMember]
             int turn;
 
+            [DataMember]
             int diceRoll;
 
             //  things ( this will have to have a bool (isOnRack) // this is probs the things in play
+            [DataMember]
             List<Thing> thingsInPlay;
             //  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
+            [DataMember]
             List<SpecialCharacter> characters;
             // Rack
+            [DataMember]
             Dictionary<int,Thing> rack;
 		// ( cannot keep gold counters, special characters, and forts )
 
-        //tiles owned
+            //tiles owned
+            [DataMember]
             List<Tile> ownedTiles;
 
-        //total gold pieces
+            //total gold pieces
+            [DataMember]
             int gold;
 
-        // position of gold on scree
+            // position of gold on scree
+            [DataMember]
             public const int goldX = 660;
+            [DataMember]
             public int goldY; // set at runtime;
 
-        // marker id's and has been placed
+            // marker id's and has been placed
+            [DataMember]
             Dictionary<int, bool> mymarkers;
 
             //current marker
+            [DataMember]
             int currentMarkerID;
 
             //holding marker
+            [DataMember]
             bool holdingMarker;
 
             //currently not done playing phase
+            [DataMember]
             bool inPhase;
             //Uses a number to distinguish which player it is
+            [DataMember]
             int playerNumber;
 
-    }
-
-    // @ericadamski : we may be able to get ride of this I am not sure yet :p
-    public enum NetworkPosition
-    {
-        HOST,
-        CLIENT
     }
 }

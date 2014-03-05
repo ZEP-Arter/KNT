@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KNT_Client;
-using KNT_Client.KNT_ServiceReference;
+using KNT_Client.KNT_SrvRef;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace KingsNThings
 {
@@ -13,13 +14,33 @@ namespace KingsNThings
             : base()
         {
             open();
+            joinGame();
         }
 
         public void open()
         {
             client = new KNTNetClient();
-            me = client.addPlayer("Eric");
-            currentPhase = client.getCurrentPhase();
+            client.connect(client.addPlayer("Eric").name);
+            //_currentPhase = client.getCurrentPhase();
+        }
+
+        public void joinGame()
+        {
+            //List<string> MBOPTIONS = new List<string>();
+            //MBOPTIONS.Add("OK");
+
+            //string msg = "Please enter your name. \n Click OK to continue. . .";
+
+            //base.Initialize();
+
+            //Guide.BeginShowMessageBox(
+            //    "Enter Name", msg, MBOPTIONS, 0,
+            //    MessageBoxIcon.Alert, null, null);
+        }
+
+        public void update()
+        {
+
         }
 
         public void close()
@@ -39,13 +60,13 @@ namespace KingsNThings
 
         public Phase getCurrentPhase()
         {
-            return currentPhase;
+            return _currentPhase;
         }
 
         public override void emptyHand()
         {
             buttonInHand = null;
-            me.holdingMarker = false;
+            //_me.setHoldingMarker(false);
         }
 
         public override Button getButtonInHand()
@@ -56,7 +77,7 @@ namespace KingsNThings
         public override void setButtonInHand(Button b)
         {
             buttonInHand = b;
-            me.holdingMarker = true;
+            //_me.setHoldingMarker(true);
         }
 
         public override StackButton createStack(GameLogic.Tile hex, GameLogic.Thing t, Microsoft.Xna.Framework.Graphics.SpriteBatch s)
@@ -67,14 +88,8 @@ namespace KingsNThings
         }
 
         KNTNetClient client;
-        public static Player me;
+        public static Player _me;
         public static Button buttonInHand;
-        Phase currentPhase;
-
-
-        GameLogic.Phase Client.getCurrentPhase()
-        {
-            throw new NotImplementedException();
-        }
+        public Phase _currentPhase;
     }
 }

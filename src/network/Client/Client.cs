@@ -1,5 +1,4 @@
 ﻿using GameLogic;
-//using KNT_Client.KNT_ServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,8 @@ namespace KNT_Client
     {
         void open();
         void close();
-        Phase getCurrentPhase();
+        void joinGame();
+        void update();
 
     }
 }

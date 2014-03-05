@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="187e88ff-fb2b-4e01-b14d-eeb639696a39" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/KNTNet.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="KNTNet.xsd" MetadataType="Schema" ID="e1ec04e2-f03b-4df2-a525-0cc6562e34b3" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd3" />
+    <MetadataFile FileName="KNTNet1.xsd" MetadataType="Schema" ID="d63e30ae-595b-4a84-9316-5220c275d2d2" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd2" />
+    <MetadataFile FileName="KNTNet2.xsd" MetadataType="Schema" ID="d0289be9-93fa-4ebb-931a-ab530800fe3a" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd1" />
+    <MetadataFile FileName="KNTNet3.xsd" MetadataType="Schema" ID="a0f95549-2b32-4a0b-a12c-aad7f7864087" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd0" />
+    <MetadataFile FileName="KNTNet.wsdl" MetadataType="Wsdl" ID="865dddc0-38d1-496e-9e9f-84382e110fa1" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?wsdl" />
+    <MetadataFile FileName="KNTNet.disco" MetadataType="Disco" ID="a211b457-30ae-45d5-b04b-7a6337c37224" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?disco" />
+    <MetadataFile FileName="KNTNet4.xsd" MetadataType="Schema" ID="b24a2979-0e1f-4dd7-971a-33f5162767a8" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

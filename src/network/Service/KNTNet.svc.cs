@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
+using GameLogic.Managers;
 
 namespace KNT_Service
 {
@@ -16,47 +17,43 @@ namespace KNT_Service
     {
         public KNTNet()
         {
-            game = new Game();
-        }
-
-        public string GetData(string value)
-        {
-            return string.Format("You entered: {0}", value);
+            SerializerOpBehavior.ImportXSD();
         }
 
         public Player addPlayer(string name)
         {
-            Player player = null;
-
-            foreach (Player p in game.getPlayers())
-            {
-                if (p.getName().Contains("Player"))
-                {
-                    p.setName(name);
-                    game.getPlayers()[game.getPlayers().IndexOf(p)] = p;
-                    player = p;
-                    break;
-                }
-            }
-
-            return player;
+            return GameBoard.Game.changePlayerName(name);
         }
 
         public Phase getCurrentPhase()
         {
-            return null;
+            return GameBoard.Game.getCurrentPhase();
         }
 
-        public GameBoard CreateGame()
+        public void setCurrentPhase()
         {
-            return game.getGame();
+        
+        }
+
+        public GameBoard connect(string player)
+        {
+            Console.WriteLine(String.Format("Recived new connetction from player {0}!", player));
+            return GameBoard.Game;
         }
 
         public List<Player> getPlayers()
         {
-            return game.getPlayers();
+            return GameBoard.Game.getPlayers();
         }
 
-        public Game game;
+        public Player getCurrentPlayer()
+        {
+            return null;
+        }
+
+        public Board getMap()
+        {
+            return GameBoard.Game.getMap();
+        }
     }
 }
