@@ -2,40 +2,17 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="KNTNet" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:15608/KNTNet.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:15608/KNTNet.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:15608/KNTNet.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GameLogic" />
+      <xsd:import schemaLocation="http://localhost:8080/KNTNet.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/KNTNet.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/KNTNet.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" />
+      <xsd:import schemaLocation="http://localhost:8080/KNTNet.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IKNTNet_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
   <wsdl:message name="IKNTNet_addPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:addPlayer" />
   </wsdl:message>
   <wsdl:message name="IKNTNet_addPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:addPlayerResponse" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_getCurrentPhase_InputMessage">
-    <wsdl:part name="parameters" element="tns:getCurrentPhase" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_getCurrentPhase_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getCurrentPhaseResponse" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_CreateGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateGame" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_CreateGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateGameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_getGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:getGame" />
-  </wsdl:message>
-  <wsdl:message name="IKNTNet_getGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getGameResponse" />
   </wsdl:message>
   <wsdl:message name="IKNTNet_getPlayers_InputMessage">
     <wsdl:part name="parameters" element="tns:getPlayers" />
@@ -43,72 +20,70 @@
   <wsdl:message name="IKNTNet_getPlayers_OutputMessage">
     <wsdl:part name="parameters" element="tns:getPlayersResponse" />
   </wsdl:message>
+  <wsdl:message name="IKNTNet_getCup_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCup" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getCup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getBank_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBank" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getBank_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBankResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getCurrentPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCurrentPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getCurrentPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCurrentPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getMap_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMap" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_getMap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:connect" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:connectResponse" />
+  </wsdl:message>
   <wsdl:portType name="IKNTNet">
-    <wsdl:operation name="GetData">
-      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/GetData" message="tns:IKNTNet_GetData_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/GetDataResponse" message="tns:IKNTNet_GetData_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="addPlayer">
       <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/addPlayer" message="tns:IKNTNet_addPlayer_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/addPlayerResponse" message="tns:IKNTNet_addPlayer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="getCurrentPhase">
-      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getCurrentPhase" message="tns:IKNTNet_getCurrentPhase_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getCurrentPhaseResponse" message="tns:IKNTNet_getCurrentPhase_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CreateGame">
-      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/CreateGame" message="tns:IKNTNet_CreateGame_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/CreateGameResponse" message="tns:IKNTNet_CreateGame_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="getGame">
-      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getGame" message="tns:IKNTNet_getGame_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getGameResponse" message="tns:IKNTNet_getGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getPlayers">
       <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getPlayers" message="tns:IKNTNet_getPlayers_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getPlayersResponse" message="tns:IKNTNet_getPlayers_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getCup">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getCup" message="tns:IKNTNet_getCup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getCupResponse" message="tns:IKNTNet_getCup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBank">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getBank" message="tns:IKNTNet_getBank_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getBankResponse" message="tns:IKNTNet_getBank_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCurrentPlayer">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getCurrentPlayer" message="tns:IKNTNet_getCurrentPlayer_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getCurrentPlayerResponse" message="tns:IKNTNet_getCurrentPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMap">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/getMap" message="tns:IKNTNet_getMap_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/getMapResponse" message="tns:IKNTNet_getMap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="connect">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/connect" message="tns:IKNTNet_connect_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/connectResponse" message="tns:IKNTNet_connect_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="KNTNet" type="tns:IKNTNet">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IKNTNet/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="addPlayer">
       <soap:operation soapAction="http://tempuri.org/IKNTNet/addPlayer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getCurrentPhase">
-      <soap:operation soapAction="http://tempuri.org/IKNTNet/getCurrentPhase" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateGame">
-      <soap:operation soapAction="http://tempuri.org/IKNTNet/CreateGame" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getGame">
-      <soap:operation soapAction="http://tempuri.org/IKNTNet/getGame" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -125,10 +100,55 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getCup">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/getCup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBank">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/getBank" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCurrentPlayer">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/getCurrentPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMap">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/getMap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="connect">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/connect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="KNTNet">
     <wsdl:port name="KNTNet" binding="tns:KNTNet">
-      <soap:address location="http://localhost:15608/KNTNet.svc" />
+      <soap:address location="http://localhost:8080/KNTNet.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

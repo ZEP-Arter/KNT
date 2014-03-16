@@ -4,10 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
+using GameLogic.Phases;
 
 namespace GameLogic.Managers
 {
-    [DataContract(IsReference = false)]
     public class PhaseManager
     {
         public Phase play()
@@ -24,6 +24,19 @@ namespace GameLogic.Managers
         public Phase getCurrentPhase()
         {
             return currentPhase;
+        }
+
+        public void setCurrentPhase(Phase p)
+        {
+            phSemaphore.WaitOne();
+
+            currentPhase = p;
+
+            if (!phases.Contains(p) && 
+                !(phases.Count + 1 >= phases.Capacity))
+                phases.Add(p);
+
+            phSemaphore.Release();
         }
 
         private PhaseManager()

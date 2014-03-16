@@ -2,87 +2,65 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using GameLogic.Managers;
+using GameLogic.Things;
 
 namespace GameLogic
 {
     //THERE ARE 48 TILES
     //NUMBER OF TILES ON A 4 PLAYER BOARD IS 37
-    [DataContract(IsReference = false)]
     public class Tile
     {
         //Hex Number
-        [DataMember]
         private int hexNumber;
         
         //Number for connected hexes
 
-        [DataMember]
         private int nHex;
 
-        [DataMember]
         private int neHex;
 
-        [DataMember]
         private int seHex;
 
-        [DataMember]
         private int sHex;
 
-        [DataMember]
         private int swHex;
 
-        [DataMember]
         private int nwHex;
         //Type of Hex: Jungle, Frozen Waste, Desert, Plains, Forest, Sea, Swamp, Mountain
 
-        [DataMember]
         private string hexType;
         //Shows whether the Tile is face up or face down
 
-        [DataMember]
         private bool faceUp = true;
         //Shows whether the Tile can be selected as a starting point
 
-        [DataMember]
         private bool startPossible = false;
         //Holds stacks of things for each player
-
         public Dictionary<int, List<Thing>> stacks = new Dictionary<int,List<Thing>>();
 
-        [DataMember]
         public List<Thing> p1Stack;
 
-        [DataMember]
         public List<Thing> p2Stack;
 
-        [DataMember]
         public List<Thing> p3Stack;
 
-        [DataMember]
         public List<Thing> p4Stack;
 
         //For Level is 0 if there is no Fort
 
-        [DataMember]
         private int fortLevel = 0;
 
-        [DataMember]
         private bool combatFlagged = false;
 
-        [DataMember]
         private bool rough = false;
 
-        [DataMember]
         private bool playerControlBool = false;
 
-        [DataMember]
         private Player playerControl = null;
 
-        [DataMember]
         private Player playerAbleToStart = null;
 
         //Movement logic variable
-        [DataMember]
         public bool traversed = false;
         
         //Constructor
@@ -184,6 +162,8 @@ namespace GameLogic
         public bool getStart() { return startPossible; }
         public void flipTile() { faceUp = true; }
         public int getFortLevel() { return fortLevel; }
+        public Dictionary<int, List<Thing>> getStacks() { return stacks; }
+        public bool isTraversed() { return traversed; }
 
     }
 }

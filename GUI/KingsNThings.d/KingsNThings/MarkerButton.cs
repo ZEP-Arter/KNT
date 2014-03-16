@@ -1,5 +1,4 @@
-﻿using GameLogic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using KNT_Client.KNT_ServiceReference;
 
 namespace KingsNThings
 {
@@ -28,15 +28,13 @@ namespace KingsNThings
             buttonID = r.Next(System.DateTime.Now.Millisecond * 1000, System.DateTime.Now.Millisecond * 10000);
             System.Threading.Thread.Sleep(1000);
 
-            while (p.containsMarkerID(buttonID))
+            while (p._myMarkers.ContainsKey(buttonID))
             {
                 buttonID = r.Next(System.DateTime.Now.Millisecond);
                 System.Threading.Thread.Sleep(1000);
             }
 
-            owner.addMarkerID(buttonID);
-
-            //Console.WriteLine(buttonID);
+            owner._myMarkers.Add(buttonID, false);
             
         }
 
@@ -91,8 +89,8 @@ namespace KingsNThings
             {
                 if (KNT_Game.me.containsMarkerID(buttonID) &&
                     !isSet &&
-                    KNT_Game.me.getDiceRoll() != 0 &&
-                    !KNT_Game.me.handsFull())
+                    KNT_Game.me.getDiceroll() != 0 &&
+                    !KNT_Game.me.isHoldingMarker())
                 {
                     return true;
                 }

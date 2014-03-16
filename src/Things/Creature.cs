@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameLogic
+namespace GameLogic.Things
 {
     class Creature : Thing
     {

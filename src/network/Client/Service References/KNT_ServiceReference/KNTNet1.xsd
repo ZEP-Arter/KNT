@@ -1,42 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="anyType" nillable="true" type="xs:anyType" />
-  <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
-  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
-  <xs:element name="boolean" nillable="true" type="xs:boolean" />
-  <xs:element name="byte" nillable="true" type="xs:byte" />
-  <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
-  <xs:element name="decimal" nillable="true" type="xs:decimal" />
-  <xs:element name="double" nillable="true" type="xs:double" />
-  <xs:element name="float" nillable="true" type="xs:float" />
-  <xs:element name="int" nillable="true" type="xs:int" />
-  <xs:element name="long" nillable="true" type="xs:long" />
-  <xs:element name="QName" nillable="true" type="xs:QName" />
-  <xs:element name="short" nillable="true" type="xs:short" />
-  <xs:element name="string" nillable="true" type="xs:string" />
-  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
-  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
-  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
-  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
-  <xs:element name="char" nillable="true" type="tns:char" />
-  <xs:simpleType name="char">
-    <xs:restriction base="xs:int" />
-  </xs:simpleType>
-  <xs:element name="duration" nillable="true" type="tns:duration" />
-  <xs:simpleType name="duration">
-    <xs:restriction base="xs:duration">
-      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
-      <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
-      <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="guid" nillable="true" type="tns:guid" />
-  <xs:simpleType name="guid">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:attribute name="FactoryType" type="xs:QName" />
-  <xs:attribute name="Id" type="xs:ID" />
-  <xs:attribute name="Ref" type="xs:IDREF" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/KNTNet.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="Player">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_currentMarkerID" type="xs:int" />
+      <xs:element minOccurs="0" name="_diceRoll" type="xs:int" />
+      <xs:element minOccurs="0" name="_gold" type="xs:int" />
+      <xs:element minOccurs="0" name="_goldY" type="xs:int" />
+      <xs:element minOccurs="0" name="_holdingMarker" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_inPhase" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="_myMarkers" nillable="true" type="q1:ArrayOfKeyValueOfintboolean" />
+      <xs:element minOccurs="0" name="_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_ownedTiles" nillable="true" type="tns:ArrayOfTile" />
+      <xs:element minOccurs="0" name="_playerNumber" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="_rack" nillable="true" type="q2:ArrayOfKeyValueOfintThing1pP4jC8i" />
+      <xs:element minOccurs="0" name="_thingsInPlay" nillable="true" type="tns:ArrayOfThing" />
+      <xs:element minOccurs="0" name="_turn" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Player" nillable="true" type="tns:Player" />
+  <xs:complexType name="ArrayOfTile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tile" nillable="true" type="tns:Tile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTile" nillable="true" type="tns:ArrayOfTile" />
+  <xs:complexType name="Tile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_combatFlagged" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_faceUp" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_fortLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="_hexNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="_hexType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_nHex" type="xs:int" />
+      <xs:element minOccurs="0" name="_neHex" type="xs:int" />
+      <xs:element minOccurs="0" name="_nwHex" type="xs:int" />
+      <xs:element minOccurs="0" name="_p1Stack" nillable="true" type="tns:ArrayOfThing" />
+      <xs:element minOccurs="0" name="_p2Stack" nillable="true" type="tns:ArrayOfThing" />
+      <xs:element minOccurs="0" name="_p3Stack" nillable="true" type="tns:ArrayOfThing" />
+      <xs:element minOccurs="0" name="_p4Stack" nillable="true" type="tns:ArrayOfThing" />
+      <xs:element minOccurs="0" name="_playerAbleToStart" nillable="true" type="tns:Player" />
+      <xs:element minOccurs="0" name="_playerControl" nillable="true" type="tns:Player" />
+      <xs:element minOccurs="0" name="_playerControlBool" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_rough" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_sHex" type="xs:int" />
+      <xs:element minOccurs="0" name="_seHex" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="_stacks" nillable="true" type="q3:ArrayOfKeyValueOfintArrayOfThing1pP4jC8i" />
+      <xs:element minOccurs="0" name="_startPossible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_swHex" type="xs:int" />
+      <xs:element minOccurs="0" name="_traversed" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tile" nillable="true" type="tns:Tile" />
+  <xs:complexType name="ArrayOfThing">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Thing" nillable="true" type="tns:Thing" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfThing" nillable="true" type="tns:ArrayOfThing" />
+  <xs:complexType name="Thing">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_combatValue" type="xs:int" />
+      <xs:element minOccurs="0" name="_goldValue" type="xs:int" />
+      <xs:element minOccurs="0" name="_hexType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_id" type="xs:int" />
+      <xs:element minOccurs="0" name="_inBank" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_isOwned" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_onRack" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Thing" nillable="true" type="tns:Thing" />
+  <xs:complexType name="ArrayOfPlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Player" nillable="true" type="tns:Player" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayer" nillable="true" type="tns:ArrayOfPlayer" />
+  <xs:complexType name="Board">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_tiles" nillable="true" type="tns:ArrayOfTile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Board" nillable="true" type="tns:Board" />
 </xs:schema>

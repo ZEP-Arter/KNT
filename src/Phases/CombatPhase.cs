@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameLogic.Managers;
+using GameLogic.Things;
 
-namespace GameLogic
+namespace GameLogic.Phases
 {
     public class CombatPhase : Phase
     {

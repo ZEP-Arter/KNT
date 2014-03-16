@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 
 namespace GameLogic.Managers
 {
-    [DataContract(IsReference = false)]
     public class PlayerManager
     {
         public Player changePlayerName(string name)
@@ -21,6 +19,7 @@ namespace GameLogic.Managers
                 {
                     p.setName(name);
                     toReturn = p;
+                    break;
                 }
 
             pSemaphore.Release();
@@ -107,23 +106,30 @@ namespace GameLogic.Managers
             return null;
         }
 
+        public PlayerManager setPlayers(List<Player> ps)
+        {
+            pSemaphore.WaitOne();
+
+            players = ps;
+
+            pSemaphore.Release();
+
+            return this;
+        }
+
         private PlayerManager()
         {
             players = new List<Player>(4);
         }
 
-        [DataMember]
         private List<Player> players;
 
         //private Player currentPlayer;
 
-        [DataMember]
         private static Semaphore pSemaphore = new Semaphore(1, 1);
 
-        [DataMember]
         private static PlayerManager pManager;
 
-        [DataMember]
         public static PlayerManager PManager
         {
             get

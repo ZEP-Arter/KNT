@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using GameLogic;
+using KNT_Client.Networkable;
 
 namespace KingsNThings
 {
@@ -96,7 +96,7 @@ namespace KingsNThings
             //_hex = t;
             //backside = texture[0];
             //hexNumber = _hex.getHexNum();
-            switch (t.getType())
+            switch (t.getHexType())
             {
                 case "Desert":          image = texture[1];
                                         break;

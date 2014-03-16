@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace GameLogic
 {
-    [DataContract(IsReference = false)]
     public class Board
     {
         //ctor 
@@ -64,7 +62,6 @@ namespace GameLogic
         //private
 
         //private members
-            [DataMember]
             List<Tile> tiles;
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GameLogic.Managers;
 
-namespace GameLogic
+namespace GameLogic.Phases
 {
     public class SetupPhase : Phase
     {

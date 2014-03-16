@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameLogic
+namespace GameLogic.Things
 {
 	class RangedCharacter : SpecialCharacter
 	{

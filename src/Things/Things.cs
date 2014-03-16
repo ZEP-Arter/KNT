@@ -1,10 +1,8 @@
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-namespace GameLogic
+namespace GameLogic.Things
 {
     //THERE ARE 351 THINGS
-    [DataContract(IsReference = false)]
     public class Thing
     {
         //Type of Thing:    Special Income, Creature, Magic, Treasure, Event, Gold Counter,
@@ -43,6 +41,21 @@ namespace GameLogic
             	isOwned = true;
         }
 
+        public void setIsOwned(bool owned)
+        {
+            isOwned = owned;
+        }
+
+        public void setInBank(bool bank)
+        {
+            inBank = bank;
+        }
+
+        public void setOnRack(bool rack)
+        {
+            onRack = rack;
+        }
+
 		public int combatScore()
         { return combatValue; }
 
@@ -69,6 +82,11 @@ namespace GameLogic
             return inBank;
         }
 
+        public string getHexType()
+        {
+            return hexType;
+        }
+
 		protected void setName(string n)
 		{ name = n; }
 			
@@ -76,36 +94,25 @@ namespace GameLogic
 		{ combatValue = score; }
 
 
-        [DataMember]
         string type;
 
-        [DataMember]
         string name;
 
-        [DataMember]
         protected string hexType; //if applicable
 
         //this needs some sort of image
-		private string image_path = "";
+		//private string image_path = "";
 
-        [DataMember]
         protected int combatValue; //if applicable
 
-        [DataMember]
         bool inBank;
 
-        [DataMember]
         bool onRack;
 
-        [DataMember]
 		bool isOwned;
 
-
-        [DataMember]
         private int id;
 
-
-        [DataMember]
         int goldValue; //if applicable
 
         public List<Attributes.CombatAttributes> attributes; //if applicable

@@ -1,5 +1,4 @@
-﻿using GameLogic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using GameLogic.Managers;
+using KNT_Service.Wrapper;
 
 namespace KNT_Service
 {
@@ -15,35 +14,30 @@ namespace KNT_Service
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class KNTNet : IKNTNet
     {
-        public KNTNet()
+        public Player addPlayer(Player player, string name)
         {
-            SerializerOpBehavior.ImportXSD();
+            return GameController.Game.changePlayerName(player, name);
         }
 
-        public Player addPlayer(string name)
-        {
-            return GameBoard.Game.changePlayerName(name);
-        }
-
-        public Phase getCurrentPhase()
-        {
-            return GameBoard.Game.getCurrentPhase();
-        }
-
-        public void setCurrentPhase()
-        {
-        
-        }
-
-        public GameBoard connect(string player)
+        public Player connect(string player)
         {
             Console.WriteLine(String.Format("Recived new connetction from player {0}!", player));
-            return GameBoard.Game;
+            return GameController.Game.newConnection(player);
         }
 
         public List<Player> getPlayers()
         {
-            return GameBoard.Game.getPlayers();
+            return GameController.Game.getPlayers();
+        }
+
+        public List<Thing> getCup()
+        {
+            return GameController.Game.getCup();
+        }
+
+        public Dictionary<string, List<Thing>> getBank()
+        {
+            return GameController.Game.getBank();
         }
 
         public Player getCurrentPlayer()
@@ -53,7 +47,7 @@ namespace KNT_Service
 
         public Board getMap()
         {
-            return GameBoard.Game.getMap();
+            return GameController.Game.getMap();
         }
     }
 }

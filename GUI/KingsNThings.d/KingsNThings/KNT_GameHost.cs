@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
+using KNT_Client.Networkable;
 
 namespace KingsNThings
 {
@@ -29,7 +30,7 @@ namespace KingsNThings
         {
             try
             {
-                selfHost.AddServiceEndpoint(typeof(IKNTNet), new BasicHttpBinding(), "KNT");
+                selfHost.AddServiceEndpoint(typeof(KNT_Service.IKNTNet), new BasicHttpBinding(), "KNT");
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
@@ -44,7 +45,7 @@ namespace KingsNThings
             }
         }
 
-        public override StackButton createStack(GameLogic.Tile hex, GameLogic.Thing t, Microsoft.Xna.Framework.Graphics.SpriteBatch s)
+        public override StackButton createStack(Tile hex, Thing t, Microsoft.Xna.Framework.Graphics.SpriteBatch s)
         {
             throw new NotImplementedException();
         }
@@ -76,6 +77,6 @@ namespace KingsNThings
 
         ServiceHost selfHost;
         Uri baseAddress;
-        //Player me;
+        Player me;
     }
 }

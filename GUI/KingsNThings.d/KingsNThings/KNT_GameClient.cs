@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KNT_Client;
-using KNT_Client.KNT_SrvRef;
+using KNT_Client.Networkable;
 using Microsoft.Xna.Framework.GamerServices;
 
 namespace KingsNThings
@@ -19,9 +19,9 @@ namespace KingsNThings
 
         public void open()
         {
-            client = new KNTNetClient();
-            client.connect(client.addPlayer("Eric").name);
-            //_currentPhase = client.getCurrentPhase();
+            client = new KNT_Client.KNT_ServiceReference.KNTNetClient();
+            GameController.CreateGame(client.getPlayers());
+            _me = GameController.Game.getPlayer(client.connect("Eric"));
         }
 
         public void joinGame()
@@ -58,11 +58,6 @@ namespace KingsNThings
             base.Draw(gameTime);
         }
 
-        public Phase getCurrentPhase()
-        {
-            return _currentPhase;
-        }
-
         public override void emptyHand()
         {
             buttonInHand = null;
@@ -80,16 +75,15 @@ namespace KingsNThings
             //_me.setHoldingMarker(true);
         }
 
-        public override StackButton createStack(GameLogic.Tile hex, GameLogic.Thing t, Microsoft.Xna.Framework.Graphics.SpriteBatch s)
+        public override StackButton createStack(Tile hex, Thing t, Microsoft.Xna.Framework.Graphics.SpriteBatch s)
         {
             //StackButton stackB = new StackButton(stackTexture, me, s, t, hex, 30, 30, 0, 0);
             //StackButtons.Add(stackB);
             return null;
         }
 
-        KNTNetClient client;
+        KNT_Client.KNT_ServiceReference.KNTNetClient client;
         public static Player _me;
         public static Button buttonInHand;
-        public Phase _currentPhase;
     }
 }

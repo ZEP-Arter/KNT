@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameLogic.Managers;
+using GameLogic.Things;
 
-namespace GameLogic
+namespace GameLogic.Phases
 {
     public class RecruitThingsPhase : Phase
     {
@@ -79,7 +80,7 @@ namespace GameLogic
         {
             Thing t = null;
 
-            if (player.getGold() >= 5)
+            if (player.getPlayerGold() >= 5)
             {
                 //prompt to buy a recruit
                 //if no break;

@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Runtime.Serialization;
+using GameLogic.Things;
+using GameLogic.Phases;
 using System.Threading;
 
 namespace GameLogic.Managers
 {
-    [DataContract(IsReference=false)]
 	public class GameBoard
 	{
 		
@@ -108,13 +108,10 @@ namespace GameLogic.Managers
 		
 		// private members
 
-            [DataMember]
             private static Semaphore gSemaphore = new Semaphore(1, 1);
 
-            [DataMember]
             private static GameBoard game;
 
-            [DataMember]
             public static GameBoard Game
             {
                 get
@@ -131,13 +128,11 @@ namespace GameLogic.Managers
             }
 		
 			// Board Obj
-            [DataMember]
             Board theBoard;
 		
 		
 	} // end GameBorad Class    
     
-    [DataContract]
     static class TestCode
     {
         public static void initSpecialCharacters(Dictionary<string, List<Thing>> bank)

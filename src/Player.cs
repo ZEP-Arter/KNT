@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
+using GameLogic.Things;
 using System.Text;
 
 namespace GameLogic
 {
-    [DataContract(IsReference = false)]
 	public class Player : IComparable
 	{
 		//ctor
@@ -39,6 +38,9 @@ namespace GameLogic
         }
 
 		//public
+
+            public int getGoldYPos()
+            { return goldY; }
 		
 			public string getName()
 			{ return name; }
@@ -123,6 +125,11 @@ namespace GameLogic
                 rack.Add(id, thing);
             }
 
+            public Dictionary<int, bool> getMyMarkers()
+            {
+                return mymarkers;
+            }
+
             public int CompareTo(Object toCompare)
             {
                 if (this.turn < ((Player)toCompare).turn)
@@ -130,15 +137,12 @@ namespace GameLogic
 
                 return -1;
             }
-            
-            public int getGold()
-            {
-                return gold;
-            }
+
             public int getPlayerNumber()
             {
                 return playerNumber;
             }
+
             public bool containsMarkerID(int id)
             {
                 return mymarkers.ContainsKey(id);
@@ -197,6 +201,9 @@ namespace GameLogic
                 return inPhase;
             }
 
+            public List<Tile> getOwnedTiles()
+            { return ownedTiles; }
+
             public void donePhase()
             {
                 inPhase = true;
@@ -215,6 +222,11 @@ namespace GameLogic
             public int numberOfRackTiles()
             {
                 return rack.Count();
+            }
+
+            public void setInPhase(bool iPhase)
+            {
+                inPhase = iPhase;
             }
 
             public bool placedCurrentMarker()
@@ -252,6 +264,16 @@ namespace GameLogic
                 return rack;
             }
 
+            public void setGold(int g)
+            {
+                gold = g;
+            }
+
+            public void syncMyMarkers(Dictionary<int, bool> markers)
+            {
+                mymarkers = markers;
+            }
+
         //private
 
             private void removeFromRack(int id)
@@ -262,58 +284,45 @@ namespace GameLogic
 		//private members
 		//
 		//	name
-            [DataMember]
 			string name;
 
             //  turn position : since this is going to change I think it is best we have a var for it, not sure what type, keeping it as 'int' for now
-            [DataMember]
+
             int turn;
 
-            [DataMember]
             int diceRoll;
 
             //  things ( this will have to have a bool (isOnRack) // this is probs the things in play
-            [DataMember]
+            //[DataMember]
             List<Thing> thingsInPlay;
             //  characters ( for all non-special Characters this will also have to have a bool (isOnRacK)
-            [DataMember]
             List<SpecialCharacter> characters;
             // Rack
-            [DataMember]
             Dictionary<int,Thing> rack;
 		// ( cannot keep gold counters, special characters, and forts )
 
             //tiles owned
-            [DataMember]
             List<Tile> ownedTiles;
 
             //total gold pieces
-            [DataMember]
             int gold;
 
             // position of gold on scree
-            [DataMember]
             public const int goldX = 660;
-            [DataMember]
             public int goldY; // set at runtime;
 
             // marker id's and has been placed
-            [DataMember]
             Dictionary<int, bool> mymarkers;
 
             //current marker
-            [DataMember]
             int currentMarkerID;
 
             //holding marker
-            [DataMember]
             bool holdingMarker;
 
             //currently not done playing phase
-            [DataMember]
             bool inPhase;
             //Uses a number to distinguish which player it is
-            [DataMember]
             int playerNumber;
 
     }

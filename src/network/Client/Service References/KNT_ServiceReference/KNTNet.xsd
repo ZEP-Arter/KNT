@@ -1,78 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:15608/KNTNet.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GameLogic" />
-  <xs:element name="GetData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="addPlayer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="addPlayerResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GameLogic" minOccurs="0" name="addPlayerResult" nillable="true" type="q1:Player" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getCurrentPhase">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getCurrentPhaseResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameLogic" minOccurs="0" name="getCurrentPhaseResult" nillable="true" type="q2:Phase" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateGame">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateGameResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getGame">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getGameResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameLogic" minOccurs="0" name="getGameResult" nillable="true" type="q3:GameBoard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getPlayers">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="getPlayersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GameLogic" minOccurs="0" name="getPlayersResult" nillable="true" type="q4:ArrayOfPlayer" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/KNTNet.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" />
+  <xs:complexType name="ArrayOfKeyValueOfintboolean">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintboolean">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:int" />
+            <xs:element name="Value" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfintboolean" nillable="true" type="tns:ArrayOfKeyValueOfintboolean" />
+  <xs:complexType name="ArrayOfKeyValueOfintArrayOfThing1pP4jC8i">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintArrayOfThing1pP4jC8i">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:int" />
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" name="Value" nillable="true" type="q1:ArrayOfThing" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfintArrayOfThing1pP4jC8i" nillable="true" type="tns:ArrayOfKeyValueOfintArrayOfThing1pP4jC8i" />
+  <xs:complexType name="ArrayOfKeyValueOfintThing1pP4jC8i">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintThing1pP4jC8i">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:int" />
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" name="Value" nillable="true" type="q2:Thing" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfintThing1pP4jC8i" nillable="true" type="tns:ArrayOfKeyValueOfintThing1pP4jC8i" />
+  <xs:complexType name="ArrayOfKeyValueOfstringArrayOfThing1pP4jC8i">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringArrayOfThing1pP4jC8i">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KNT_Service.Wrapper" name="Value" nillable="true" type="q3:ArrayOfThing" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringArrayOfThing1pP4jC8i" nillable="true" type="tns:ArrayOfKeyValueOfstringArrayOfThing1pP4jC8i" />
 </xs:schema>

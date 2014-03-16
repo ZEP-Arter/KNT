@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
+using GameLogic.Things;
 using System.Threading;
 
 namespace GameLogic.Managers
 {
-    [DataContract(IsReference = false)]
     public class ThingManager
     {
 
@@ -18,9 +17,27 @@ namespace GameLogic.Managers
             return bank;
         }
 
+        public void setBank(Dictionary<string, List<Thing>> b)
+        {
+            tSemaphore.WaitOne();
+
+            bank = b;
+
+            tSemaphore.Release();
+        }
+
         public List<Thing> getCup()
         {
             return cup;
+        }
+
+        public void setCup(List<Thing> c)
+        {
+            tSemaphore.WaitOne();
+
+            cup = c;
+
+            tSemaphore.Release();
         }
 
         public Thing getRandomThingFromCup()
@@ -81,18 +98,14 @@ namespace GameLogic.Managers
             bank = new Dictionary<string, List<Thing>>();
         }
 
-        [DataMember]
         private List<Thing> cup;
 
         private Dictionary<string, List<Thing>> bank;
 
-        [DataMember]
         private static Semaphore tSemaphore = new Semaphore(1, 1);
 
-        [DataMember]
         private static ThingManager tManager;
 
-        [DataMember]
         public static ThingManager TManager
         {
             get
