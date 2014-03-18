@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GameLogic.Managers;
 
 namespace GameLogic.Phases
 {
@@ -15,19 +14,12 @@ namespace GameLogic.Phases
             markersSet = false;
         }
 
-        public override void playPhase(List<Player> players)
+        public override void playPhase(KNT_Client.Networkable.Player player)
         {
-            _players = players;
-            if( currentPlayer == null)
-                currentPlayer = _players[0];
+            _player = player;
             if( currentState != State.IN_PROGRESS )
                 beginPhase();
             setup();
-        }
-
-        public override Player getCurrentPlayer()
-        {
-            return currentPlayer;
         }
 
         private void setup()
@@ -40,37 +32,15 @@ namespace GameLogic.Phases
                 markersSet = placeStartingMarkers();
             //else if (!fortSet)
             //check to see if everyone has finised their turn
-            if (allDone())
-                endPhase();
+            endPhase();
         }
 
         private bool placeStartingMarkers()
         {
-            if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
-                currentPlayer.placedAllMarkers())
+            if ( _player.placedAllMarkers() )
             {
-                Console.WriteLine("4th");
-                foreach (Player p in _players)
-                    p.donePhase();
-                changePlayer();
+                _player.donePhase();
                 return true;
-            }
-            else if (_players.IndexOf(currentPlayer) != _players.Capacity - 1 &&
-                currentPlayer.placedCurrentMarker())
-            {
-                if (currentPlayer.placedAllMarkers())
-                {
-                    Console.WriteLine("Once");
-                    currentPlayer.donePhase();
-                }
-                changePlayer();
-                return false;
-            }
-            else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
-                currentPlayer.placedCurrentMarker())
-            {
-                changePlayer();
-                return false;
             }
 
             return false;
@@ -78,30 +48,10 @@ namespace GameLogic.Phases
 
         private bool setPositions()
         {
-            if (_players.IndexOf(currentPlayer) != _players.Capacity - 1 &&
-                currentPlayer.getDiceRoll() != 0)
-            {
-                changePlayer();
 
-                return false;
-            }
-            else if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
-                currentPlayer.getDiceRoll() != 0)
-            {
-                if (GameBoard.Game.setPlayerOrder())
-                {
-                    currentPlayer = GameBoard.Game.getPlayers()[0];
-                    return true;
-                }
-                else
-                {
-                    //retry rolls
-                    foreach (Player p in _players)
-                        p.setDiceRoll(0);
-                    currentPlayer = _players[0];
-                    return false;
-                }
-            }
+            if (GameLogic.Managers.PlayerManager.PManager.setPlayerOrder()) ;
+
+            //this function will need to change based more on how things go in networking
 
             return false;
         }

@@ -5,8 +5,9 @@ using System.Text;
 using KNT_Client;
 using KNT_Client.Networkable;
 using Microsoft.Xna.Framework.GamerServices;
+using KingsNThings.Buttons;
 
-namespace KingsNThings
+namespace KingsNThings.GUI
 {
     public class KNT_GameClient : KNT_Game, Client
     {
@@ -20,7 +21,7 @@ namespace KingsNThings
         public void open()
         {
             client = new KNT_Client.KNT_ServiceReference.KNTNetClient();
-            GameController.CreateGame(client.getPlayers());
+            GameController.CreateGame(client.getPlayers(), client.getMap(), client.getCup(), client.getBank());
             _me = GameController.Game.getPlayer(client.connect("Eric"));
         }
 

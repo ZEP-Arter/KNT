@@ -1,5 +1,4 @@
-﻿using GameLogic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +10,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Threading.Tasks;
+using KingsNThings.GUI;
 
-namespace KingsNThings
+namespace KingsNThings.Buttons
 {
     public class DiceRollButton : Button
     {

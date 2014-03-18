@@ -18,47 +18,35 @@ namespace GameLogic.Phases
             doneTrades = false;
         }
 
-        public override void playPhase(List<Player> players)
+        public override void playPhase(KNT_Client.Networkable.Player player)
         {
-            _players = players;
+            _player = player;
             if (currentState != State.IN_PROGRESS)
                 beginPhase();
 
-            if (currentPlayer == null)
-            {
-                currentPlayer = players[0];
-                numFreeRecruits = (currentPlayer.getNumberOfOwnedTiles() % 2) != 0 ? (currentPlayer.getNumberOfOwnedTiles() / 2) + 1 : (currentPlayer.getNumberOfOwnedTiles() / 2);
-            }
+            numFreeRecruits = (_player.getNumberOfOwnedTiles() % 2) != 0 ? (_player.getNumberOfOwnedTiles() / 2) + 1 : (_player.getNumberOfOwnedTiles() / 2);
 
         }
 
-        public Thing recruitThings()
+        public KNT_Client.Networkable.Thing recruitThings()
         {
-            if (currentPlayer.getInPhase())
-            {
-                changePlayer();
-                numFreeRecruits = (currentPlayer.getNumberOfOwnedTiles() % 2) != 0 ? (currentPlayer.getNumberOfOwnedTiles() / 2) + 1 : (currentPlayer.getNumberOfOwnedTiles() / 2);
-                doneFree = false;
-            }
-            else if (!doneFree)
-                return free(currentPlayer);
+            if (!doneFree)
+                return free();
             else if (!donePaid)
-                return paid(currentPlayer);
-            if (allDone())
-                endPhase();
+                return paid();
 
             return null;
         }
 
-        private void displayTradeIns(Player player)
+        private void displayTradeIns(KNT_Client.Networkable.Player player)
         {
             // if the player decides to trade in things, the must be displayed at the begning of the turn and traded in at the end
             //add things to the the tradins list
         }
 
-        private Thing free(Player player)
+        private KNT_Client.Networkable.Thing free()
         {
-            Thing t = null;
+            KNT_Client.Networkable.Thing t = null;
 
             if (numFreeRecruits > 5)
                 numFreeRecruits = 5;
@@ -66,7 +54,7 @@ namespace GameLogic.Phases
             //play imidiatly or rack it
             if (numFreeRecruits != 0)
             {
-                t = GameBoard.Game.getRandomThingFromCup();
+                t = KNT_Client.Networkable.GameController.Game.getRandomThingFromCup();
                 --numFreeRecruits;
             }
             
@@ -76,18 +64,18 @@ namespace GameLogic.Phases
             return t;
         }
 
-        private Thing paid(Player player)
+        private KNT_Client.Networkable.Thing paid()
         {
-            Thing t = null;
+            KNT_Client.Networkable.Thing t = null;
 
-            if (player.getPlayerGold() >= 5)
+            if (_player.getGold() >= 5)
             {
                 //prompt to buy a recruit
                 //if no break;
                 //if yes deduct 5 gold from player gold and increment total
                 //play imidiatly or rack it
-                t = GameBoard.Game.getRandomThingFromCup();
-                player.givePlayerGold(-5);
+                t = KNT_Client.Networkable.GameController.Game.getRandomThingFromCup();
+                _player.reciveIncome(-5);
             }
             else
                 donePaid = true;
@@ -95,15 +83,15 @@ namespace GameLogic.Phases
             return t;
         }
 
-        private void trades(Player player)
+        private void trades()
         {
             int numTradins = tradins.Count / 2;
 
             while (numTradins >= 0)
             {
                 //play imidiatly or rack it
-                Thing t = GameBoard.Game.getRandomThingFromCup();
-                player.AddThingToRack(t.getID(), t);
+                KNT_Client.Networkable.Thing t = KNT_Client.Networkable.GameController.Game.getRandomThingFromCup();
+                _player.AddThingToRack(t.getID(), t);
                 --numTradins;
             }
         }
@@ -111,11 +99,6 @@ namespace GameLogic.Phases
         public bool canBeDone()
         {
             return doneFree;
-        }
-
-        public override Player getCurrentPlayer()
-        {
-            return currentPlayer;
         }
 
         private List<Thing> tradins;

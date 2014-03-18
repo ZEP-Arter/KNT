@@ -8,7 +8,13 @@ namespace KNT_Client.Networkable
     public class Tile
     {
         public Tile(KNT_ServiceReference.Tile t)
-        { that = t; }
+        { 
+            that = t;
+
+            stacksCpy = new Dictionary<int, List<Thing>>();
+        }
+
+        #region Public_Methods
 
         public bool getCFlag()
         { return that._combatFlagged; }
@@ -18,6 +24,9 @@ namespace KNT_Client.Networkable
 
         public Player getPlayerAble()
         { return new Player(that._playerAbleToStart); }
+
+        public void setPlayerAble(KNT_ServiceReference.Player player)
+        { that._playerAbleToStart = player; }
 
         public bool getPlayerControlBool()
         { return that._playerControlBool; }
@@ -49,27 +58,48 @@ namespace KNT_Client.Networkable
         public int getFortLevel()
         { return that._fortLevel; }
 
-        public Dictionary<int, List<Thing>> getStacks()
-        { 
-            Dictionary<int, List<Thing>> cpy = new Dictionary<int, List<Thing>>();
+        public bool isTraversed()
+        { return that._traversed; }
 
+        public Dictionary<int, List<Thing>> getStacks()
+        { return stacksCpy; }
+
+        public void selectedAsStarting(Player player)
+        {
+            that._playerControl = player.getBase();
+            that._playerControlBool = true;
+
+            foreach (Tile t in GameController.Game.getMap().getHexList())
+            {
+                int hNum = t.getHexNum();
+                int[] around = t.getSurrounding();
+                if (hNum == around[0] || hNum == around[1] || hNum == around[2] ||
+                    hNum == around[3] || hNum == around[4] || hNum == around[5])
+                {
+                    if (t.getPlayerAble() == null)
+                        t.setPlayerAble(player.getBase());
+                }
+            } 
+        }
+
+        #endregion
+
+        private void initStacks()
+        { 
             foreach(int num in that._stacks.Keys)
                 foreach (KNT_ServiceReference.Thing t in that._stacks[num])
                 {
-                    if (cpy.ContainsKey(num))
-                        cpy[num].Add(new Thing(t));
+                    if (stacksCpy.ContainsKey(num))
+                        stacksCpy[num].Add(new Thing(t));
                     else
                     {
-                        cpy.Add(num, new List<Thing>());
-                        cpy[num].Add(new Thing(t));
+                        stacksCpy.Add(num, new List<Thing>());
+                        stacksCpy[num].Add(new Thing(t));
                     }
                 }
-
-            return cpy;
         }
 
-        public bool isTraversed()
-        { return that._traversed; }
+        Dictionary<int, List<Thing>> stacksCpy;
 
         KNT_ServiceReference.Tile that;
     }

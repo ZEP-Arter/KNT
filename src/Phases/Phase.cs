@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KNT_Client.Networkable;
 
 namespace GameLogic.Phases
 {
@@ -47,32 +48,31 @@ namespace GameLogic.Phases
 
         protected bool beginPhase()
         {
-            foreach (Player p in _players)
-                p.startPhase();
+            _player.startPhase();
 
             currentState = State.IN_PROGRESS;
 
             return true;
         }
 
-        protected void changePlayer()
-        {
-            if (_players.IndexOf(currentPlayer) != _players.Capacity - 1)
-                currentPlayer = _players[_players.IndexOf(currentPlayer) + 1];
-            else
-                currentPlayer = _players[0];
-        }
+        //protected void changePlayer()
+        //{
+        //    if (_players.IndexOf(currentPlayer) != _players.Capacity - 1)
+        //        currentPlayer = _players[_players.IndexOf(currentPlayer) + 1];
+        //    else
+        //        currentPlayer = _players[0];
+        //}
 
-        protected bool allDone()
-        {
-            foreach (Player p in _players)
-            {
-                if (!p.getInPhase())
-                    return false;
-            }
+        //protected bool allDone()
+        //{
+        //    foreach (KNT_Client.Networkable.Player p in _players)
+        //    {
+        //        if (!p.isInPhase())
+        //            return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public State getCurrentState()
         {
@@ -84,16 +84,16 @@ namespace GameLogic.Phases
             return name;
         }
 
-        public abstract void playPhase(List<Player> players);
-        public abstract Player getCurrentPlayer();
+        public KNT_Client.Networkable.Player getCurrentPlayer()
+        { return _player; }
+
+        public abstract void playPhase(KNT_Client.Networkable.Player player);
 
         string name;
 
         protected State currentState;
 
-        volatile protected List<Player> _players;
-
-        protected Player currentPlayer;
+        protected KNT_Client.Networkable.Player _player;
 
         public enum State
         {

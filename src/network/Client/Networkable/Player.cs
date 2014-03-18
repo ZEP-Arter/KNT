@@ -52,6 +52,9 @@ namespace KNT_Client.Networkable
         public void setGoldValue(int value)
         { that._gold = value; }
 
+        public void reciveIncome(int income)
+        { that._gold += income; }
+
         public Point getDrawingPosition()
         { return new Point(660, that._goldY); }
 
@@ -70,6 +73,9 @@ namespace KNT_Client.Networkable
         public int getCurrentMarkerID()
         { return that._currentMarkerID; }
 
+        public void setCurrentMarkerID(int id)
+        { that._currentMarkerID = id; }
+
         public bool isHoldingMarker()
         { return that._holdingMarker; }
 
@@ -82,6 +88,12 @@ namespace KNT_Client.Networkable
         public void donePhase()
         { that._inPhase = false; }// GameLogic.Phases.Phase.State.END; }
 
+        public void startPhase()
+        { that._inPhase = true; }
+
+        public bool placedAllMarkers()
+        { return !that._myMarkers.ContainsValue(false); }
+
         public int getPlayerNumber()
         { return that._playerNumber; }
 
@@ -93,6 +105,19 @@ namespace KNT_Client.Networkable
 
         public List<Tile> getOwnedTiles()
         { return ownedTilesCpy; }
+
+        public List<Thing> getAllForts()
+        {
+            List<Thing> forts = new List<Thing>();
+
+            foreach (Thing t in thingsInPlayCpy)
+            {
+                if (t.GetType().Equals("Fort"))
+                    forts.Add(t);
+            }
+
+            return forts;
+        }
 
         public void AddThingToRack(int id , Thing t)
         {
@@ -114,6 +139,18 @@ namespace KNT_Client.Networkable
 
         public int numberOfRackTiles()
         { return rackCpy.Count; }
+
+        public int getNumberOfOwnedTiles()
+        { return that._ownedTiles.Count; }
+
+        public KNT_ServiceReference.Player getBase()
+        { return that; }
+
+        public void addOwnedTile(Tile t)
+        { ownedTilesCpy.Add(t);  }
+
+        public void placeMarker(int id)
+        { that._myMarkers[id] = true;  }
 
         #endregion
 

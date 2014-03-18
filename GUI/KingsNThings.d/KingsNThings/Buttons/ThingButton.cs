@@ -5,8 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using KNT_Client.Networkable;
+using KingsNThings.GUI;
 
-namespace KingsNThings
+namespace KingsNThings.Buttons
 {
     class ThingButton : Button
     {

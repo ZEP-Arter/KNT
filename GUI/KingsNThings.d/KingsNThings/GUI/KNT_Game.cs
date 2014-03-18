@@ -9,8 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using KNT_Client.Networkable;
+using KingsNThings.Buttons;
 
-namespace KingsNThings
+namespace KingsNThings.GUI
 {
     /// <summary>
     /// This is the main type for your game
@@ -74,6 +75,8 @@ namespace KingsNThings
             graphics.ApplyChanges();
             positionsSet = false;
             markersSet = false;
+            currentPhase = GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase();
+            init();
         }
 
         /// <summary>
@@ -91,17 +94,22 @@ namespace KingsNThings
 
         protected void init()
         {
-            //marker.Add(new MarkerButton(markerTexture[0], GameBoard.Game.getPlayers()[0], spriteBatch, 30, 30, 645, 570));
+            int[] markerLocations = new int[] { 570, 610, 650, 690 };
+
+            int playerNumber = me.getPlayerNumber() - 1;
+
+            marker.Add(new MarkerButton(markerTexture[playerNumber], me, spriteBatch, 30, 30, 645, markerLocations[playerNumber]));
+            marker.Add(new MarkerButton(markerTexture[playerNumber], me, spriteBatch, 30, 30, 685, markerLocations[playerNumber]));
+            marker.Add(new MarkerButton(markerTexture[playerNumber], me, spriteBatch, 30, 30, 725, markerLocations[playerNumber]));
+  
             //marker.Add(new MarkerButton(markerTexture[1], GameBoard.Game.getPlayers()[1], spriteBatch, 30, 30, 645, 610));
             //marker.Add(new MarkerButton(markerTexture[2], GameBoard.Game.getPlayers()[2], spriteBatch, 30, 30, 645, 650));
             //marker.Add(new MarkerButton(markerTexture[3], GameBoard.Game.getPlayers()[3], spriteBatch, 30, 30, 645, 690));
 
-            //marker.Add(new MarkerButton(markerTexture[0], GameBoard.Game.getPlayers()[0], spriteBatch, 30, 30, 685, 570));
             //marker.Add(new MarkerButton(markerTexture[1], GameBoard.Game.getPlayers()[1], spriteBatch, 30, 30, 685, 610));
             //marker.Add(new MarkerButton(markerTexture[2], GameBoard.Game.getPlayers()[2], spriteBatch, 30, 30, 685, 650));
             //marker.Add(new MarkerButton(markerTexture[3], GameBoard.Game.getPlayers()[3], spriteBatch, 30, 30, 685, 690));
 
-            //marker.Add(new MarkerButton(markerTexture[0], GameBoard.Game.getPlayers()[0], spriteBatch, 30, 30, 725, 570));
             //marker.Add(new MarkerButton(markerTexture[1], GameBoard.Game.getPlayers()[1], spriteBatch, 30, 30, 725, 610));
             //marker.Add(new MarkerButton(markerTexture[2], GameBoard.Game.getPlayers()[2], spriteBatch, 30, 30, 725, 650));
             //marker.Add(new MarkerButton(markerTexture[3], GameBoard.Game.getPlayers()[3], spriteBatch, 30, 30, 725, 690));
@@ -357,32 +365,32 @@ namespace KingsNThings
             switch (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().getName())
             {
                 case "Setup":
-                    //currentPhase.playPhase(.Game.getPlayers());
-                    //me = currentPhase.getCurrentPlayer();
-                    //Console.WriteLine(me.getName());
+                    currentPhase.playPhase(me);
+                    me = currentPhase.getCurrentPlayer();
+                    Console.WriteLine(me.getName());
                     break;
                 case "Gold Collection":
-                    //currentPhase.playPhase(GameBoard.Game.getPlayers());
-                    //me = currentPhase.getCurrentPlayer();
-                    //Console.WriteLine(me.getName());
+                    currentPhase.playPhase(me);
+                    me = currentPhase.getCurrentPlayer();
+                    Console.WriteLine(me.getName());
                     break;
                 case "Recruit Things":
-                    //currentPhase.playPhase(GameBoard.Game.getPlayers());
-                    //    if( me.getInPhase() )
-                    //        ((RecruitThingsPhase)currentPhase).recruitThings();
-                    //me = currentPhase.getCurrentPlayer();
-                    //Console.WriteLine(me.getName());
+                    currentPhase.playPhase(me);
+                        if( me.isInPhase() )
+                            ((GameLogic.Phases.RecruitThingsPhase)currentPhase).recruitThings();
+                    me = currentPhase.getCurrentPlayer();
+                    Console.WriteLine(me.getName());
                     break;
                 case "Movement":
-                    //Console.WriteLine("Movement");
-                    //currentPhase.playPhase(GameBoard.Game.getPlayers());
-                    //me = currentPhase.getCurrentPlayer();
-                    //Console.WriteLine(me.getName());
+                    Console.WriteLine("Movement");
+                    currentPhase.playPhase(me);
+                    me = currentPhase.getCurrentPlayer();
+                    Console.WriteLine(me.getName());
                     break;
             }
 
             if (currentPhase.getCurrentState() == GameLogic.Phases.Phase.State.END)
-                //currentPhase = GameBoard.Game.play();
+                currentPhase = GameLogic.Managers.PhaseManager.PhManager.play();
 
             base.Update(gameTime);
         }

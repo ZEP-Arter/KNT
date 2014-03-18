@@ -10,9 +10,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using KNT_Client.KNT_ServiceReference;
+using KNT_Client.Networkable;
+using KingsNThings.GUI;
 
-namespace KingsNThings
+namespace KingsNThings.Buttons
 {
     public class MarkerButton : Button
     {
@@ -28,13 +29,13 @@ namespace KingsNThings
             buttonID = r.Next(System.DateTime.Now.Millisecond * 1000, System.DateTime.Now.Millisecond * 10000);
             System.Threading.Thread.Sleep(1000);
 
-            while (p._myMarkers.ContainsKey(buttonID))
+            while (p.containsMarkerID(buttonID))
             {
                 buttonID = r.Next(System.DateTime.Now.Millisecond);
                 System.Threading.Thread.Sleep(1000);
             }
 
-            owner._myMarkers.Add(buttonID, false);
+            owner.addMarkerID(buttonID);
             
         }
 

@@ -5,8 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using KNT_Client.Networkable;
+using KingsNThings.GUI;
 
-namespace KingsNThings
+namespace KingsNThings.Buttons
 {
     public class EndButton : Button
     {
@@ -29,13 +30,13 @@ namespace KingsNThings
 
         private void isCanEnd()
         {
-            //if (GameBoard.Game.getCurrentPhase().Equals("Recruit Things") &&
-            //    ((RecruitThingsPhase)GameBoard.Game.getCurrentPhase()).canBeDone())
-            //    canEnd = true;
-            //else if(GameBoard.Game.getCurrentPhase().Equals("Movement"))
-            //    canEnd = true;
-            //else
-            //    canEnd = false;
+            if (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().Equals("Recruit Things") &&
+                ((GameLogic.Phases.RecruitThingsPhase)GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase()).canBeDone())
+                canEnd = true;
+            else if (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().Equals("Movement"))
+                canEnd = true;
+            else
+                canEnd = false;
         }
 
         private bool endClicked()

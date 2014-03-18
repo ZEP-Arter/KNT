@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KNT_Client.Networkable;
 
-namespace KingsNThings
+namespace KingsNThings.Buttons
 {
     public abstract class Button
     {

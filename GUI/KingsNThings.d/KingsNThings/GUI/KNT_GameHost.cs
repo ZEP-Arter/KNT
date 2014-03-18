@@ -6,8 +6,9 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
 using KNT_Client.Networkable;
+using KingsNThings.Buttons;
 
-namespace KingsNThings
+namespace KingsNThings.GUI
 {
     public class KNT_GameHost : KNT_Game, KNT_Host.KNT_Net_Host
     {
@@ -30,11 +31,11 @@ namespace KingsNThings
         {
             try
             {
-                selfHost.AddServiceEndpoint(typeof(KNT_Service.IKNTNet), new BasicHttpBinding(), "KNT");
+                //selfHost.AddServiceEndpoint(typeof(KNT_Service.IKNTNet), new BasicHttpBinding(), "KNT");
 
-                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-                smb.HttpGetEnabled = true;
-                selfHost.Description.Behaviors.Add(smb);
+                //ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                //smb.HttpGetEnabled = true;
+                //selfHost.Description.Behaviors.Add(smb);
 
                 selfHost.Open();
             }

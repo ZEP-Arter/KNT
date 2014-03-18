@@ -11,8 +11,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using KingsNThings.GUI;
 
-namespace KingsNThings
+namespace KingsNThings.Buttons
 {
     public class HexButton : Button
     {
@@ -34,23 +35,23 @@ namespace KingsNThings
                 switch (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().getName())
                 {
                     case "Setup":
-                        //if ((marker = KNT_Game.getMyMarker()) != null)
-                        //{
-                        //    if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
-                        //        (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me) && 
-                        //        this.hex.getPlayer() == null &&
-                        //        this.hex.getType() != "Sea")
-                        //    {
-                        //        this.hex.selectedAsStarting(KNT_Game.me);
-                        //        KNT_Game.me.addOwnedTile(hex);
-                        //        marker.setIsSet(true);
-                        //        marker.setMarkerSelected(false);
-                        //        marker.Location(25 + topleft.X, 5 + topleft.Y);
-                        //        KNT_Game.me.placeMarker(marker.getButtonID());
-                        //        KNT_Game.me.setCurrentMarker(marker.getButtonID());
-                        //        KNT_Game.me.setHandsFull();
-                        //    }
-                        //}
+                        if ((marker = KNT_Game.getMyMarker()) != null)
+                        {
+                            if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
+                                (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me) && 
+                                this.hex.getPlayer() == null &&
+                                this.hex.getHexType() != "Sea")
+                            {
+                                this.hex.selectedAsStarting(KNT_Game.me);
+                                KNT_Game.me.addOwnedTile(hex);
+                                marker.setIsSet(true);
+                                marker.setMarkerSelected(false);
+                                marker.Location(25 + topleft.X, 5 + topleft.Y);
+                                KNT_Game.me.placeMarker(marker.getButtonID());
+                                KNT_Game.me.setCurrentMarkerID(marker.getButtonID());
+                                KNT_Game.me.setHandsFull();
+                            }
+                        }
                         break;
 
                     case "Recruit Things":
@@ -96,25 +97,25 @@ namespace KingsNThings
                     case "Movement":
                         //if(hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))// && !KNT_Game.me.handsFull())
                         //{
-                        //    foreach(Tile t in GameBoard.Game.getMap().getHexList())
+                        //    foreach (Tile t in GameController.Game.getMap().getHexList())
                         //        t.resetMovementLogic();
-                        //    ((MovementPhase)GameBoard.Game.getCurrentPhase()).checkMovement(hexNumber, 4);
+                        //    ((GameLogic.Phases.MovementPhase)GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase()).checkMovement(hexNumber, 4);
                         //}
                         //else if (hex.traversed && KNT_Game.me.handsFull() && !hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                         //{
                         //    ((StackButton)game.getButtonInHand()).getHexStackIsOn().stacks[KNT_Game.me.getPlayerNumber()] = new List<Thing>();
                         //    ((StackButton)game.getButtonInHand()).moveStack(hex);
-                        //    foreach (Tile t in GameBoard.Game.getMap().getHexList())
+                        //    foreach (Tile t in GameController.Game.getMap().getHexList())
                         //        t.resetMovementLogic();
                         //}
 
                         break;
 
                     case "Combat":
-                        //if (this.hex.getCFlag())
-                        //{
-                        //    ((CombatPhase)GameBoard.Game.getCurrentPhase()).resolveCombat(this.hex);
-                        //}
+                        if (this.hex.getCFlag())
+                        {
+                            ((GameLogic.Phases.CombatPhase)GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase()).resolveCombat(this.hex);
+                        }
                         break;
                 }
             }

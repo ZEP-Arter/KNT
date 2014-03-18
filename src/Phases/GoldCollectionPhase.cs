@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using GameLogic.Managers;
 using GameLogic.Things;
+using KNT_Client.Networkable;
 
 namespace GameLogic.Phases
 {
@@ -15,51 +16,41 @@ namespace GameLogic.Phases
             gold = 0;
         }
 
-        public override void playPhase(List<Player> players)
+        public override void playPhase(KNT_Client.Networkable.Player player)
         {
-            _players = players;
+            _player = player;
 
             if (currentState != State.IN_PROGRESS)
                 beginPhase();
 
-            if (currentPlayer == null)
-                currentPlayer = players[0];
 
+            // we need some window to display things here
             collectGold();
         }
 
         public void collectGold()
         {
-            //if (currentPlayer.getInPhase())
-            //    changePlayer();
-            for (int i = 0; i < _players.Capacity; i++)
-            {
-
-                determineGold(currentPlayer);
-                givePlayerGold(currentPlayer);
-                changePlayer();
-            }
-
-            if( allDone() )
-                endPhase();
+            determineGold();
+            givePlayerGold();
+            endPhase();
         }
 
-        private void determineGold(Player player)
+        private void determineGold()
         {
             //1 for every owed land hex
-            foreach (Tile t in GameBoard.Game.getMap().getHexList())
+            foreach (KNT_Client.Networkable.Tile t in GameController.Game.getMap().getHexList())
             {
                 if (t.getPlayer() != null)
                 {
-                    if (t.getPlayer().Equals(player))
+                    if (t.getPlayer().Equals(_player))
                         addGold(1);
                 }
             }
             //as many gold as the combat value of each fort
 
-            foreach (Thing t in player.getAllForts())
+            foreach (KNT_Client.Networkable.Thing t in _player.getAllForts())
             {
-                addGold(t.combatScore());
+                addGold(t.getCombatValue());
             }
             //as many gold as printed value of each special income counter ON THE BOARD
 
@@ -72,21 +63,16 @@ namespace GameLogic.Phases
             //addGold(player.getNumberOfSpecialCharaters());
         }
 
-        private void givePlayerGold(Player player)
+        private void givePlayerGold()
         {
-            player.givePlayerGold(gold);
+            _player.reciveIncome(gold);
             gold = 0;
-            player.donePhase();
+            _player.donePhase();
         }
 
         private void addGold(int amount)
         {
             gold += amount;
-        }
-
-        public override Player getCurrentPlayer()
-        {
-            return currentPlayer;
         }
 
         private int gold;
