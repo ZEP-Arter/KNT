@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using GameLogic.Managers;
+using KNT_Client.Networkable;
 
 namespace KingsNThings
 {
@@ -75,9 +74,9 @@ namespace KingsNThings
         {
             if (location.Contains(new Point(mouse.X, mouse.Y)))
             {
-                if (!KNT_Game.me.handsFull() &&
+                if (!KNT_Game.me.isHoldingMarker() &&
                     thingsInStack.Count > 0 &&
-                    GameBoard.Game.getCurrentPhase().Equals("Movement"))
+                    GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().Equals("Movement"))
                 {
                     return true;
                 }

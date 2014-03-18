@@ -34,7 +34,7 @@ namespace KingsNThings
         public override void Update()
         {
 
-            if (KNT_Game.me != null && KNT_Game.me.getDiceRoll() == 0)
+            if (KNT_Game.me != null && KNT_Game.me.getDiceroll() == 0)
                 needDice = true;
 
             base.Update();
@@ -44,7 +44,7 @@ namespace KingsNThings
         {
             if (rollClicked() && needDice)
             {
-                KNT_Game.me.setDiceRoll(DiceRoller.Roll.rollDice());
+                KNT_Game.me.setDiceroll(GameLogic.Utils.DiceRoller.Roll.rollDice());
                 needDice = false;
             }
         }
@@ -71,9 +71,9 @@ namespace KingsNThings
                     Color.White);
             }
 
-            if (needDice && KNT_Game.me.getDiceRoll() != 0)
+            if (needDice && KNT_Game.me.getDiceroll() != 0)
             {
-                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", KNT_Game.me.getName(), KNT_Game.me.getDiceRoll()), new Vector2(420, 100), Color.Black);
+                spriteBatch.DrawString(font, String.Format("{0} rolled {1}", KNT_Game.me.getName(), KNT_Game.me.getDiceroll()), new Vector2(420, 100), Color.Black);
                 spriteBatch.DrawString(font, String.Format("{0} is playing.", KNT_Game.me.getName()), new Vector2(420, 120), Color.Black);
             }
             else if (needDice)

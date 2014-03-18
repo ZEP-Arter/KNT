@@ -26,6 +26,8 @@ namespace KNT_Client.Networkable
             initRack();
         }
 
+        #region Public_Methods
+
         public string getName()
         { return that._name; }
 
@@ -77,6 +79,9 @@ namespace KNT_Client.Networkable
         public bool isInPhase()
         { return that._inPhase; }
 
+        public void donePhase()
+        { that._inPhase = false; }// GameLogic.Phases.Phase.State.END; }
+
         public int getPlayerNumber()
         { return that._playerNumber; }
 
@@ -88,6 +93,31 @@ namespace KNT_Client.Networkable
 
         public List<Tile> getOwnedTiles()
         { return ownedTilesCpy; }
+
+        public void AddThingToRack(int id , Thing t)
+        {
+            if (!rackCpy.ContainsKey(id))
+                rackCpy.Add(id, t);
+        }
+
+        public void playThing(int id)
+        {
+            thingsInPlayCpy.Add(rackCpy[id]);
+            removeFromRack(id);
+        }
+
+        public void removeFromRack(int id)
+        { rackCpy.Remove(id); }
+
+        public bool isRackFull()
+        { return !(rackCpy.Count == 0); }
+
+        public int numberOfRackTiles()
+        { return rackCpy.Count; }
+
+        #endregion
+
+        #region Private_Methods
 
         private void initThingsInPlay()
         {
@@ -112,6 +142,13 @@ namespace KNT_Client.Networkable
             foreach (KNT_ServiceReference.Tile t in that._ownedTiles)
                 ownedTilesCpy.Add(new Tile(t));
         }
+
+        private void Synch()
+        { //synch the list between the different objs
+            // not really sure how to do  this
+        }
+
+        #endregion
 
         List<Tile> ownedTilesCpy;
 

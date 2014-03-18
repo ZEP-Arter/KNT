@@ -574,9 +574,9 @@ namespace KingsNThings
             foreach (Player p in GameController.Game.getPlayers())
             {
                 if( me != null && p.getName() == me.getName() )
-                    spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(p.getDrawingPosition().x, p.getDrawingPosition().y), Color.Blue);
+                    spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(p.getDrawingPosition().X, p.getDrawingPosition().Y), Color.Blue);
                 else
-                    spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(p.getDrawingPosition().x, p.getDrawingPosition().y), Color.Black);
+                    spriteBatch.DrawString(font, String.Format("{0} Gold : {1}", p.getName(), p.getGold()), new Vector2(p.getDrawingPosition().X, p.getDrawingPosition().Y), Color.Black);
             }
 
         }

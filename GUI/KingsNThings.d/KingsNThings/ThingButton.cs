@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GameLogic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using GameLogic.Managers;
+using KNT_Client.Networkable;
 
 namespace KingsNThings
 {
@@ -17,7 +16,7 @@ namespace KingsNThings
             owner = p;
             buttonID = t.getID();
             thingOnButton = t;
-            thingOnButton.setOwned();
+            thingOnButton.setIsOwned(true);
             owner.AddThingToRack(buttonID, t);
             thingSelected = false;
             isInPlay = false;
@@ -33,11 +32,11 @@ namespace KingsNThings
         {
             if (location.Contains(new Point(mouse.X, mouse.Y)))
             {
-                if (GameBoard.Game.getCurrentPhase().Equals("Recruit Things") && 
-                    KNT_Game.me.rackContains(buttonID) &&
+                if (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().Equals("Recruit Things") && 
+                    KNT_Game.me.containsMarkerID(buttonID) &&
                     !thingSelected &&
                     !isInPlay &&
-                    !KNT_Game.me.handsFull())
+                    !KNT_Game.me.isHoldingMarker())
                 {
                     return true;
                 }
@@ -116,7 +115,7 @@ namespace KingsNThings
                 KNT_Game.me.playThing(buttonID);
                 KNT_Game.me.setHandsFull();
             }
-            else if ( KNT_Game.me.rackContains(buttonID) && isInPlay )
+            else if ( KNT_Game.me.containsMarkerID(buttonID) && isInPlay )
             {
                 game.emptyHand();
                 isInPlay = false;
