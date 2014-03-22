@@ -13,7 +13,7 @@ namespace KNT_Service
         {
             _players = new List<Wrapper.Player>(4);
 
-            foreach (GameLogic.Player p in GameBoard.Game.getPlayers())
+            foreach (GameLogic.Player p in GameLogic.Managers.GameBoard.Game.getPlayers())
                 _players.Add(new Wrapper.Player(p));
 
             _board = new Wrapper.Board(GameLogic.Managers.GameBoard.Game.getMap());
@@ -51,7 +51,12 @@ namespace KNT_Service
                     return player;
             }
 
-            return null;
+            if (_players.Count + 1 < _players.Capacity)
+                _players.Add(new Wrapper.Player(p));
+            else
+                return null;
+
+            return getNetPlayer(p);
         }
 
         public Wrapper.Player addNewPlayer(GameLogic.Player p)

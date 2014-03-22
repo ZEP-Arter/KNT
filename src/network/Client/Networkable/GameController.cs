@@ -45,7 +45,7 @@ namespace KNT_Client.Networkable
         {
             foreach (Player p in players)
             {
-                if (player._name == p.getName())
+                if (player._playerNumber == p.getPlayerNumber())
                     return p;
             }
 

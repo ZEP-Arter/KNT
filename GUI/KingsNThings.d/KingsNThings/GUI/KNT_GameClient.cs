@@ -20,9 +20,6 @@ namespace KingsNThings.GUI
 
         public void open()
         {
-            client = new KNT_Client.KNT_ServiceReference.KNTNetClient();
-            GameController.CreateGame(client.getPlayers(), client.getMap(), client.getCup(), client.getBank());
-            _me = GameController.Game.getPlayer(client.connect("Eric"));
         }
 
         public void joinGame()
@@ -46,7 +43,7 @@ namespace KingsNThings.GUI
 
         public void close()
         {
-            client.Close();
+            KNT_Game.client.Close();
         }
 
         protected override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -83,8 +80,6 @@ namespace KingsNThings.GUI
             return null;
         }
 
-        KNT_Client.KNT_ServiceReference.KNTNetClient client;
-        public static Player _me;
         public static Button buttonInHand;
     }
 }

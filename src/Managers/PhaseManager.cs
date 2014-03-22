@@ -50,14 +50,10 @@ namespace GameLogic.Managers
 
         private Phase getNextPhase()
         {
-            phSemaphore.WaitOne();
-
             if (phases.IndexOf(currentPhase) != phases.Capacity - 1)
                 currentPhase = phases[phases.IndexOf(currentPhase) + 1];
             else
                 currentPhase = phases[1];
-
-            phSemaphore.Release();
 
             return currentPhase;
         }

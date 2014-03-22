@@ -20,7 +20,12 @@ namespace KNT_Client.Networkable
         { return that._combatFlagged; }
 
         public Player getPlayer()
-        { return new Player(that._playerControl); }
+        {
+            if (GameController.Game.getPlayer(that._playerControl) != null)
+                return new Player(that._playerControl);
+            else
+                return null;
+        }
 
         public Player getPlayerAble()
         { return new Player(that._playerAbleToStart); }

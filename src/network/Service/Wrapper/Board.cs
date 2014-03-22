@@ -29,7 +29,7 @@ namespace KNT_Service.Wrapper
             foreach (GameLogic.Tile t in that.getHexList())
                 _tiles.Add(new Tile(t));
 
-            Synchronize();
+            //Synchronize();
         }
 
         public List<Tile> getHexList()

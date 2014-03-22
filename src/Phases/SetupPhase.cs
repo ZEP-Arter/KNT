@@ -32,7 +32,8 @@ namespace GameLogic.Phases
                 markersSet = placeStartingMarkers();
             //else if (!fortSet)
             //check to see if everyone has finised their turn
-            endPhase();
+            if( positionsSet && markersSet )
+                endPhase();
         }
 
         private bool placeStartingMarkers()

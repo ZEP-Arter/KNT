@@ -69,6 +69,8 @@ namespace KNT_Service.Wrapper
 
         public Tile(GameLogic.Tile me)
         {
+            hasBeenInit = false;
+
             that = me;
 
             _hexNumber = that.getHexNum();
@@ -86,12 +88,14 @@ namespace KNT_Service.Wrapper
             _startPossible = that.getStart();
             _fortLevel = that.getFortLevel();
             _combatFlagged = that.getCFlag();
-            //_playerAbleToStart = GameController.Game.havePlayer(that.getPlayerAble()) ? GameController.Game.getNetPlayer(that.getPlayerAble()) : GameController.Game.addNewPlayer(that.getPlayerAble());
-            //_playerControl = GameController.Game.havePlayer(that.getPlayer()) ? GameController.Game.getNetPlayer(that.getPlayer()) : GameController.Game.addNewPlayer(that.getPlayer());
+            _playerAbleToStart = null;
+            _playerControl = null;
             _playerControlBool = that.getPlayerControlBool();
             _traversed = that.isTraversed();
 
             Synchronize();
+
+            hasBeenInit = true;
         }
         
         public bool getCFlag() 
@@ -147,10 +151,16 @@ namespace KNT_Service.Wrapper
 
         private void Synchronize()
         {
-            //that.setPlayerAble(_playerAbleToStart.getBase());
+            that.setPlayerAble(_playerAbleToStart != null ? _playerAbleToStart.getBase() : null);
             that.setCFlag(_combatFlagged);
-            //that.setPlayerControl(_playerControl);
+            that.setPlayerControl(_playerControl != null ? _playerControl.getBase() : null);
             that.setPlayerControlBool(_playerControlBool);
+
+            if (hasBeenInit)
+            {
+                _playerControl = GameController.Game.getNetPlayer(that.getPlayer());
+                _playerAbleToStart = GameController.Game.getNetPlayer(that.getPlayer());
+            }
         }
 
         [DataMember]
@@ -218,6 +228,8 @@ namespace KNT_Service.Wrapper
 
         [DataMember]
         public bool _traversed;
+
+        public bool hasBeenInit;
 
         private GameLogic.Tile that;
     }

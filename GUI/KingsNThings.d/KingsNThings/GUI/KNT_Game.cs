@@ -59,6 +59,8 @@ namespace KingsNThings.GUI
 
         public static Player me;
 
+        public static KNT_Client.KNT_ServiceReference.KNTNetClient client;
+
         bool positionsSet;
         bool markersSet;
         GameLogic.Phases.Phase currentPhase;
@@ -67,6 +69,14 @@ namespace KingsNThings.GUI
 
         public KNT_Game()
         {
+
+            client = new KNT_Client.KNT_ServiceReference.KNTNetClient();
+            KNT_Client.KNT_ServiceReference.Player player = client.connect("Eric");
+            GameController.CreateGame(client.getPlayers(), client.getMap(), client.getCup(), client.getBank());
+            me = GameController.Game.getPlayer(player);
+
+            gameBoard = GameController.Game.getMap();
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = false;
@@ -76,7 +86,6 @@ namespace KingsNThings.GUI
             positionsSet = false;
             markersSet = false;
             currentPhase = GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase();
-            init();
         }
 
         /// <summary>
@@ -337,6 +346,7 @@ namespace KingsNThings.GUI
             //P4Tiles.Add(new ThingButton(scripttileTexture[35], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 460));
             //P4Tiles.Add(new ThingButton(scripttileTexture[36], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 460));
             //P1Tiles.Add(new Button(
+            init();
         }
 
         /// <summary>
@@ -425,58 +435,12 @@ namespace KingsNThings.GUI
 
             foreach (Button b in P4Tiles)
                 b.Update();
+
+            foreach (Button b in hex)
+                b.Update();
             
-            hex[0].Update();
-            hex[1].Update();
-            hex[2].Update();
-            hex[3].Update();
-            hex[4].Update();
-            hex[5].Update();
-            hex[6].Update();
-            hex[7].Update();
-            hex[8].Update();
-            hex[9].Update();
-            hex[10].Update();
-            hex[11].Update();
-            hex[12].Update();
-            hex[13].Update();
-            hex[14].Update();
-            hex[15].Update();
-            hex[16].Update();
-            hex[17].Update();
-            hex[18].Update();
-            hex[19].Update();
-            hex[20].Update();
-            hex[21].Update();
-            hex[22].Update();
-            hex[23].Update();
-            hex[24].Update();
-            hex[25].Update();
-            hex[26].Update();
-            hex[27].Update();
-            hex[28].Update();
-            hex[29].Update();
-            hex[30].Update();
-            hex[31].Update();
-            hex[32].Update();
-            hex[33].Update();
-            hex[34].Update();
-            hex[35].Update();
-            hex[36].Update();
-
-
-            marker[0].Update();
-            marker[1].Update();
-            marker[2].Update();
-            marker[3].Update();
-            marker[4].Update();
-            marker[5].Update();
-            marker[6].Update();
-            marker[7].Update();
-            marker[8].Update();
-            marker[9].Update();
-            marker[10].Update();
-            marker[11].Update();
+            foreach (Button b in marker)
+                b.Update();
 
             foreach (Button b in StackButtons)
                 b.Update();
@@ -538,18 +502,8 @@ namespace KingsNThings.GUI
             hex[35].Draw();
             hex[36].Draw();
 
-            marker[0].Draw();
-            marker[1].Draw();
-            marker[2].Draw();
-            marker[3].Draw();
-            marker[4].Draw();
-            marker[5].Draw();
-            marker[6].Draw();
-            marker[7].Draw();
-            marker[8].Draw();
-            marker[9].Draw();
-            marker[10].Draw();
-            marker[11].Draw();
+            foreach( Button mark in marker ) 
+                mark.Draw();
 
             rollbutton.Draw();
             endButton.Draw();
