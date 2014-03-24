@@ -5,8 +5,8 @@ namespace GameLogic
 {
 	class RangedCharacter : SpecialCharacter
 	{
-		public RangedCharacter( string n, int combat, List<Attributes.CombatAttributes> attr, int spec ) :
-			base(n, combat, attr)
+		public RangedCharacter( string n, int combat, List<Attributes.CombatAttributes> attr, int spec, string texPath) :
+			base(n, combat, attr, 1, texPath)
 		{
 			if( attr.Count != 0 )
                 attr.Add(Attributes.CombatAttributes.RANGED);

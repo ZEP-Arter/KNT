@@ -99,11 +99,23 @@ namespace KingsNThings
                             foreach(Tile t in GameBoard.Game.getMap().getHexList())
                                 t.resetMovementLogic();
                             ((MovementPhase)GameBoard.Game.getCurrentPhaseObject()).checkMovement(hexNumber, 4);
+                            KNT_Game.putStackInHand(stack.getList());
+                            KNT_Game.removeStack(stack);
+                            hex.clearPlayerStack(KNT_Game.me.getPlayerNumber());
+                            stack = null;
                         }
                         else if (hex.traversed && KNT_Game.me.handsFull() && !hex.doesPlayerHaveStack(KNT_Game.me.getPlayerNumber()))
                         {
-                            ((StackButton)KNT_Game.getButtonInHand()).getHexStackIsOn().stacks[KNT_Game.me.getPlayerNumber()] = new List<Thing>();
-                            ((StackButton)KNT_Game.getButtonInHand()).moveStack(hex);
+                            stack = KNT_Game.createStack(hex,
+                                               KNT_Game.getStackInHand(), spriteB);
+                            if (KNT_Game.me.getPlayerNumber() == 1)
+                                stack.Location(0 + topleft.X, 35 + topleft.Y);
+                            if (KNT_Game.me.getPlayerNumber() == 2)
+                                stack.Location(25 + topleft.X, 35 + topleft.Y);
+                            if (KNT_Game.me.getPlayerNumber() == 3)
+                                stack.Location(0 + topleft.X, 65 + topleft.Y);
+                            if (KNT_Game.me.getPlayerNumber() == 4)
+                                stack.Location(25 + topleft.X, 65 + topleft.Y);
                             foreach (Tile t in GameBoard.Game.getMap().getHexList())
                                 t.resetMovementLogic();
                         }

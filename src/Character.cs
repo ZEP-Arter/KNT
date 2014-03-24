@@ -8,10 +8,9 @@ namespace GameLogic
     class SpecialCharacter : Thing
     {
 		//ctor
-        public SpecialCharacter(string n, int c, List<Attributes.CombatAttributes> attr) : 
-				base("SpecialCharacter", n, attr)
+        public SpecialCharacter(string n, int c, List<Attributes.CombatAttributes> attr, int texID, string texPath) : 
+				base("SpecialCharacter", n, attr, texID, texPath)
 			{
-                
                 combatValue = c;
 			}
 			

@@ -7,7 +7,7 @@ namespace GameLogic
     {
         //Type of Thing:    Special Income, Creature, Magic, Treasure, Event, Gold Counter,
         //                  Fort, Control Marker, Special Character
-		public Thing(string t, string n, List<Attributes.CombatAttributes> attr)
+		public Thing(string t, string n, List<Attributes.CombatAttributes> attr, int texID, string texPath)
 		{
 			type = t;
 			
@@ -18,6 +18,10 @@ namespace GameLogic
 			isOwned = false;
 
             id = ThingNumber.getNextThingID();
+
+            textureID = texID;
+
+            texturePath = texPath;
 		}
 		
 		
@@ -58,6 +62,9 @@ namespace GameLogic
 		protected void setCombatScore(int score)
 		{ combatValue = score; }
 
+        public int getTextureID()
+        { return textureID; }
+
         string type;
         string name;
         protected string hexType; //if applicable
@@ -67,9 +74,13 @@ namespace GameLogic
 
         protected int combatValue; //if applicable
 
+        string texturePath;
+
         bool inBank;
         bool onRack;
 		bool isOwned;
+
+        private int textureID;
 
         private int id;
 

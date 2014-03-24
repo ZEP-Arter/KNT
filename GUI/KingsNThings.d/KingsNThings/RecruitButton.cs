@@ -42,19 +42,19 @@ namespace KingsNThings
                 {
                     if (KNT_Game.me.getPlayerNumber() == 1)
                     {
-                        KNT_Game.P1Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 55));
+                        KNT_Game.P1Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 55));
                     }
                     else if (KNT_Game.me.getPlayerNumber() == 2)
                     {
-                        KNT_Game.P2Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 190));
+                        KNT_Game.P2Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 190));
                     }
                     else if (KNT_Game.me.getPlayerNumber() == 3)
                     {
-                        KNT_Game.P3Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 325));
+                        KNT_Game.P3Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 325));
                     }
                     else if (KNT_Game.me.getPlayerNumber() == 4)
                     {
-                        KNT_Game.P4Tiles.Add(new ThingButton(KNT_Game.scripttileTexture[20], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 460));
+                        KNT_Game.P4Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 460));
                     }
                 }
                 /*

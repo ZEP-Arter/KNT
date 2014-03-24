@@ -16,16 +16,21 @@ namespace GameLogic
         public override void playPhase(List<Player> players)
         {
             _players = players;
+            if (currentState != State.IN_PROGRESS)
+                beginPhase();
             if (currentPlayer == null)
                 currentPlayer = _players[0];
-            if (currentState != Phase.State.IN_PROGRESS)
-                this.beginPhase();
 
             movement();
         }
 
         private void movement()
         {
+
+            if (currentPlayer.getInPhase())
+            {
+                changePlayer();
+            }
 
             if (allDone())
                 this.endPhase();

@@ -112,6 +112,11 @@ namespace GameLogic
                 return true;
         }
 
+        public void clearPlayerStack(int i)
+        {
+            stacks[i] = new List<Thing>();
+        }
+
         public void addToPlayerStack(int i, Thing thing)
         {
             if (stacks.ContainsKey(i))

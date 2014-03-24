@@ -26,7 +26,9 @@ namespace KingsNThings
         private Texture2D[] hexTexture = new Texture2D[9];
         private Texture2D[] goldTexture = new Texture2D[6];
         private Texture2D[] markerTexture = new Texture2D[4];
-        public static Texture2D[] scripttileTexture = new Texture2D[40];
+        public static Texture2D[] thingTexture = new Texture2D[200];
+        public static Texture2D[] specialThingTexture = new Texture2D[25];
+        
         //Button hex1, hex2, hex3, hex4, hex5, hex6, hex7, hex8, hex9, hex10, hex11, hex12, hex13, hex14, hex15, hex16, hex17, hex18, hex19, hex20, hex21, hex22, hex23, hex24, hex25, hex26, hex27, hex28, hex29, hex30, hex31, hex32, hex33, hex34, hex35, hex36, hex37;
         Button rollbutton;
         Button endButton;
@@ -49,6 +51,7 @@ namespace KingsNThings
         bool markersSet;
         Phase currentPhase;
         public static Button buttonInHand;
+        public static List<Thing> stackInHand;
 
         Button tempButton;
 
@@ -123,95 +126,188 @@ namespace KingsNThings
 
             /////////////////////////////////SCRIPT TILE TEXTURES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-            scripttileTexture[0] = Content.Load<Texture2D>("images/cyclops_mountain_5");
-            scripttileTexture[1] = Content.Load<Texture2D>("images/mountainmen_mountain_1");
-            scripttileTexture[2] = Content.Load<Texture2D>("images/goblins_mountain_1");
-            scripttileTexture[3] = Content.Load<Texture2D>("images/giantspider_desert_1");
-            scripttileTexture[4] = Content.Load<Texture2D>("images/elephant_jungle_c4");
-            scripttileTexture[5] = Content.Load<Texture2D>("images/brownknight_mountain_c4");
-            scripttileTexture[6] = Content.Load<Texture2D>("images/giant_mountain_r4");
-            scripttileTexture[7] = Content.Load<Texture2D>("images/dwarves_mountain_r2");
-            scripttileTexture[8] = Content.Load<Texture2D>("images/skeletons_desert_1");
-            scripttileTexture[9] = Content.Load<Texture2D>("images/watusi_jungle_2");
-            scripttileTexture[10] = Content.Load<Texture2D>("images/ogre_mountain_2");
+            specialThingTexture[0] = Content.Load<Texture2D>("images/swordmaster");
+            specialThingTexture[1] = Content.Load<Texture2D>("images/archcleric");
+            specialThingTexture[2] = Content.Load<Texture2D>("images/archmage");
+            specialThingTexture[3] = Content.Load<Texture2D>("images/assassinprimus");
+            specialThingTexture[4] = Content.Load<Texture2D>("images/baronmunchausen");
+            specialThingTexture[5] = Content.Load<Texture2D>("images/deerhunter");
+            specialThingTexture[6] = Content.Load<Texture2D>("images/desertmaster");
+            specialThingTexture[7] = Content.Load<Texture2D>("images/dwarfking");
+            specialThingTexture[8] = Content.Load<Texture2D>("images/forestking");
+            specialThingTexture[9] = Content.Load<Texture2D>("images/grandduke");
+            specialThingTexture[10] = Content.Load<Texture2D>("images/icelord");
+            specialThingTexture[11] = Content.Load<Texture2D>("images/junglelord");
+            specialThingTexture[12] = Content.Load<Texture2D>("images/masterthief");
+            specialThingTexture[13] = Content.Load<Texture2D>("images/mountainking");
+            specialThingTexture[14] = Content.Load<Texture2D>("images/plainslord");
+            specialThingTexture[15] = Content.Load<Texture2D>("images/swampking");
+            specialThingTexture[16] = Content.Load<Texture2D>("images/warlord");
+            specialThingTexture[17] = Content.Load<Texture2D>("images/elflord");
+            specialThingTexture[18] = Content.Load<Texture2D>("images/marksman");
+            specialThingTexture[19] = Content.Load<Texture2D>("images/ghaog2");
+            specialThingTexture[20] = Content.Load<Texture2D>("images/lordoftheeagles");
+            specialThingTexture[21] = Content.Load<Texture2D>("images/sirlancealot");
 
-            scripttileTexture[11] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2");
-            scripttileTexture[12] = Content.Load<Texture2D>("images/sandworm_desert_3");
-            scripttileTexture[13] = Content.Load<Texture2D>("images/greenknight_forest_c4");
-            scripttileTexture[14] = Content.Load<Texture2D>("images/dervish_desert_2");
-            scripttileTexture[15] = Content.Load<Texture2D>("images/crocodiles_jungle_2");
-            scripttileTexture[16] = Content.Load<Texture2D>("images/nomads_desert_1");
-            scripttileTexture[17] = Content.Load<Texture2D>("images/druid_forest_3");
-            scripttileTexture[18] = Content.Load<Texture2D>("images/crawlingvines_jungle_6");
-            scripttileTexture[19] = Content.Load<Texture2D>("images/bandits_forest_2");
-            scripttileTexture[20] = Content.Load<Texture2D>("images/goblins_mountain_1");
+            thingTexture[0] = Content.Load<Texture2D>("images/babydragon_desert_3");
+            thingTexture[1] = Content.Load<Texture2D>("images/bandits_forest_2");
+            thingTexture[2] = Content.Load<Texture2D>("images/basilisk_swamp_3");
+            thingTexture[3] = Content.Load<Texture2D>("images/bears_forest_2");
+            thingTexture[4] = Content.Load<Texture2D>("images/bigfoot_forest_5");
+            thingTexture[5] = Content.Load<Texture2D>("images/birdofparadise_jungle_1");
+            thingTexture[6] = Content.Load<Texture2D>("images/blackknight_swamp_c3");
+            thingTexture[7] = Content.Load<Texture2D>("images/browndragon_mountain_3");
+            thingTexture[8] = Content.Load<Texture2D>("images/brownknight_mountain_c4");
+            thingTexture[9] = Content.Load<Texture2D>("images/buffaloherd_plains_3");
+            thingTexture[10] = Content.Load<Texture2D>("images/buffaloherd_plains_4");
 
-            scripttileTexture[21] = Content.Load<Texture2D>("images/centaur_plains_2");
-            scripttileTexture[22] = Content.Load<Texture2D>("images/camelcorps_desert_3");
-            scripttileTexture[23] = Content.Load<Texture2D>("images/farmers_plains_1_1");
-            scripttileTexture[24] = Content.Load<Texture2D>("images/genie_desert_4");
-            scripttileTexture[25] = Content.Load<Texture2D>("images/skeletons_desert_1");
-            scripttileTexture[26] = Content.Load<Texture2D>("images/pygmies_jungle_2");
-            scripttileTexture[27] = Content.Load<Texture2D>("images/greathunter_plains_r4");
-            scripttileTexture[28] = Content.Load<Texture2D>("images/witchdoctor_jungle_2");
-            scripttileTexture[29] = Content.Load<Texture2D>("images/tribesmen_plains_2");
-            scripttileTexture[30] = Content.Load<Texture2D>("images/giantlizard_swamp_2");
+            thingTexture[11] = Content.Load<Texture2D>("images/buzzard_desert_1");
+            thingTexture[12] = Content.Load<Texture2D>("images/camelcorps_desert_3");
+            thingTexture[13] = Content.Load<Texture2D>("images/centaur_plains_2");
+            thingTexture[14] = Content.Load<Texture2D>("images/crawlingvines_jungle_6");
+            thingTexture[15] = Content.Load<Texture2D>("images/crocodiles_jungle_2");
+            thingTexture[16] = Content.Load<Texture2D>("images/crocodiles_swamp_2");
+            thingTexture[17] = Content.Load<Texture2D>("images/cyclops_mountain_5");
+            thingTexture[18] = Content.Load<Texture2D>("images/darkwizard_swamp_1");
+            thingTexture[19] = Content.Load<Texture2D>("images/dervish_desert_2");
+            thingTexture[20] = Content.Load<Texture2D>("images/dervish_desert_2_1");
+            
+            thingTexture[21] = Content.Load<Texture2D>("images/desertbat_desert_1");
+            thingTexture[22] = Content.Load<Texture2D>("images/dinosaur_jungle_4");
+            thingTexture[23] = Content.Load<Texture2D>("images/dragonfly_plains_2");
+            thingTexture[24] = Content.Load<Texture2D>("images/dragonrider_frozenwaste_r3");
+            thingTexture[25] = Content.Load<Texture2D>("images/druid_forest_3");
+            thingTexture[26] = Content.Load<Texture2D>("images/dryad_forest_1");
+            thingTexture[27] = Content.Load<Texture2D>("images/dustdevil_desert_4");
+            thingTexture[28] = Content.Load<Texture2D>("images/dwarves_mountain_c3");
+            thingTexture[29] = Content.Load<Texture2D>("images/dwarves_mountain_r2");
+            thingTexture[30] = Content.Load<Texture2D>("images/dwarves_mountain_r3");
+            
+            thingTexture[31] = Content.Load<Texture2D>("images/eagles_plains_2");
+            thingTexture[32] = Content.Load<Texture2D>("images/elephant_jungle_c4");
+            thingTexture[33] = Content.Load<Texture2D>("images/elfmage_forest_2");
+            thingTexture[34] = Content.Load<Texture2D>("images/elkherd_frozenwaste_2");
+            thingTexture[35] = Content.Load<Texture2D>("images/elves_forest_r2");
+            thingTexture[36] = Content.Load<Texture2D>("images/elves_forest_r2_2");
+            thingTexture[37] = Content.Load<Texture2D>("images/elves_forest_r3");
+            thingTexture[38] = Content.Load<Texture2D>("images/eskimos_frozenwaste_2_1");
+            thingTexture[39] = Content.Load<Texture2D>("images/eskimos_frozenwaste_2_2");
+            thingTexture[40] = Content.Load<Texture2D>("images/eskimos_frozenwaste_2_3");
+            
+            thingTexture[41] = Content.Load<Texture2D>("images/eskimos_frozenwaste_2_4");
+            thingTexture[42] = Content.Load<Texture2D>("images/farmers_plains_1_1");
+            thingTexture[43] = Content.Load<Texture2D>("images/farmers_plains_1_2");
+            thingTexture[44] = Content.Load<Texture2D>("images/farmers_plains_1_3");
+            thingTexture[45] = Content.Load<Texture2D>("images/farmers_plains_1_4");
+            thingTexture[46] = Content.Load<Texture2D>("images/flyingbuffalo_plains_2");
+            thingTexture[47] = Content.Load<Texture2D>("images/flyingsquirrel_forest_1");
+            thingTexture[48] = Content.Load<Texture2D>("images/flyingsquirrel_forest_1_2");
+            thingTexture[49] = Content.Load<Texture2D>("images/forester_forest_r2");
+            thingTexture[50] = Content.Load<Texture2D>("images/genie_desert_4");
+            
+            thingTexture[51] = Content.Load<Texture2D>("images/ghost_swamp_1");
+            thingTexture[52] = Content.Load<Texture2D>("images/giant_mountain_r4");
+            thingTexture[53] = Content.Load<Texture2D>("images/giantape_jungle_5");
+            thingTexture[54] = Content.Load<Texture2D>("images/giantape_jungle_5_2");
+            thingTexture[55] = Content.Load<Texture2D>("images/giantbeetle_plains_2");
+            thingTexture[56] = Content.Load<Texture2D>("images/giantcondor_mountain_3");
+            thingTexture[57] = Content.Load<Texture2D>("images/giantlizard_swamp_2");
+            thingTexture[58] = Content.Load<Texture2D>("images/giantmosquito_swamp_2");
+            thingTexture[59] = Content.Load<Texture2D>("images/giantroc_mountain_3");
+            thingTexture[60] = Content.Load<Texture2D>("images/giantsnake_jungle_3");
 
-            scripttileTexture[31] = Content.Load<Texture2D>("images/villains_plains_2");
-            scripttileTexture[32] = Content.Load<Texture2D>("images/tigers_jungle_3");
-            scripttileTexture[33] = Content.Load<Texture2D>("images/darkwizard_swamp_1");
-            scripttileTexture[34] = Content.Load<Texture2D>("images/blackknight_swamp_c3");
-            scripttileTexture[35] = Content.Load<Texture2D>("images/giantape_jungle_5");
-            scripttileTexture[36] = Content.Load<Texture2D>("images/buffaloherd_plains_3");
-            scripttileTexture[37] = Content.Load<Texture2D>("images/vampirebat_swamp_4");
-            scripttileTexture[38] = Content.Load<Texture2D>("images/olddragon_desert_4");
-            scripttileTexture[39] = Content.Load<Texture2D>("images/walkingtree_forest_5");
-            //need Old Dragon, Walking Tree, vampirebat
-            /////////////////////////////////HEX BUTTONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-            /*hex37 = new Button(hexTexture[1], spriteBatch, 110, 100, 1, 20, 250, 37); //37 Buttons
-            hex36 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 20, 350, 36);//36
-            hex35 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 20, 450, 35);//35
-            hex34 = new Button(hexTexture[5], spriteBatch, 110, 100, 1, 20, 550, 34);//34
+            thingTexture[61] = Content.Load<Texture2D>("images/giantsnake_swamp_3");
+            thingTexture[62] = Content.Load<Texture2D>("images/giantspider_desert_1");
+            thingTexture[63] = Content.Load<Texture2D>("images/giantwasp_desert_4");
+            thingTexture[64] = Content.Load<Texture2D>("images/giantwasp_desert_4_2");
+            thingTexture[65] = Content.Load<Texture2D>("images/goblins_mountain_1");
+            thingTexture[66] = Content.Load<Texture2D>("images/goblins_mountain_1_2");
+            thingTexture[67] = Content.Load<Texture2D>("images/goblins_mountain_1_3");
+            thingTexture[68] = Content.Load<Texture2D>("images/goblins_mountain_1_4");
+            thingTexture[69] = Content.Load<Texture2D>("images/greateagle_mountain_2");
+            thingTexture[70] = Content.Load<Texture2D>("images/greathawk_mountain_1");
 
-            hex20 = new Button(hexTexture[8], spriteBatch, 110, 100, 1, 100, 200, 20);//20
-            hex19 = new Button(hexTexture[4], spriteBatch, 110, 100, 1, 100, 300, 19);//19
-            hex18 = new Button(hexTexture[5], spriteBatch, 110, 100, 1, 100, 400, 18);//18
-            hex17 = new Button(hexTexture[6], spriteBatch, 110, 100, 1, 100, 500, 17);//17
-            hex33 = new Button(hexTexture[4], spriteBatch, 110, 100, 1, 100, 600, 33);//33
+            thingTexture[71] = Content.Load<Texture2D>("images/greathawk_plains_2");
+            thingTexture[72] = Content.Load<Texture2D>("images/greathunter_plains_r4");
+            thingTexture[73] = Content.Load<Texture2D>("images/greatowl_forest_2");
+            thingTexture[74] = Content.Load<Texture2D>("images/greenknight_forest_c4");
+            thingTexture[75] = Content.Load<Texture2D>("images/griffon_desert_2");
+            thingTexture[76] = Content.Load<Texture2D>("images/gypsies_plains_1");
+            thingTexture[77] = Content.Load<Texture2D>("images/gypsies_plains_2");
+            thingTexture[78] = Content.Load<Texture2D>("images/headhunter_jungle_r2");
+            thingTexture[79] = Content.Load<Texture2D>("images/hugeleech_swamp_2");
+            thingTexture[80] = Content.Load<Texture2D>("images/hunters_plains_r1");
 
-            hex21 = new Button(hexTexture[5], spriteBatch, 110, 100, 1, 180, 150, 21);//21
-            hex8 = new Button(hexTexture[6], spriteBatch, 110, 100, 1, 180, 250, 8);//8
-            hex7 = new Button(hexTexture[8], spriteBatch, 110, 100, 1, 180, 350, 7);//7
-            hex6 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 180, 450, 6);//6
-            hex16 = new Button(hexTexture[1], spriteBatch, 110, 100, 1, 180, 550, 16);//16
-            hex32 = new Button(hexTexture[6], spriteBatch, 110, 100, 1, 180, 650, 32);//32
+            thingTexture[81] = Content.Load<Texture2D>("images/icebats_frozenwaste_1");            
+            thingTexture[82] = Content.Load<Texture2D>("images/icegiant_frozenwaste_r5");
+            thingTexture[83] = Content.Load<Texture2D>("images/iceworm_frozenwaste_4");
+            thingTexture[84] = Content.Load<Texture2D>("images/killerpenguins_frozenwaste_3");
+            thingTexture[85] = Content.Load<Texture2D>("images/killerpuffins_frozenwaste_2");
+            thingTexture[86] = Content.Load<Texture2D>("images/killerracoon_forest_2");
+            thingTexture[87] = Content.Load<Texture2D>("images/lionpride_plains_3");
+            thingTexture[88] = Content.Load<Texture2D>("images/littleroc_mountain_2");
+            thingTexture[89] = Content.Load<Texture2D>("images/mammoth_frozenwaste_c5");
+            thingTexture[90] = Content.Load<Texture2D>("images/mountainlion_mountain_2");
 
-            hex22 = new Button(hexTexture[4], spriteBatch, 110, 100, 1, 260, 100, 22);//22
-            hex9 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 260, 200, 9);//9
-            hex2 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 260, 300, 2);//2
-            hex1 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 260, 400, 1);//1
-            hex5 = new Button(hexTexture[7], spriteBatch, 110, 100, 1, 260, 500, 5);//5
-            hex15 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 260, 600, 15);//15
-            hex31 = new Button(hexTexture[1], spriteBatch, 110, 100, 1, 260, 700, 31);//31
+            thingTexture[91] = Content.Load<Texture2D>("images/mountainmen_mountain_1");
+            thingTexture[92] = Content.Load<Texture2D>("images/mountainmen_mountain_1_2");
+            thingTexture[93] = Content.Load<Texture2D>("images/nomads_desert_1");
+            thingTexture[94] = Content.Load<Texture2D>("images/nomads_desert_1_2");
+            thingTexture[95] = Content.Load<Texture2D>("images/northwind_frozenwaste_2");
+            thingTexture[96] = Content.Load<Texture2D>("images/ogre_mountain_2");
+            thingTexture[97] = Content.Load<Texture2D>("images/oilfield_frozenwaste_3g");
+            thingTexture[98] = Content.Load<Texture2D>("images/olddragon_desert_4");
+            thingTexture[99] = Content.Load<Texture2D>("images/pegasus_plains_2");
+            thingTexture[100] = Content.Load<Texture2D>("images/pirates_swamp_2");
 
-            hex23 = new Button(hexTexture[8], spriteBatch, 110, 100, 1, 340, 150, 23);//23
-            hex10 = new Button(hexTexture[5], spriteBatch, 110, 100, 1, 340, 250, 10);//10
-            hex3 = new Button(hexTexture[4], spriteBatch, 110, 100, 1, 340, 350, 3);//3
-            hex4 = new Button(hexTexture[6], spriteBatch, 110, 100, 1, 340, 450, 4);//4
-            hex14 = new Button(hexTexture[8], spriteBatch, 110, 100, 1, 340, 550, 14);//14
-            hex30 = new Button(hexTexture[5], spriteBatch, 110, 100, 1, 340, 650, 30);//30
+            thingTexture[101] = Content.Load<Texture2D>("images/pixies_forest_1");
+            thingTexture[102] = Content.Load<Texture2D>("images/pixies_forest_1_2");
+            thingTexture[103] = Content.Load<Texture2D>("images/poisonfrog_swamp_1");
+            thingTexture[104] = Content.Load<Texture2D>("images/pterodactyl_plains_3");
+            thingTexture[105] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2");
+            thingTexture[106] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2_2");
+            thingTexture[107] = Content.Load<Texture2D>("images/pygmies_jungle_2");
+            thingTexture[108] = Content.Load<Texture2D>("images/sandworm_desert_3");
+            thingTexture[109] = Content.Load<Texture2D>("images/skeletons_desert_1");
+            thingTexture[110] = Content.Load<Texture2D>("images/slimebeast_swamp_3");
 
-            hex24 = new Button(hexTexture[1], spriteBatch, 110, 100, 1, 420, 200, 24);//24
-            hex11 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 420, 300, 11);//11
-            hex12 = new Button(hexTexture[8], spriteBatch, 110, 100, 1, 420, 400, 12);//12
-            hex13 = new Button(hexTexture[1], spriteBatch, 110, 100, 1, 420, 500, 13);//13
-            hex29 = new Button(hexTexture[4], spriteBatch, 110, 100, 1, 420, 600, 29);//29
+            thingTexture[111] = Content.Load<Texture2D>("images/sphinx_desert_4");
+            thingTexture[112] = Content.Load<Texture2D>("images/spirit_swamp_2");
+            thingTexture[113] = Content.Load<Texture2D>("images/sprite_swamp_1");
+            thingTexture[114] = Content.Load<Texture2D>("images/swampgas_swamp_1");
+            thingTexture[115] = Content.Load<Texture2D>("images/swamprat_swamp_1");
+            thingTexture[116] = Content.Load<Texture2D>("images/thing_swamp_2");
+            thingTexture[117] = Content.Load<Texture2D>("images/tigers_jungle_3");
+            thingTexture[118] = Content.Load<Texture2D>("images/tigers_jungle_3_2");
+            thingTexture[119] = Content.Load<Texture2D>("images/tribesmen_plains_2");
+            thingTexture[120] = Content.Load<Texture2D>("images/tribesmen_plains_2_2");
 
-            hex25 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 500, 250, 25); //25 
-            hex26 = new Button(hexTexture[6], spriteBatch, 110, 100, 1, 500, 350, 26);//26
-            hex27 = new Button(hexTexture[2], spriteBatch, 110, 100, 1, 500, 450, 27);//27
-            hex28 = new Button(hexTexture[3], spriteBatch, 110, 100, 1, 500, 550, 28);//28
-            // TODO: use this.Content to load your game content here*/
+            thingTexture[121] = Content.Load<Texture2D>("images/tribesmen_plains_r1");         
+            thingTexture[122] = Content.Load<Texture2D>("images/troll_mountain_4");
+            thingTexture[123] = Content.Load<Texture2D>("images/unicorn_forest_4");
+            thingTexture[124] = Content.Load<Texture2D>("images/vampirebat_swamp_4");
+            thingTexture[125] = Content.Load<Texture2D>("images/villains_plains_2");
+            thingTexture[126] = Content.Load<Texture2D>("images/vultures_desert_1");
+            thingTexture[127] = Content.Load<Texture2D>("images/walkingtree_forest_5");
+            thingTexture[128] = Content.Load<Texture2D>("images/walrus_frozenwaste_4");
+            thingTexture[129] = Content.Load<Texture2D>("images/watersnake_swamp_1");
+            thingTexture[130] = Content.Load<Texture2D>("images/watusi_jungle_2");
+
+            thingTexture[131] = Content.Load<Texture2D>("images/whitebear_frozenwaste_4");
+            thingTexture[132] = Content.Load<Texture2D>("images/whitedragon_frozenwaste_5");
+            thingTexture[133] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
+            thingTexture[134] = Content.Load<Texture2D>("images/wildcat_forest_2");
+            thingTexture[135] = Content.Load<Texture2D>("images/willowisp_swamp_2");
+            thingTexture[136] = Content.Load<Texture2D>("images/wingedpirhana_swamp_3");
+            thingTexture[137] = Content.Load<Texture2D>("images/witchdoctor_jungle_2");
+            thingTexture[138] = Content.Load<Texture2D>("images/wolfpack_plains_3");
+            thingTexture[139] = Content.Load<Texture2D>("images/wolves_frozenwaste_3");
+            thingTexture[140] = Content.Load<Texture2D>("images/wyvern_forest_3");
+
+            thingTexture[141] = Content.Load<Texture2D>("images/yellowknight_desert_c3");
+            thingTexture[142] = Content.Load<Texture2D>("images/whitedragon_frozenwaste_5");
+            thingTexture[143] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
+            thingTexture[144] = Content.Load<Texture2D>("images/wildcat_forest_2");
 
             marker.Add(new MarkerButton(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 645, 570));
             marker.Add(new MarkerButton(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 645, 610));
@@ -270,54 +366,93 @@ namespace KingsNThings
             endButton = new EndButton(endTexture, spriteBatch, 140, 50, 340, 25);
             recruitButton = new RecruitButton(Content.Load<Texture2D>("images/recruit"), spriteBatch, 140, 50, 180, 25);
 
-            P1Tiles.Add(new ThingButton(scripttileTexture[38], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 5));
-            P1Tiles.Add(new ThingButton(scripttileTexture[3], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 5));
-            P1Tiles.Add(new ThingButton(scripttileTexture[4], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 5));
-            P1Tiles.Add(new ThingButton(scripttileTexture[5], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 5));
-            P1Tiles.Add(new ThingButton(scripttileTexture[6], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 5));
+            Thing thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 675, 5));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 735, 5));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 785, 5));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 845, 5));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 905, 5));
 
-            P1Tiles.Add(new ThingButton(scripttileTexture[7], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 55));
-            P1Tiles.Add(new ThingButton(scripttileTexture[8], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 55));
-            P1Tiles.Add(new ThingButton(scripttileTexture[9], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 55));
-            P1Tiles.Add(new ThingButton(scripttileTexture[2], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 55));
-            P1Tiles.Add(new ThingButton(scripttileTexture[10], _theGameBoard.getPlayers()[0], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 55));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 675, 55));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 735, 55));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 785, 55));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 845, 55));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P1Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[0], spriteBatch, thing, 30, 30, 905, 55));
 
-            P2Tiles.Add(new ThingButton(scripttileTexture[11], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 140));
-            P2Tiles.Add(new ThingButton(scripttileTexture[12], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 140));
-            P2Tiles.Add(new ThingButton(scripttileTexture[13], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 140));
-            P2Tiles.Add(new ThingButton(scripttileTexture[14], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 140));
-            P2Tiles.Add(new ThingButton(scripttileTexture[15], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 140));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 675, 140));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 735, 140));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 785, 140));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 845, 140));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 905, 140));
 
-            P2Tiles.Add(new ThingButton(scripttileTexture[16], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 190));
-            P2Tiles.Add(new ThingButton(scripttileTexture[17], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 190));
-            P2Tiles.Add(new ThingButton(scripttileTexture[39], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 190));
-            P2Tiles.Add(new ThingButton(scripttileTexture[18], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 190));
-            P2Tiles.Add(new ThingButton(scripttileTexture[19], _theGameBoard.getPlayers()[1], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 190));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 675, 190));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 735, 190));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 785, 190));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 845, 190));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P2Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[1], spriteBatch, thing, 30, 30, 905, 190));
 
-            P3Tiles.Add(new ThingButton(scripttileTexture[21], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 275));
-            P3Tiles.Add(new ThingButton(scripttileTexture[22], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 275));
-            P3Tiles.Add(new ThingButton(scripttileTexture[23], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 275));
-            P3Tiles.Add(new ThingButton(scripttileTexture[23], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 275));
-            P3Tiles.Add(new ThingButton(scripttileTexture[24], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 275));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 675, 275));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 735, 275));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 785, 275));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 845, 275));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 905, 275));
 
-            P3Tiles.Add(new ThingButton(scripttileTexture[25], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 325));
-            P3Tiles.Add(new ThingButton(scripttileTexture[26], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 325));
-            P3Tiles.Add(new ThingButton(scripttileTexture[27], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 325));
-            P3Tiles.Add(new ThingButton(scripttileTexture[16], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 325));
-            P3Tiles.Add(new ThingButton(scripttileTexture[28], _theGameBoard.getPlayers()[2], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 325));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 675, 325));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 735, 325));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 785, 325));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 845, 325));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P3Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[2], spriteBatch, thing, 30, 30, 905, 325));
 
-            P4Tiles.Add(new ThingButton(scripttileTexture[29], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 410));
-            P4Tiles.Add(new ThingButton(scripttileTexture[30], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 410));
-            P4Tiles.Add(new ThingButton(scripttileTexture[31], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 410));
-            P4Tiles.Add(new ThingButton(scripttileTexture[32], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 410));
-            P4Tiles.Add(new ThingButton(scripttileTexture[37], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 410));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 675, 410));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 735, 410));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 785, 410));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 845, 410));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 905, 410));
 
-            P4Tiles.Add(new ThingButton(scripttileTexture[29], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 675, 460));
-            P4Tiles.Add(new ThingButton(scripttileTexture[33], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 735, 460));
-            P4Tiles.Add(new ThingButton(scripttileTexture[34], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 785, 460));
-            P4Tiles.Add(new ThingButton(scripttileTexture[35], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 845, 460));
-            P4Tiles.Add(new ThingButton(scripttileTexture[36], _theGameBoard.getPlayers()[3], spriteBatch, GameBoard.Game.getRandomThingFromCup(), 30, 30, 905, 460));
-            //P1Tiles.Add(new Button(
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 675, 460));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 735, 460));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 785, 460));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 845, 460));
+            thing = GameBoard.Game.getRandomThingFromCup();
+            P4Tiles.Add(new ThingButton(thingTexture[thing.getTextureID()], _theGameBoard.getPlayers()[3], spriteBatch, thing, 30, 30, 905, 460));//P1Tiles.Add(new Button(
         }
 
         /// <summary>
@@ -605,6 +740,31 @@ namespace KingsNThings
             StackButton stackB = new StackButton(stackTexture, me, s, t, hex, 30, 30, 0, 0);
             StackButtons.Add(stackB);
             return stackB;
+        }
+
+        public static StackButton createStack(Tile hex, List<Thing> t, SpriteBatch s)
+        {
+            StackButton stackB = new StackButton(stackTexture, me, s, t, hex, 30, 30, 0, 0);
+            StackButtons.Add(stackB);
+            return stackB;
+        }
+
+        public static void removeStack(StackButton s)
+        {
+            StackButtons.Remove(s);
+        }
+
+        public static void putStackInHand(List<Thing> s)
+        {
+            stackInHand = s;
+            me.setHandsFull(true);
+        }
+
+        public static List<Thing> getStackInHand()
+        {
+            me.setHandsFull(false);
+            stackInHand = null;
+            return stackInHand;
         }
              
     }

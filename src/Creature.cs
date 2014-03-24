@@ -8,8 +8,8 @@ namespace GameLogic
     class Creature : Thing
     {
 		//ctor
-        public Creature(string name, string hex, int c, List<Attributes.CombatAttributes> attr)
-            : base("Creature", name, attr)
+        public Creature(string name, string hex, int c, List<Attributes.CombatAttributes> attr, int t, string texPath)
+            : base("Creature", name, attr, t, texPath)
         {
             hexType = hex;
             combatValue = c;

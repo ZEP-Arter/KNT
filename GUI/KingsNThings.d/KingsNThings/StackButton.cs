@@ -20,6 +20,15 @@ namespace KingsNThings
             owner = p;
         }
 
+        public StackButton(Texture2D texture, Player p, SpriteBatch sBatch, List<Thing> t, Tile hex, int width, int height, int x, int y) :
+            base(texture, sBatch, width, height, x, y)
+        {
+            image = texture;
+            thingsInStack = t;
+            hexStackIsOn = hex;
+            owner = p;
+        }
+
         public void addThings(List<Thing> t)
         {
             thingsInStack.AddRange(t);
@@ -87,6 +96,9 @@ namespace KingsNThings
 
         public Tile getHexStackIsOn()
         { return hexStackIsOn; }
+
+        public List<Thing> getList()
+        { return thingsInStack; }
 
         private Texture2D image;
         private List<Thing> thingsInStack;
