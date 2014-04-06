@@ -135,6 +135,35 @@ namespace KNT_Service.Wrapper
         public void Sync()
         { Synchronize(); }
 
+        public void Sync(Wrapper.Player player)
+        {
+            Synchronize(player);
+        }
+
+        private void Synchronize(Wrapper.Player player)
+        {
+            _name = player.getName();
+            _turn = player.getTurn();
+            _diceRoll = player.getDiceroll();
+            //some how have to do things in play
+            //foreach (Thing t in _thingsInPlay)
+            //    t.Sync();
+            //  and rack
+            //foreach (Thing t in _rack.Values)
+            //    t.Sync();
+            //  and ownedTiles
+            //foreach (Tile t in _ownedTiles)
+            //    t.Sync();
+            //  and myMarkers
+            //that.syncMyMarkers(_myMarkers);
+            _gold = player.getGold();
+            _currentMarkerID = player.getCurrentMarkerID();
+            _holdingMarker = player.isHoldingMarker();
+            _inPhase = player.isInPhase();
+
+            Synchronize();
+        }
+
         private void Synchronize()
         {
             that.setName(_name);

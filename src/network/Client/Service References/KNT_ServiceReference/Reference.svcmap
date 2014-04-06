@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8b8ed16f-d0ad-4459-9977-862e7a9e18e0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e7690642-48ab-4674-b6d0-1f4135161a2c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -23,12 +23,12 @@
     <MetadataSource Address="http://localhost:8080/KNTNet.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="KNTNet.xsd" MetadataType="Schema" ID="a52ea4db-23e7-4a71-bc89-1eb994048120" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd3" />
-    <MetadataFile FileName="KNTNet1.xsd" MetadataType="Schema" ID="d02a35e3-aed4-4551-87f8-3d2c97d06140" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd2" />
-    <MetadataFile FileName="KNTNet2.xsd" MetadataType="Schema" ID="cb4d2ca2-bd29-4945-8e2e-fe1ab19fea17" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd1" />
-    <MetadataFile FileName="KNTNet3.xsd" MetadataType="Schema" ID="907124e0-a7f6-4b78-9173-cd5f0a9dafa7" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd0" />
-    <MetadataFile FileName="KNTNet.wsdl" MetadataType="Wsdl" ID="c0264527-9b51-4a55-9a25-34fcb0b2dace" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?wsdl" />
-    <MetadataFile FileName="KNTNet.disco" MetadataType="Disco" ID="6bb4e025-d85b-46c2-8c78-0ed22b0ed91c" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?disco" />
+    <MetadataFile FileName="KNTNet.xsd" MetadataType="Schema" ID="bd857eaf-2f9a-4159-af0c-b44f9686b53f" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd3" />
+    <MetadataFile FileName="KNTNet1.xsd" MetadataType="Schema" ID="8608e82f-34ab-421a-a366-198640bd093b" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd2" />
+    <MetadataFile FileName="KNTNet2.xsd" MetadataType="Schema" ID="484e6ebd-2b9c-4418-a783-67e9e7064621" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd1" />
+    <MetadataFile FileName="KNTNet3.xsd" MetadataType="Schema" ID="625f7ce2-73bd-4b62-82a6-a5004893c920" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?xsd=xsd0" />
+    <MetadataFile FileName="KNTNet.wsdl" MetadataType="Wsdl" ID="bd94c06c-003f-4619-82c3-a73c09cfa45b" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?wsdl" />
+    <MetadataFile FileName="KNTNet.disco" MetadataType="Disco" ID="b4f6519e-1f2c-4ad7-b680-f8e6cd47c8a6" SourceId="1" SourceUrl="http://localhost:8080/KNTNet.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

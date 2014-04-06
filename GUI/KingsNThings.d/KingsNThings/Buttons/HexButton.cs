@@ -37,8 +37,9 @@ namespace KingsNThings.Buttons
                     case "Setup":
                         if ((marker = KNT_Game.getMyMarker()) != null)
                         {
-                            if (marker.getMarkerSelected() && (this.hex.getStart() || this.hex.getPlayerAble() == KNT_Game.me) &&
-                                (this.hex.getPlayerAble() == null || this.hex.getPlayerAble() == KNT_Game.me) && 
+                            if  (marker.getMarkerSelected() &&
+                                (this.hex.getStart() || (hex.getPlayerAble() != null && this.hex.getPlayerAble().getCurrentMarkerID() == KNT_Game.me.getCurrentMarkerID())) &&
+                                (this.hex.getPlayerAble() == null || this.hex.getPlayerAble().getCurrentMarkerID() == KNT_Game.me.getCurrentMarkerID()) && 
                                 this.hex.getPlayer() == null &&
                                 this.hex.getHexType() != "Sea")
                             {

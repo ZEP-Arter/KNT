@@ -149,6 +149,31 @@ namespace KNT_Service.Wrapper
         public void Sync()
         { Synchronize(); }
 
+        public void Sync(Tile t)
+        {
+            _hexNumber = t.getHexNum();
+            int[] temp = t.getSurrounding();
+            _nHex = temp[0];
+            _neHex = temp[1];
+            _seHex = temp[2];
+            _sHex = temp[3];
+            _swHex = temp[4];
+            _nwHex = temp[5];
+            _hexType = t.getHexType();
+            _stacks = new Dictionary<int, List<Thing>>();
+            _rough = t.isRough();
+            _faceUp = t.getFaceUp();
+            _startPossible = t.getStart();
+            _fortLevel = t.getFortLevel();
+            _combatFlagged = t.getCFlag();
+            _playerAbleToStart = t.getPlayerAble();
+            _playerControl = t.getPlayer();
+            _playerControlBool = t.getPlayerControlBool();
+            _traversed = t.isTraversed();
+
+            Synchronize();
+        }
+
         private void Synchronize()
         {
             that.setPlayerAble(_playerAbleToStart != null ? _playerAbleToStart.getBase() : null);

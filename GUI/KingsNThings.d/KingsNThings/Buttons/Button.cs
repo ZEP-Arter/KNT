@@ -161,7 +161,7 @@ namespace KingsNThings.Buttons
         {
             mouse = Mouse.GetState();
 
-            if (mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton == ButtonState.Pressed)
+            if (mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton == ButtonState.Pressed && GUI.KNT_Game.playingTurn)
             {
                 isClicked();
             }

@@ -43,6 +43,9 @@ namespace KNT_Client.Networkable
 
         public Player getPlayer(KNT_ServiceReference.Player player)
         {
+            if (player == null)
+                return null;
+
             foreach (Player p in players)
             {
                 if (player._playerNumber == p.getPlayerNumber())
@@ -66,6 +69,23 @@ namespace KNT_Client.Networkable
             return t;
         }
 
+        public void reSynch(List<KNT_Client.KNT_ServiceReference.Player> plrs)
+        {
+            foreach (KNT_Client.KNT_ServiceReference.Player p in plrs)
+                foreach (Player player in players)
+                    if (player.getPlayerNumber() == p._playerNumber)
+                        player.reSync(p);
+        }
+
+        //    foreach(Thing t in cup)
+        //        //sync
+
+        //    foreach(string type in bank.Keys)
+        //        foreach(Thing t in bank[type])
+        //            //sync
+
+        //    //syncboard
+            
         public static GameController Game
         {
             get

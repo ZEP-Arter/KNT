@@ -50,9 +50,8 @@ namespace GameLogic.Phases
         private bool setPositions()
         {
 
-            if (GameLogic.Managers.PlayerManager.PManager.setPlayerOrder()) ;
-
-            //this function will need to change based more on how things go in networking
+            if (_player.getDiceroll() > 0)
+                return true;
 
             return false;
         }

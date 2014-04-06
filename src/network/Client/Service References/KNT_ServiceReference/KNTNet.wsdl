@@ -50,6 +50,24 @@
   <wsdl:message name="IKNTNet_connect_OutputMessage">
     <wsdl:part name="parameters" element="tns:connectResponse" />
   </wsdl:message>
+  <wsdl:message name="IKNTNet_doTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:doTurn" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_doTurn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:doTurnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_updateMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateMe" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_updateMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateMeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_updateBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateBoard" />
+  </wsdl:message>
+  <wsdl:message name="IKNTNet_updateBoard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateBoardResponse" />
+  </wsdl:message>
   <wsdl:portType name="IKNTNet">
     <wsdl:operation name="addPlayer">
       <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/addPlayer" message="tns:IKNTNet_addPlayer_InputMessage" />
@@ -78,6 +96,18 @@
     <wsdl:operation name="connect">
       <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/connect" message="tns:IKNTNet_connect_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/connectResponse" message="tns:IKNTNet_connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="doTurn">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/doTurn" message="tns:IKNTNet_doTurn_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/doTurnResponse" message="tns:IKNTNet_doTurn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateMe">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/updateMe" message="tns:IKNTNet_updateMe_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/updateMeResponse" message="tns:IKNTNet_updateMe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateBoard">
+      <wsdl:input wsam:Action="http://tempuri.org/IKNTNet/updateBoard" message="tns:IKNTNet_updateBoard_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IKNTNet/updateBoardResponse" message="tns:IKNTNet_updateBoard_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="KNTNet" type="tns:IKNTNet">
@@ -138,6 +168,33 @@
     </wsdl:operation>
     <wsdl:operation name="connect">
       <soap:operation soapAction="http://tempuri.org/IKNTNet/connect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doTurn">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/doTurn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateMe">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/updateMe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateBoard">
+      <soap:operation soapAction="http://tempuri.org/IKNTNet/updateBoard" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

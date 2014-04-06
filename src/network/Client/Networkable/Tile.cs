@@ -20,18 +20,13 @@ namespace KNT_Client.Networkable
         { return that._combatFlagged; }
 
         public Player getPlayer()
-        {
-            if (GameController.Game.getPlayer(that._playerControl) != null)
-                return new Player(that._playerControl);
-            else
-                return null;
-        }
+        { return GameController.Game.getPlayer(that._playerControl); }
 
         public Player getPlayerAble()
-        { return new Player(that._playerAbleToStart); }
+        { return that._playerAbleToStart != null ? GameController.Game.getPlayer(that._playerAbleToStart) : null; }
 
-        public void setPlayerAble(KNT_ServiceReference.Player player)
-        { that._playerAbleToStart = player; }
+        public void setPlayerAble(Player player)
+        { that._playerAbleToStart = player.getBase(); }
 
         public bool getPlayerControlBool()
         { return that._playerControlBool; }
@@ -69,6 +64,9 @@ namespace KNT_Client.Networkable
         public Dictionary<int, List<Thing>> getStacks()
         { return stacksCpy; }
 
+        public KNT_ServiceReference.Tile getBase()
+        { return that; }
+
         public void selectedAsStarting(Player player)
         {
             that._playerControl = player.getBase();
@@ -77,12 +75,12 @@ namespace KNT_Client.Networkable
             foreach (Tile t in GameController.Game.getMap().getHexList())
             {
                 int hNum = t.getHexNum();
-                int[] around = t.getSurrounding();
-                if (hNum == around[0] || hNum == around[1] || hNum == around[2] ||
-                    hNum == around[3] || hNum == around[4] || hNum == around[5])
+                //int[] around = t.getSurrounding();
+                if (hNum == that._nHex || hNum == that._neHex || hNum == that._seHex ||
+                    hNum == that._sHex || hNum == that._swHex || hNum == that._nwHex)
                 {
                     if (t.getPlayerAble() == null)
-                        t.setPlayerAble(player.getBase());
+                        t.setPlayerAble(player);
                 }
             } 
         }

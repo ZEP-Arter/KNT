@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using GameLogic;
 using GameLogic.Managers;
+using System.Threading;
 
 namespace KNT_Service
 {
@@ -35,6 +36,10 @@ namespace KNT_Service
                 foreach (GameLogic.Things.Thing t in tempBank[type])
                     _bank[type].Add(new Wrapper.Thing(t));
             }
+
+            runningPlayers = new Queue<Wrapper.Player>(4);
+
+            _changed = false;
 
         }
 
@@ -71,6 +76,19 @@ namespace KNT_Service
             return null;
         }
 
+        public void updatePlayerInfo(Wrapper.Player player)
+        {
+            foreach (Wrapper.Player p in _players)
+                if (p.getName().Equals(player.getName()) &&
+                    p.getPlayerNumber() == player.getPlayerNumber())
+                    _players[_players.IndexOf(p)].Sync(player);
+        }
+
+        public void updateGameBoard(Wrapper.Board board)
+        {
+            _board.Sync(board);
+        }
+
         public Wrapper.Player changePlayerName(Wrapper.Player player, string name)
         {
             player.setName(name);
@@ -92,11 +110,15 @@ namespace KNT_Service
             {
                 if (havePlayer(player))
                 {
-                    return changePlayerName(getNetPlayer(player), playerName);
+                    Wrapper.Player p = changePlayerName(getNetPlayer(player), playerName);
+                    runningPlayers.Enqueue(p);
+                    return p;
                 }
                 else if (_players.Count != _players.Capacity)
                 {
-                    return addNewPlayer(player);
+                    Wrapper.Player p = addNewPlayer(player);
+                    runningPlayers.Enqueue(p);
+                    return p;
                 }
             }
 
@@ -108,12 +130,12 @@ namespace KNT_Service
             foreach (Wrapper.Player p in _players)
                 p.Sync();
 
-            foreach (Wrapper.Thing t in _cup)
-                t.Sync();
+            //foreach (Wrapper.Thing t in _cup)
+            //    t.Sync();
 
-            foreach (String type in _bank.Keys)
-                foreach (Wrapper.Thing t in _bank[type])
-                    t.Sync();
+            //foreach (String type in _bank.Keys)
+            //    foreach (Wrapper.Thing t in _bank[type])
+            //        t.Sync();
 
             _board.Sync();
         }
@@ -137,6 +159,31 @@ namespace KNT_Service
         {
             return _cup;
         }
+
+        public bool doTurn(Wrapper.Player player)
+        {
+            if (runningPlayers.Peek().getPlayerNumber() == player.getPlayerNumber())
+            {
+                currentPlayer = player;
+                Sync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public void endTurn()
+        {
+            currentPlayer = null;
+            runningPlayers.Enqueue(runningPlayers.Dequeue());
+            Sync();
+        }
+
+        private Wrapper.Player currentPlayer;
+
+        private Queue<Wrapper.Player> runningPlayers;
+
+        private bool _changed;
 
         private List<Wrapper.Player> _players;
 

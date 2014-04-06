@@ -20,6 +20,9 @@ namespace KNT_Client.Networkable
             return cpy;
         }
 
+        public KNT_ServiceReference.Board getBase()
+        { return that; }
+
         KNT_ServiceReference.Board that;
     }
 }

@@ -63,6 +63,12 @@ namespace KingsNThings.GUI
 
         bool positionsSet;
         bool markersSet;
+        bool inTurn;
+
+        public static bool playingTurn;
+
+        int setupCount;
+
         GameLogic.Phases.Phase currentPhase;
 
         protected static Board gameBoard;
@@ -85,6 +91,9 @@ namespace KingsNThings.GUI
             graphics.ApplyChanges();
             positionsSet = false;
             markersSet = false;
+            inTurn = false;
+            playingTurn = false;
+            setupCount = 0;
             currentPhase = GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase();
         }
 
@@ -358,6 +367,16 @@ namespace KingsNThings.GUI
             // TODO: Unload any non ContentManager content here
         }
 
+        private int numTrues()
+        {
+            int trues = 0;
+
+            foreach (bool b in me.getMyMarkers().Values)
+                if (b) trues++;
+
+            return trues;
+        }
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -372,37 +391,76 @@ namespace KingsNThings.GUI
 
             UpdateButtons();
 
-            switch (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().getName())
+            if (playingTurn)
             {
-                case "Setup":
-                    currentPhase.playPhase(me);
-                    me = currentPhase.getCurrentPlayer();
-                    Console.WriteLine(me.getName());
-                    break;
-                case "Gold Collection":
-                    currentPhase.playPhase(me);
-                    me = currentPhase.getCurrentPlayer();
-                    Console.WriteLine(me.getName());
-                    break;
-                case "Recruit Things":
-                    currentPhase.playPhase(me);
-                        if( me.isInPhase() )
+
+                switch (GameLogic.Managers.PhaseManager.PhManager.getCurrentPhase().getName())
+                {
+                    case "Setup":
+                        currentPhase.playPhase(me);
+                        me = currentPhase.getCurrentPlayer();
+                        gameBoard = GameController.Game.getMap();
+                        if (numTrues() > setupCount && !me.isHoldingMarker())
+                        {
+                            setupCount++;
+                            playingTurn = client.doTurn("end", me.getBase());
+                            inTurn = false;
+                            Console.WriteLine(string.Format("Client {0} : {1} is done turn.", me.getName(), me.getPlayerNumber()));
+                        }
+                        //Console.WriteLine(me.getName());
+                        break;
+                    case "Gold Collection":
+                        currentPhase.playPhase(me);
+                        me = currentPhase.getCurrentPlayer();
+                        //Console.WriteLine(me.getName());
+                        break;
+                    case "Recruit Things":
+                        currentPhase.playPhase(me);
+                        if (me.isInPhase())
                             ((GameLogic.Phases.RecruitThingsPhase)currentPhase).recruitThings();
-                    me = currentPhase.getCurrentPlayer();
-                    Console.WriteLine(me.getName());
-                    break;
-                case "Movement":
-                    Console.WriteLine("Movement");
-                    currentPhase.playPhase(me);
-                    me = currentPhase.getCurrentPlayer();
-                    Console.WriteLine(me.getName());
-                    break;
+                        me = currentPhase.getCurrentPlayer();
+                        //Console.WriteLine(me.getName());
+                        break;
+                    case "Movement":
+                        Console.WriteLine("Movement");
+                        currentPhase.playPhase(me);
+                        me = currentPhase.getCurrentPlayer();
+                        //Console.WriteLine(me.getName());
+                        break;
+                }
+
             }
 
             if (currentPhase.getCurrentState() == GameLogic.Phases.Phase.State.END)
+            {
                 currentPhase = GameLogic.Managers.PhaseManager.PhManager.play();
 
+                if (inTurn)
+                {
+                    playingTurn = client.doTurn("end", me.getBase());
+                    Console.WriteLine(string.Format("Client {0} : {1} is done turn.", me.getName(), me.getPlayerNumber()));
+                    inTurn = false;
+                }
+            }
+
             base.Update(gameTime);
+
+            if (!inTurn)
+            {
+                playingTurn = client.doTurn("start", me.getBase());
+                Console.WriteLine(string.Format("Client {0} : {1} has started turn ... ", me.getName(), me.getPlayerNumber()));
+                inTurn = true;
+            }
+            else
+            {
+                playingTurn = client.doTurn("start", me.getBase());
+                if (playingTurn)
+                    inTurn = true;
+            }
+            // will probably need a method for these 
+            client.updateMe(me.getBase());
+            client.updateBoard(gameBoard.getBase());
+            GameController.Game.reSynch(client.getPlayers());
         }
 
         /// <summary>

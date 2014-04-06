@@ -34,7 +34,7 @@ namespace KingsNThings.Buttons
         public override void Update()
         {
 
-            if (KNT_Game.me != null && KNT_Game.me.getDiceroll() == 0)
+            if (KNT_Game.me != null && KNT_Game.me.getDiceroll() == 0 && KNT_Game.playingTurn)
                 needDice = true;
 
             base.Update();
@@ -45,6 +45,7 @@ namespace KingsNThings.Buttons
             if (rollClicked() && needDice)
             {
                 KNT_Game.me.setDiceroll(GameLogic.Utils.DiceRoller.Roll.rollDice());
+                Console.WriteLine(KNT_Game.me.getDiceroll());
                 needDice = false;
             }
         }

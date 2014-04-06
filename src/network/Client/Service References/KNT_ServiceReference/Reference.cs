@@ -873,6 +873,15 @@ namespace KNT_Client.KNT_ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKNTNet/connect", ReplyAction="http://tempuri.org/IKNTNet/connectResponse")]
         KNT_Client.KNT_ServiceReference.Player connect(string player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKNTNet/doTurn", ReplyAction="http://tempuri.org/IKNTNet/doTurnResponse")]
+        bool doTurn(string state, KNT_Client.KNT_ServiceReference.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKNTNet/updateMe", ReplyAction="http://tempuri.org/IKNTNet/updateMeResponse")]
+        void updateMe(KNT_Client.KNT_ServiceReference.Player p);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IKNTNet/updateBoard", ReplyAction="http://tempuri.org/IKNTNet/updateBoardResponse")]
+        void updateBoard(KNT_Client.KNT_ServiceReference.Board b);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -928,6 +937,18 @@ namespace KNT_Client.KNT_ServiceReference {
         
         public KNT_Client.KNT_ServiceReference.Player connect(string player) {
             return base.Channel.connect(player);
+        }
+        
+        public bool doTurn(string state, KNT_Client.KNT_ServiceReference.Player player) {
+            return base.Channel.doTurn(state, player);
+        }
+        
+        public void updateMe(KNT_Client.KNT_ServiceReference.Player p) {
+            base.Channel.updateMe(p);
+        }
+        
+        public void updateBoard(KNT_Client.KNT_ServiceReference.Board b) {
+            base.Channel.updateBoard(b);
         }
     }
 }

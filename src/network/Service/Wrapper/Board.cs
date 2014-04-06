@@ -41,6 +41,16 @@ namespace KNT_Service.Wrapper
         public void Sync()
         { Synchronize(); }
 
+        public void Sync(Board b)
+        {
+            int count = 0;
+
+            foreach (Tile t in b.getHexList())
+                _tiles[count++].Sync(t);
+
+            Synchronize();
+        }
+
         private void Synchronize()
         {
             foreach (Tile t in _tiles)

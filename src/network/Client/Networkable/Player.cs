@@ -13,6 +13,8 @@ namespace KNT_Client.Networkable
         { 
             that = p;
 
+            myMarkers = new Dictionary<int, bool>();
+
             ownedTilesCpy = new List<Tile>();
 
             initOwnedTiles();
@@ -62,13 +64,13 @@ namespace KNT_Client.Networkable
         { that._goldY = y; }
 
         public Dictionary<int, bool> getMyMarkers()
-        { return that._myMarkers; }
+        { return myMarkers; }
 
         public bool containsMarkerID(int id)
-        { return that._myMarkers.ContainsKey(id); }
+        { return myMarkers.ContainsKey(id); }
 
         public void addMarkerID(int id)
-        { that._myMarkers.Add(id, false); }
+        { myMarkers.Add(id, false); }
 
         public int getCurrentMarkerID()
         { return that._currentMarkerID; }
@@ -92,7 +94,7 @@ namespace KNT_Client.Networkable
         { that._inPhase = true; }
 
         public bool placedAllMarkers()
-        { return !that._myMarkers.ContainsValue(false); }
+        { return !myMarkers.ContainsValue(false); }
 
         public int getPlayerNumber()
         { return that._playerNumber; }
@@ -141,16 +143,38 @@ namespace KNT_Client.Networkable
         { return rackCpy.Count; }
 
         public int getNumberOfOwnedTiles()
-        { return that._ownedTiles.Count; }
+        { return ownedTilesCpy.Count; }
 
         public KNT_ServiceReference.Player getBase()
         { return that; }
 
         public void addOwnedTile(Tile t)
-        { ownedTilesCpy.Add(t);  }
+        {
+            ownedTilesCpy.Add(t);
+            //that._ownedTiles.Add(t.getBase());
+        }
 
         public void placeMarker(int id)
-        { that._myMarkers[id] = true;  }
+        { myMarkers[id] = true; }
+
+
+        public void reSync(KNT_ServiceReference.Player p)
+        {
+            that = p;
+
+            // run recursive sync on each list
+            //ownedTilesCpy = new List<Tile>();
+
+            //initOwnedTiles();
+
+            //thingsInPlayCpy = new List<Thing>();
+
+            //initThingsInPlay();
+
+            //rackCpy = new Dictionary<int, Thing>();
+
+            //initRack();
+        }
 
         #endregion
 
@@ -180,11 +204,6 @@ namespace KNT_Client.Networkable
                 ownedTilesCpy.Add(new Tile(t));
         }
 
-        private void Synch()
-        { //synch the list between the different objs
-            // not really sure how to do  this
-        }
-
         #endregion
 
         List<Tile> ownedTilesCpy;
@@ -193,7 +212,8 @@ namespace KNT_Client.Networkable
 
         Dictionary<int, Thing> rackCpy;
 
-        KNT_ServiceReference.Player that;
+        Dictionary<int, bool> myMarkers;
 
+        KNT_ServiceReference.Player that;
     }
 }

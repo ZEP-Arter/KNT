@@ -49,5 +49,21 @@ namespace KNT_Service
         {
             return GameController.Game.getMap();
         }
+
+        public bool doTurn(string state, Player player)
+        {
+            if (state.Equals("end"))
+                GameController.Game.endTurn();
+            else
+                return GameController.Game.doTurn(player);
+
+            return false;
+        }
+
+        public void updateMe(Player player)
+        { GameController.Game.updatePlayerInfo(player); }
+
+        public void updateBoard(Board board)
+        { GameController.Game.updateGameBoard(board); }
     }
 }

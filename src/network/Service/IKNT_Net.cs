@@ -33,5 +33,14 @@ namespace KNT_Service
 
         [OperationContract]
         Player connect(string player);
+
+        [OperationContract]
+        bool doTurn(string state, Player player);
+
+        [OperationContract]
+        void updateMe(Player p);
+
+        [OperationContract]
+        void updateBoard(Board b);
     }
 }
