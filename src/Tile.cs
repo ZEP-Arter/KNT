@@ -92,7 +92,8 @@ namespace GameLogic
         {
             playerControl = p;
             setPlayerControlBool(true);
-            foreach (Tile t in GameBoard.Game.getMap().getHexList())
+            List<Tile> tList = GameBoard.Game.getMap().getHexList();
+            foreach (Tile t in tList)
             {
                 int hNum = t.getHexNum();
                 if (hNum == nHex || hNum == neHex || hNum == seHex ||
@@ -104,12 +105,35 @@ namespace GameLogic
             }
         }
 
+        public bool adjacencyRule(Player p)
+        {
+            List<Tile> tList = GameBoard.Game.getMap().getHexList();
+            if ((nHex == 0 || tList[nHex - 1].getPlayer() == null || tList[nHex - 1].getPlayer() == p) &&
+                (neHex == 0 || tList[neHex - 1].getPlayer() == null || tList[neHex - 1].getPlayer() == p) &&
+                (seHex == 0 || tList[seHex - 1].getPlayer() == null || tList[seHex - 1].getPlayer() == p) &&
+                (sHex == 0 || tList[sHex - 1].getPlayer() == null || tList[sHex - 1].getPlayer() == p) &&
+                (swHex == 0 || tList[swHex - 1].getPlayer() == null || tList[swHex - 1].getPlayer() == p) &&
+                (nwHex == 0 || tList[nwHex - 1].getPlayer() == null || tList[nwHex - 1].getPlayer() == p))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool doesPlayerHaveStack(int i)
         {
             if (stacks[i].Count == 0)
                 return false;
             else
                 return true;
+        }
+
+        public List<Thing> getPlayerStack(int i)
+        {
+            return stacks[i];
         }
 
         public void clearPlayerStack(int i)
@@ -128,6 +152,9 @@ namespace GameLogic
                 stacks.Add(i, temp);
             }
         }
+
+        public void upgradeFort() { fortLevel++; }
+        public int getFort() { return fortLevel; }
        
         public void setPlayerAble(Player p) { playerAbleToStart = p; }
         public void setPlayerControlBool(bool b) { playerControlBool = b; }

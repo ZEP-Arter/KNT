@@ -76,6 +76,9 @@ namespace GameLogic
 
         string texturePath;
 
+        public string getTexturePath()
+        { return texturePath; }
+
         bool inBank;
         bool onRack;
 		bool isOwned;

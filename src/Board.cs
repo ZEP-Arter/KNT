@@ -137,6 +137,8 @@ namespace GameLogic
             tiles.Add(new Tile(19, new int[]{20, 8 , 7 , 18, 36, 37}, s));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
+            while(s == "Sea")
+                s = hexNames[r.Next(hexNames.Count)];
             tiles.Add(new Tile(20, new int[]{0 , 21, 8 , 19, 37, 0 }, s, true));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
@@ -149,6 +151,8 @@ namespace GameLogic
             tiles.Add(new Tile(23, new int[]{0 , 0 , 24, 10, 9 , 22}, s));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
+            while (s == "Sea")
+                s = hexNames[r.Next(hexNames.Count)];
             tiles.Add(new Tile(24, new int[]{0 , 0 , 25, 11, 10, 23}, s, true));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
@@ -164,6 +168,8 @@ namespace GameLogic
             tiles.Add(new Tile(28, new int[]{27, 0 , 0 , 0 , 29, 13}, s));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
+            while (s == "Sea")
+                s = hexNames[r.Next(hexNames.Count)];
             tiles.Add(new Tile(29, new int[]{13, 28, 0 , 0 , 30, 14}, s, true));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
@@ -176,6 +182,8 @@ namespace GameLogic
             tiles.Add(new Tile(32, new int[]{16, 15, 31, 0 , 0 , 33}, s));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];
+            while (s == "Sea")
+                s = hexNames[r.Next(hexNames.Count)];
             tiles.Add(new Tile(33, new int[]{17, 16, 32, 0 , 0 , 34}, s, true));
             hexNames.Remove(s);
             s = hexNames[r.Next(hexNames.Count)];

@@ -32,7 +32,7 @@ namespace KingsNThings
             if (GameBoard.Game.getCurrentPhase().Equals("Recruit Things") &&
                 ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).canBeDone())
                 canEnd = true;
-            else if(GameBoard.Game.getCurrentPhase().Equals("Movement"))
+            else if (GameBoard.Game.getCurrentPhase().Equals("Movement") || GameBoard.Game.getCurrentPhase().Equals("Construction"))
                 canEnd = true;
             else
                 canEnd = false;
@@ -79,6 +79,10 @@ namespace KingsNThings
                     case "Movement":
                         spriteBatch.Draw(image, location, Color.White);
                         break;
+                    case "Construction":
+                        spriteBatch.Draw(image, location, Color.White);
+                        break;
+
                 }
             }
         }

@@ -54,28 +54,39 @@ namespace KingsNThings
 
         protected override void isClicked()
         {
-            if (isStackSelected())
-            {
-                if (!stackSelected)
-                {
-                    KNT_Game.setButtonInHand(this);
-                    stackSelected = true;
-                }
-            }
+            //if (isStackSelected())
+            //{
+            //    if (!stackSelected)
+            //    {
+            //        //KNT_Game.setButtonInHand(this);
+            //        //stackSelected = true;
+            //    }
+            //}
         }
 
         protected override void draw()
         {
-                spriteBatch.Draw(image, location, Color.White);
+           spriteBatch.Draw(image, location, Color.White);
+
+           if (location.Contains(new Point(mouse.X, mouse.Y)))
+           {
+               int i = 0;
+               int j = 0;
+               if (thingsInStack != null)
+               {
+                   foreach (Thing thing in thingsInStack)
+                   {
+                       if (i >= 5) { j = 1; i = 0; }
+                       spriteBatch.Draw(KNT_Game.thingTexture[thing.getTextureID()], new Rectangle(645 + (i * 60), 585 + (j * 60), 50, 50), Color.White);
+                       i++;
+                   }
+               }
+           }
+                           
         }
 
         public override void Update()
         {
-            if (stackSelected)
-            {
-                this.location.X = mouse.X;
-                this.location.Y = mouse.Y;
-            }
             base.Update();
         }
 
@@ -101,7 +112,7 @@ namespace KingsNThings
         { return thingsInStack; }
 
         private Texture2D image;
-        private List<Thing> thingsInStack;
+        public List<Thing> thingsInStack;
         private bool stackSelected = false;
         private Player owner = null;
         private Tile hexStackIsOn = null;

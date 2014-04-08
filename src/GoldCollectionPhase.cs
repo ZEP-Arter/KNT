@@ -45,19 +45,14 @@ namespace GameLogic
         private void determineGold(Player player)
         {
             //1 for every owed land hex
-            foreach (Tile t in GameBoard.Game.getMap().getHexList())
+            foreach (Tile t in player.getOwnedTiles())
             {
-                if (t.getPlayer() != null)
-                {
-                    if (t.getPlayer().Equals(player))
-                        addGold(1);
-                }
+                addGold(1);
             }
             //as many gold as the combat value of each fort
-
-            foreach (Thing t in player.getAllForts())
+            foreach (Tile t in player.getOwnedTiles())
             {
-                addGold(t.combatScore());
+                addGold(t.getFort());
             }
             //as many gold as printed value of each special income counter ON THE BOARD
 

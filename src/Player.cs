@@ -246,6 +246,12 @@ namespace GameLogic
             {
                 ownedTiles.Add(hex);
             }
+
+            public List<Tile> getOwnedTiles()
+            {
+                return ownedTiles;
+            }
+
             public int numberOfRackTiles()
             {
                 return rack.Count();

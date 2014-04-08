@@ -25,7 +25,8 @@ namespace KingsNThings
         private static Texture2D stackTexture;
         private Texture2D[] hexTexture = new Texture2D[9];
         private Texture2D[] goldTexture = new Texture2D[6];
-        private Texture2D[] markerTexture = new Texture2D[4];
+        private Texture2D[] fortTexture = new Texture2D[4];
+        private static Texture2D[] markerTexture = new Texture2D[4];
         public static Texture2D[] thingTexture = new Texture2D[200];
         public static Texture2D[] specialThingTexture = new Texture2D[25];
         
@@ -309,6 +310,11 @@ namespace KingsNThings
             thingTexture[143] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
             thingTexture[144] = Content.Load<Texture2D>("images/wildcat_forest_2");
 
+            fortTexture[0] = Content.Load<Texture2D>("images/tower");
+            fortTexture[1] = Content.Load<Texture2D>("images/keep");
+            fortTexture[2] = Content.Load<Texture2D>("images/castle");
+            fortTexture[3] = Content.Load<Texture2D>("images/citadel");
+
             marker.Add(new MarkerButton(markerTexture[0], _theGameBoard.getPlayers()[0], spriteBatch, 30, 30, 645, 570));
             marker.Add(new MarkerButton(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 645, 610));
             marker.Add(new MarkerButton(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 645, 650));
@@ -323,44 +329,44 @@ namespace KingsNThings
             marker.Add(new MarkerButton(markerTexture[1], _theGameBoard.getPlayers()[1], spriteBatch, 30, 30, 725, 610));
             marker.Add(new MarkerButton(markerTexture[2], _theGameBoard.getPlayers()[2], spriteBatch, 30, 30, 725, 650));
             marker.Add(new MarkerButton(markerTexture[3], _theGameBoard.getPlayers()[3], spriteBatch, 30, 30, 725, 690));
-            
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 400, _theGameBoard.getMap().getHexList()[0]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 300, _theGameBoard.getMap().getHexList()[1]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 350, _theGameBoard.getMap().getHexList()[2]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 450, _theGameBoard.getMap().getHexList()[3]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 500, _theGameBoard.getMap().getHexList()[4]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 450, _theGameBoard.getMap().getHexList()[5]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 350, _theGameBoard.getMap().getHexList()[6]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 250, _theGameBoard.getMap().getHexList()[7]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 200, _theGameBoard.getMap().getHexList()[8]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 250, _theGameBoard.getMap().getHexList()[9]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 300, _theGameBoard.getMap().getHexList()[10]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 400, _theGameBoard.getMap().getHexList()[11]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 500, _theGameBoard.getMap().getHexList()[12]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 550, _theGameBoard.getMap().getHexList()[13]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 600, _theGameBoard.getMap().getHexList()[14]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 550, _theGameBoard.getMap().getHexList()[15]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 500, _theGameBoard.getMap().getHexList()[16]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 400, _theGameBoard.getMap().getHexList()[17]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 300, _theGameBoard.getMap().getHexList()[18]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 200, _theGameBoard.getMap().getHexList()[19]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 150, _theGameBoard.getMap().getHexList()[20]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 100, _theGameBoard.getMap().getHexList()[21]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 150, _theGameBoard.getMap().getHexList()[22]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 200, _theGameBoard.getMap().getHexList()[23]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 250, _theGameBoard.getMap().getHexList()[24]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 350, _theGameBoard.getMap().getHexList()[25]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 450, _theGameBoard.getMap().getHexList()[26]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 550, _theGameBoard.getMap().getHexList()[27]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 600, _theGameBoard.getMap().getHexList()[28]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 650, _theGameBoard.getMap().getHexList()[29]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 700, _theGameBoard.getMap().getHexList()[30]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 650, _theGameBoard.getMap().getHexList()[31]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 600, _theGameBoard.getMap().getHexList()[32]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 550, _theGameBoard.getMap().getHexList()[33]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 450, _theGameBoard.getMap().getHexList()[34]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 350, _theGameBoard.getMap().getHexList()[35]));
-            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36]));
+
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 400, _theGameBoard.getMap().getHexList()[0], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 300, _theGameBoard.getMap().getHexList()[1], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 350, _theGameBoard.getMap().getHexList()[2], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 450, _theGameBoard.getMap().getHexList()[3], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 500, _theGameBoard.getMap().getHexList()[4], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 450, _theGameBoard.getMap().getHexList()[5], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 350, _theGameBoard.getMap().getHexList()[6], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 250, _theGameBoard.getMap().getHexList()[7], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 200, _theGameBoard.getMap().getHexList()[8], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 250, _theGameBoard.getMap().getHexList()[9], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 300, _theGameBoard.getMap().getHexList()[10], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 400, _theGameBoard.getMap().getHexList()[11], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 500, _theGameBoard.getMap().getHexList()[12], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 550, _theGameBoard.getMap().getHexList()[13], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 600, _theGameBoard.getMap().getHexList()[14], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 550, _theGameBoard.getMap().getHexList()[15], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 500, _theGameBoard.getMap().getHexList()[16], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 400, _theGameBoard.getMap().getHexList()[17], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 300, _theGameBoard.getMap().getHexList()[18], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 200, _theGameBoard.getMap().getHexList()[19], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 150, _theGameBoard.getMap().getHexList()[20], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 100, _theGameBoard.getMap().getHexList()[21], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 150, _theGameBoard.getMap().getHexList()[22], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 200, _theGameBoard.getMap().getHexList()[23], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 250, _theGameBoard.getMap().getHexList()[24], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 350, _theGameBoard.getMap().getHexList()[25], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 450, _theGameBoard.getMap().getHexList()[26], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 500, 550, _theGameBoard.getMap().getHexList()[27], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 420, 600, _theGameBoard.getMap().getHexList()[28], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 340, 650, _theGameBoard.getMap().getHexList()[29], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 260, 700, _theGameBoard.getMap().getHexList()[30], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 180, 650, _theGameBoard.getMap().getHexList()[31], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 100, 600, _theGameBoard.getMap().getHexList()[32], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 550, _theGameBoard.getMap().getHexList()[33], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 450, _theGameBoard.getMap().getHexList()[34], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 350, _theGameBoard.getMap().getHexList()[35], fortTexture));
+            hex.Add(new HexButton(hexTexture, spriteBatch, 110, 100, 20, 250, _theGameBoard.getMap().getHexList()[36], fortTexture));
 
             rollbutton = new DiceRollButton(roll, spriteBatch, 140, 50, 500, 25, font);
             endButton = new EndButton(endTexture, spriteBatch, 140, 50, 340, 25);
@@ -503,6 +509,14 @@ namespace KingsNThings
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());
                     break;
+                case "Combat":
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    me = currentPhase.getCurrentPlayer();
+                    break;
+                case "Construction":
+                    currentPhase.playPhase(_theGameBoard.getPlayers());
+                    me = currentPhase.getCurrentPlayer();
+                    break;
             }
 
             if (currentPhase.getCurrentState() == Phase.State.END)
@@ -580,19 +594,8 @@ namespace KingsNThings
             hex[35].Update();
             hex[36].Update();
 
-
-            marker[0].Update();
-            marker[1].Update();
-            marker[2].Update();
-            marker[3].Update();
-            marker[4].Update();
-            marker[5].Update();
-            marker[6].Update();
-            marker[7].Update();
-            marker[8].Update();
-            marker[9].Update();
-            marker[10].Update();
-            marker[11].Update();
+            foreach (Button m in marker)
+                m.Update();
 
             foreach (Button b in StackButtons)
                 b.Update();
@@ -654,18 +657,8 @@ namespace KingsNThings
             hex[35].Draw();
             hex[36].Draw();
 
-            marker[0].Draw();
-            marker[1].Draw();
-            marker[2].Draw();
-            marker[3].Draw();
-            marker[4].Draw();
-            marker[5].Draw();
-            marker[6].Draw();
-            marker[7].Draw();
-            marker[8].Draw();
-            marker[9].Draw();
-            marker[10].Draw();
-            marker[11].Draw();
+            foreach (Button m in marker)
+                m.Draw();
 
             rollbutton.Draw();
             endButton.Draw();
@@ -735,6 +728,14 @@ namespace KingsNThings
             return buttonInHand;
         }
 
+        public static void createMarker(Point topLeft, int p, SpriteBatch s)
+        {
+            MarkerButton markerB;
+            markerB = new MarkerButton(markerTexture[p - 1], GameBoard.Game.getPlayers()[p - 1], s, 30, 30, topLeft.X + 25, topLeft.Y + 5);
+            marker.Add(markerB);
+            KNT_Game.me.placeMarker(markerB.getButtonID());
+        }
+
         public static StackButton createStack(Tile hex, Thing t, SpriteBatch s)
         {
             StackButton stackB = new StackButton(stackTexture, me, s, t, hex, 30, 30, 0, 0);
@@ -756,14 +757,17 @@ namespace KingsNThings
 
         public static void putStackInHand(List<Thing> s)
         {
-            stackInHand = s;
+            stackInHand = new List<Thing>();
+            foreach(Thing t in s)
+            {
+                stackInHand.Add(t);
+            }
             me.setHandsFull(true);
         }
 
         public static List<Thing> getStackInHand()
         {
             me.setHandsFull(false);
-            stackInHand = null;
             return stackInHand;
         }
              

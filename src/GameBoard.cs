@@ -287,13 +287,13 @@ namespace GameLogic
             private void initGamePhases()
             {
                 // capacity should be 10
-                gamePhases = new List<Phase>(4);
+                gamePhases = new List<Phase>();
                 gamePhases.Add(new SetupPhase());
                 gamePhases.Add(new GoldCollectionPhase());
                 gamePhases.Add(new RecruitThingsPhase());
                 gamePhases.Add(new MovementPhase());
-                //movemnet
-                //combat
+                gamePhases.Add(new CombatPhase());
+                gamePhases.Add(new ConstructionPhase());
             }
         
             private void initCup()

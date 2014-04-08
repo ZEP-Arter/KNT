@@ -10,59 +10,97 @@ namespace GameLogic
         public CombatPhase() :
             base("Combat")
         {
-            map = GameBoard.Game.getMap();
             combatUnresolved = false;
         }
 
         public override void playPhase(List<Player> players)
         {
             _players = players;
+            flagCombat();
+            if (currentState != State.IN_PROGRESS)
+                beginPhase();
+            if (currentPlayer == null)
+                currentPlayer = _players[0];
+
+            if (currentPlayer.getInPhase())
+            {
+                changePlayer();
+            }
+
+            if (allDone())
+            {
+                if (!allCombatResolved())
+                {
+                    beginPhase();
+                    currentPlayer = _players[0];
+                }
+                else
+                {
+                    this.endPhase();
+                }
+            }
+            
         }
 
-        private void combat()
+        private void flagCombat()
         {
-            foreach(Tile t in map.getHexList())
+            List<Tile> map = GameBoard.Game.getMap().getHexList();
+            int c = 0;
+            foreach (Tile t in map)
+            {
+                for(int i=1; i<5; i++)
+                {
+                    if(t.doesPlayerHaveStack(i))
+                        c++;
+                }
+                if (c >= 2)
+                    t.setCFlag(true);
+            }
+        }
+
+        private bool allCombatResolved()
+        {
+            foreach (Tile t in GameBoard.Game.getMap().getHexList())
             {
                 if (t.getCFlag())
-                    combatUnresolved = true;
+                    return false;
             }
-            while (combatUnresolved)
-            {
-                foreach (Player p in _players)
-                {
-                    //Wait for Player to click on combat hex
 
-                }
-                combatUnresolved = false;
-                foreach (Tile t in map.getHexList())
-                {
-                    if (t.getCFlag())
-                        combatUnresolved = true;
-                }
-            }
+            return true;
         }
 
-        public void resolveCombat(Tile t)
-        {
-            bool resolved = false;
-            while (!resolved)
-            {
-                List<Thing> attackerStack = t.p1Stack;
-                List<Thing> defenderStack = t.p2Stack;
+        //public void resolveCombat(Tile t)
+        //{
+        //    bool resolved = false;
+        //    int attacker = t.getPlayer().getPlayerNumber();
+        //    int defender = 0;
+        //    for (int i = 1; i < 5; i++)
+        //    {
+        //        if (i != currentPlayer.getPlayerNumber())
+        //        {
+        //            if (t.doesPlayerHaveStack(i))
+        //                defender = i;
+        //        }
+        //    }
 
-                List<Thing> attackerMagicStack = findAttribute(attackerStack, Attributes.CombatAttributes.MAGIC);
-                List<Thing> defenderMagicStack = findAttribute(defenderStack, Attributes.CombatAttributes.MAGIC);
+        //    while (!resolved)
+        //    {
                 
-                //ROLL FOR HITS
-                //APPLY HITS
+        //        List<Thing> attackerStack = t.getPlayerStack(attacker);
+        //        List<Thing> defenderStack = t.getPlayerStack(defender);
 
-                List<Thing> attackerRangeStack = findAttribute(attackerStack, Attributes.CombatAttributes.RANGED);
-                List<Thing> defenderRangeStack = findAttribute(defenderStack, Attributes.CombatAttributes.RANGED);
 
-                List<Thing> attackerMeleeStack = findAttribute(attackerStack, Attributes.CombatAttributes.MAGIC);
-                List<Thing> defenderMeleeStack = findAttribute(defenderStack, Attributes.CombatAttributes.MAGIC);
-            }
-        }
+
+        //        //List<Thing> attackerMagicStack = findAttribute(attackerStack, Attributes.CombatAttributes.MAGIC);
+        //        //List<Thing> defenderMagicStack = findAttribute(defenderStack, Attributes.CombatAttributes.MAGIC);
+
+        //        //List<Thing> attackerRangeStack = findAttribute(attackerStack, Attributes.CombatAttributes.RANGED);
+        //        //List<Thing> defenderRangeStack = findAttribute(defenderStack, Attributes.CombatAttributes.RANGED);
+
+        //        //List<Thing> attackerMeleeStack = findAttribute(attackerStack, Attributes.CombatAttributes.MAGIC);
+        //        //List<Thing> defenderMeleeStack = findAttribute(defenderStack, Attributes.CombatAttributes.MAGIC);
+        //    }
+        //}
 
         private List<Thing> findAttribute(List<Thing> things, Attributes.CombatAttributes a)
         {
