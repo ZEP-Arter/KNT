@@ -36,6 +36,8 @@ namespace KingsNThings
 
             if (KNT_Game.me != null && KNT_Game.me.getDiceRoll() == 0)
                 needDice = true;
+            else
+                needDice = false;
 
             base.Update();
         }
@@ -44,7 +46,8 @@ namespace KingsNThings
         {
             if (rollClicked() && needDice)
             {
-                KNT_Game.me.setDiceRoll(DiceRoller.Roll.rollDice());
+                DicerollWindow window = new DicerollWindow();
+                window.Show();
                 needDice = false;
             }
         }
