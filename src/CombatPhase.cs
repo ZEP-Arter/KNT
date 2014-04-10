@@ -48,6 +48,7 @@ namespace GameLogic
             int c = 0;
             foreach (Tile t in map)
             {
+                c = 0;
                 for(int i=1; i<5; i++)
                 {
                     if(t.doesPlayerHaveStack(i))
@@ -55,6 +56,8 @@ namespace GameLogic
                 }
                 if (c >= 2)
                     t.setCFlag(true);
+                else
+                    t.setCFlag(false);
             }
         }
 
@@ -120,7 +123,7 @@ namespace GameLogic
 
         public override Player getCurrentPlayer()
         {
-            return null;
+            return currentPlayer;
         }
 
         private bool combatUnresolved;

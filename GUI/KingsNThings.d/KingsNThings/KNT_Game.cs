@@ -256,59 +256,58 @@ namespace KingsNThings
             thingTexture[94] = Content.Load<Texture2D>("images/nomads_desert_1_2");
             thingTexture[95] = Content.Load<Texture2D>("images/northwind_frozenwaste_2");
             thingTexture[96] = Content.Load<Texture2D>("images/ogre_mountain_2");
-            thingTexture[97] = Content.Load<Texture2D>("images/oilfield_frozenwaste_3g");
-            thingTexture[98] = Content.Load<Texture2D>("images/olddragon_desert_4");
-            thingTexture[99] = Content.Load<Texture2D>("images/pegasus_plains_2");
-            thingTexture[100] = Content.Load<Texture2D>("images/pirates_swamp_2");
+            thingTexture[97] = Content.Load<Texture2D>("images/olddragon_desert_4");////
+            thingTexture[98] = Content.Load<Texture2D>("images/pegasus_plains_2");
+            thingTexture[99] = Content.Load<Texture2D>("images/pirates_swamp_2");
+            thingTexture[100] = Content.Load<Texture2D>("images/pixies_forest_1");
 
-            thingTexture[101] = Content.Load<Texture2D>("images/pixies_forest_1");
-            thingTexture[102] = Content.Load<Texture2D>("images/pixies_forest_1_2");
-            thingTexture[103] = Content.Load<Texture2D>("images/poisonfrog_swamp_1");
-            thingTexture[104] = Content.Load<Texture2D>("images/pterodactyl_plains_3");
-            thingTexture[105] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2");
-            thingTexture[106] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2_2");
-            thingTexture[107] = Content.Load<Texture2D>("images/pygmies_jungle_2");
-            thingTexture[108] = Content.Load<Texture2D>("images/sandworm_desert_3");
-            thingTexture[109] = Content.Load<Texture2D>("images/skeletons_desert_1");
-            thingTexture[110] = Content.Load<Texture2D>("images/slimebeast_swamp_3");
+            thingTexture[101] = Content.Load<Texture2D>("images/pixies_forest_1_2");
+            thingTexture[102] = Content.Load<Texture2D>("images/poisonfrog_swamp_1");
+            thingTexture[103] = Content.Load<Texture2D>("images/pterodactyl_plains_3");
+            thingTexture[104] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2");
+            thingTexture[105] = Content.Load<Texture2D>("images/pterodactylwarriors_jungle_r2_2");
+            thingTexture[106] = Content.Load<Texture2D>("images/pygmies_jungle_2");
+            thingTexture[107] = Content.Load<Texture2D>("images/sandworm_desert_3");
+            thingTexture[108] = Content.Load<Texture2D>("images/skeletons_desert_1");
+            thingTexture[109] = Content.Load<Texture2D>("images/slimebeast_swamp_3");
 
-            thingTexture[111] = Content.Load<Texture2D>("images/sphinx_desert_4");
-            thingTexture[112] = Content.Load<Texture2D>("images/spirit_swamp_2");
-            thingTexture[113] = Content.Load<Texture2D>("images/sprite_swamp_1");
-            thingTexture[114] = Content.Load<Texture2D>("images/swampgas_swamp_1");
-            thingTexture[115] = Content.Load<Texture2D>("images/swamprat_swamp_1");
-            thingTexture[116] = Content.Load<Texture2D>("images/thing_swamp_2");
-            thingTexture[117] = Content.Load<Texture2D>("images/tigers_jungle_3");
-            thingTexture[118] = Content.Load<Texture2D>("images/tigers_jungle_3_2");
-            thingTexture[119] = Content.Load<Texture2D>("images/tribesmen_plains_2");
-            thingTexture[120] = Content.Load<Texture2D>("images/tribesmen_plains_2_2");
+            thingTexture[110] = Content.Load<Texture2D>("images/sphinx_desert_4");
+            thingTexture[111] = Content.Load<Texture2D>("images/spirit_swamp_2");
+            thingTexture[112] = Content.Load<Texture2D>("images/sprite_swamp_1");
+            thingTexture[113] = Content.Load<Texture2D>("images/swampgas_swamp_1");
+            thingTexture[114] = Content.Load<Texture2D>("images/swamprat_swamp_1");
+            thingTexture[115] = Content.Load<Texture2D>("images/thing_swamp_2");
+            thingTexture[116] = Content.Load<Texture2D>("images/tigers_jungle_3");
+            thingTexture[117] = Content.Load<Texture2D>("images/tigers_jungle_3_2");
+            thingTexture[118] = Content.Load<Texture2D>("images/tribesmen_plains_2");
+            thingTexture[119] = Content.Load<Texture2D>("images/tribesmen_plains_2_2");
 
-            thingTexture[121] = Content.Load<Texture2D>("images/tribesmen_plains_r1");         
-            thingTexture[122] = Content.Load<Texture2D>("images/troll_mountain_4");
-            thingTexture[123] = Content.Load<Texture2D>("images/unicorn_forest_4");
-            thingTexture[124] = Content.Load<Texture2D>("images/vampirebat_swamp_4");
-            thingTexture[125] = Content.Load<Texture2D>("images/villains_plains_2");
-            thingTexture[126] = Content.Load<Texture2D>("images/vultures_desert_1");
-            thingTexture[127] = Content.Load<Texture2D>("images/walkingtree_forest_5");
-            thingTexture[128] = Content.Load<Texture2D>("images/walrus_frozenwaste_4");
-            thingTexture[129] = Content.Load<Texture2D>("images/watersnake_swamp_1");
-            thingTexture[130] = Content.Load<Texture2D>("images/watusi_jungle_2");
+            thingTexture[120] = Content.Load<Texture2D>("images/tribesmen_plains_r1");         
+            thingTexture[121] = Content.Load<Texture2D>("images/troll_mountain_4");
+            thingTexture[122] = Content.Load<Texture2D>("images/unicorn_forest_4");
+            thingTexture[123] = Content.Load<Texture2D>("images/vampirebat_swamp_4");
+            thingTexture[124] = Content.Load<Texture2D>("images/villains_plains_2");
+            thingTexture[125] = Content.Load<Texture2D>("images/vultures_desert_1");
+            thingTexture[126] = Content.Load<Texture2D>("images/walkingtree_forest_5");
+            thingTexture[127] = Content.Load<Texture2D>("images/walrus_frozenwaste_4");
+            thingTexture[128] = Content.Load<Texture2D>("images/watersnake_swamp_1");
+            thingTexture[129] = Content.Load<Texture2D>("images/watusi_jungle_2");
 
-            thingTexture[131] = Content.Load<Texture2D>("images/whitebear_frozenwaste_4");
-            thingTexture[132] = Content.Load<Texture2D>("images/whitedragon_frozenwaste_5");
-            thingTexture[133] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
-            thingTexture[134] = Content.Load<Texture2D>("images/wildcat_forest_2");
-            thingTexture[135] = Content.Load<Texture2D>("images/willowisp_swamp_2");
-            thingTexture[136] = Content.Load<Texture2D>("images/wingedpirhana_swamp_3");
-            thingTexture[137] = Content.Load<Texture2D>("images/witchdoctor_jungle_2");
-            thingTexture[138] = Content.Load<Texture2D>("images/wolfpack_plains_3");
-            thingTexture[139] = Content.Load<Texture2D>("images/wolves_frozenwaste_3");
-            thingTexture[140] = Content.Load<Texture2D>("images/wyvern_forest_3");
+            thingTexture[130] = Content.Load<Texture2D>("images/whitebear_frozenwaste_4");
+            thingTexture[131] = Content.Load<Texture2D>("images/whitedragon_frozenwaste_5");
+            thingTexture[132] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
+            thingTexture[133] = Content.Load<Texture2D>("images/wildcat_forest_2");
+            thingTexture[134] = Content.Load<Texture2D>("images/willowisp_swamp_2");
+            thingTexture[135] = Content.Load<Texture2D>("images/wingedpirhana_swamp_3");
+            thingTexture[136] = Content.Load<Texture2D>("images/witchdoctor_jungle_2");
+            thingTexture[137] = Content.Load<Texture2D>("images/wolfpack_plains_3");
+            thingTexture[138] = Content.Load<Texture2D>("images/wolves_frozenwaste_3");
+            thingTexture[139] = Content.Load<Texture2D>("images/wyvern_forest_3");
 
-            thingTexture[141] = Content.Load<Texture2D>("images/yellowknight_desert_c3");
-            thingTexture[142] = Content.Load<Texture2D>("images/whitedragon_frozenwaste_5");
-            thingTexture[143] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
-            thingTexture[144] = Content.Load<Texture2D>("images/wildcat_forest_2");
+            thingTexture[140] = Content.Load<Texture2D>("images/yellowknight_desert_c3");
+            thingTexture[141] = Content.Load<Texture2D>("images/whitedragon_frozenwaste_5");
+            thingTexture[142] = Content.Load<Texture2D>("images/whiteknight_plains_c3");
+            thingTexture[143] = Content.Load<Texture2D>("images/wildcat_forest_2");
 
             fortTexture[0] = Content.Load<Texture2D>("images/tower");
             fortTexture[1] = Content.Load<Texture2D>("images/keep");
@@ -504,7 +503,6 @@ namespace KingsNThings
                     //Console.WriteLine(me.getName());
                     break;
                 case "Movement":
-                    Console.WriteLine("Movement");
                     currentPhase.playPhase(_theGameBoard.getPlayers());
                     me = currentPhase.getCurrentPlayer();
                     //Console.WriteLine(me.getName());
@@ -728,12 +726,26 @@ namespace KingsNThings
             return buttonInHand;
         }
 
-        public static void createMarker(Point topLeft, int p, SpriteBatch s)
+        public static int createMarker(Point topLeft, int p, SpriteBatch s)
         {
             MarkerButton markerB;
             markerB = new MarkerButton(markerTexture[p - 1], GameBoard.Game.getPlayers()[p - 1], s, 30, 30, topLeft.X + 25, topLeft.Y + 5);
             marker.Add(markerB);
+            markerB.setIsSet(true);
             KNT_Game.me.placeMarker(markerB.getButtonID());
+            return markerB.getButtonID();
+        }
+
+        public static void deleteMarker(int mID)
+        {
+            MarkerButton markerB = null;
+            foreach(MarkerButton m in marker)
+            {
+                if (m.getButtonID() == mID)
+                    markerB = m;
+            }
+
+            marker.Remove(markerB);
         }
 
         public static StackButton createStack(Tile hex, Thing t, SpriteBatch s)

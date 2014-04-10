@@ -22,6 +22,54 @@ namespace KingsNThings
         {
             canRecruit = false;
             sBatch = spriteBatch;
+
+            P1rack = new List<Point>();
+            P1rack.Add(new Point(675, 5));
+            P1rack.Add(new Point(735, 5));
+            P1rack.Add(new Point(785, 5));
+            P1rack.Add(new Point(845, 5));
+            P1rack.Add(new Point(905, 5));
+            P1rack.Add(new Point(675, 55));
+            P1rack.Add(new Point(735, 55));
+            P1rack.Add(new Point(785, 55));
+            P1rack.Add(new Point(845, 55));
+            P1rack.Add(new Point(905, 55));
+
+            P2rack = new List<Point>();
+            P2rack.Add(new Point(675, 140));
+            P2rack.Add(new Point(735, 140));
+            P2rack.Add(new Point(785, 140));
+            P2rack.Add(new Point(845, 140));
+            P2rack.Add(new Point(905, 140));
+            P2rack.Add(new Point(675, 190));
+            P2rack.Add(new Point(735, 190));
+            P2rack.Add(new Point(785, 190));
+            P2rack.Add(new Point(845, 190));
+            P2rack.Add(new Point(905, 190));
+
+            P3rack = new List<Point>();
+            P3rack.Add(new Point(675, 275));
+            P3rack.Add(new Point(735, 275));
+            P3rack.Add(new Point(785, 275));
+            P3rack.Add(new Point(845, 275));
+            P3rack.Add(new Point(905, 275));
+            P3rack.Add(new Point(675, 325));
+            P3rack.Add(new Point(735, 325));
+            P3rack.Add(new Point(785, 325));
+            P3rack.Add(new Point(845, 325));
+            P3rack.Add(new Point(905, 325));
+
+            P4rack = new List<Point>();
+            P4rack.Add(new Point(675, 410));
+            P4rack.Add(new Point(735, 410));
+            P4rack.Add(new Point(785, 410));
+            P4rack.Add(new Point(845, 410));
+            P4rack.Add(new Point(905, 410));
+            P4rack.Add(new Point(675, 460));
+            P4rack.Add(new Point(735, 460));
+            P4rack.Add(new Point(785, 460));
+            P4rack.Add(new Point(845, 460));
+            P4rack.Add(new Point(905, 460));
         }
 
         private bool recruitClicked()
@@ -37,24 +85,89 @@ namespace KingsNThings
             if (recruitClicked() && canRecruit)
             {
                 Thing thing = ((RecruitThingsPhase)GameBoard.Game.getCurrentPhaseObject()).recruitThings();
-
+                bool check = false;
                 if (thing != null)
                 {
                     if (KNT_Game.me.getPlayerNumber() == 1)
                     {
-                        KNT_Game.P1Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 55));
+                        foreach (Point point in P1rack)
+                        {
+                            foreach (ThingButton button in KNT_Game.P1Tiles)
+                            {
+                                if (button.location.Contains(point))
+                                {
+                                    check = true;
+                                }
+                            }
+                            if (!check)
+                            {
+                                KNT_Game.P1Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, point.X, point.Y));
+
+                                break;
+                            }
+                            check = false;
+                        }
+
                     }
                     else if (KNT_Game.me.getPlayerNumber() == 2)
                     {
-                        KNT_Game.P2Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 190));
+                        foreach (Point point in P2rack)
+                        {
+                            foreach (ThingButton button in KNT_Game.P2Tiles)
+                            {
+                                if (button.location.Contains(point))
+                                {
+                                    check = true;
+                                }
+                            }
+                            if (!check)
+                            {
+                                KNT_Game.P2Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, point.X, point.Y));
+
+                                break;
+                            }
+                            check = false;
+                        }
                     }
                     else if (KNT_Game.me.getPlayerNumber() == 3)
                     {
-                        KNT_Game.P3Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 325));
+                        foreach (Point point in P3rack)
+                        {
+                            foreach (ThingButton button in KNT_Game.P3Tiles)
+                            {
+                                if (button.location.Contains(point))
+                                {
+                                    check = true;
+                                }
+                            }
+                            if (!check)
+                            {
+                                KNT_Game.P3Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, point.X, point.Y));
+
+                                break;
+                            }
+                            check = false;
+                        }
                     }
                     else if (KNT_Game.me.getPlayerNumber() == 4)
                     {
-                        KNT_Game.P4Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, 675 + ((KNT_Game.me.numberOfRackTiles() - 5) * 60), 460));
+                        foreach (Point point in P4rack)
+                        {
+                            foreach (ThingButton button in KNT_Game.P4Tiles)
+                            {
+                                if (button.location.Contains(point))
+                                {
+                                    check = true;
+                                }
+                            }
+                            if (!check)
+                            {
+                                KNT_Game.P4Tiles.Add(new ThingButton(KNT_Game.thingTexture[thing.getTextureID()], KNT_Game.me, sBatch, thing, 30, 30, point.X, point.Y));
+
+                                break;
+                            }
+                            check = false;
+                        }
                     }
                 }
                 /*
@@ -99,6 +212,10 @@ namespace KingsNThings
             {
                 canRecruit = true;
             }
+            else
+            {
+                canRecruit = false;
+            }
 
             base.Update();
         }
@@ -129,5 +246,9 @@ namespace KingsNThings
         }
         private bool canRecruit;
         SpriteBatch sBatch;
+        List<Point> P1rack;
+        List<Point> P2rack;
+        List<Point> P3rack;
+        List<Point> P4rack;
     }
 }

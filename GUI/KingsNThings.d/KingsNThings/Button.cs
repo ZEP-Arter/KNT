@@ -15,7 +15,7 @@ namespace KingsNThings
 
         protected Texture2D image;
         //protected Texture2D backside;
-        protected Rectangle location;
+        public Rectangle location;
         protected SpriteBatch spriteBatch;
         //protected int buttonType;
         protected MouseState mouse;

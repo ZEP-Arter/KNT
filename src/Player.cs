@@ -247,6 +247,11 @@ namespace GameLogic
                 ownedTiles.Add(hex);
             }
 
+            public void removeOwnedTile(Tile hex)
+            {
+                ownedTiles.Remove(hex);
+            }
+
             public List<Tile> getOwnedTiles()
             {
                 return ownedTiles;
@@ -320,6 +325,9 @@ namespace GameLogic
 
         // marker id's and has been placed
             Dictionary<int, bool> mymarkers;
+            
+        //FOR SETUP INITIAL TOWER PLACEMENT
+            public int towerPlaced = 0;
 
         //current marker
             int currentMarkerID;

@@ -81,6 +81,9 @@ namespace KingsNThings
                 spriteBatch.Draw(image,
                                  new Rectangle(location.X - 15, location.Y, 50, 50),
                                  Color.White);
+                spriteBatch.Draw(image,
+                                 new Rectangle(525, 145, 100, 95),
+                                 Color.White);
             }
             else if (!isInPlay)
             {

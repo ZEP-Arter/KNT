@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,310 +16,332 @@ namespace KingsNThings
     {
         Random rnd = new Random();
 
-        public BattleForm(List <Thing> s1, List <Thing> s2, int num1, int num2)
+        public BattleForm(List<Thing> aStack, List<Thing> dStack, int aHits, int dHits, int aPlayerNum, int dPlayerNum)
         {
             InitializeComponent();
-            stack1 = s1;
-            stack2 = s2;
-            p1Attacks = num1;
-            p2Attacks = num2;
-            p1TilesClicked = new bool[10];
-            p2TilesClicked = new bool[10];
+            attackers = aStack;
+            defenders = dStack;
+            defenderHitsTaken = aHits;
+            attackerHitsTaken = dHits;
+            defendersClicked = new bool[10];
+            attackersClicked = new bool[10];
+
+            defenderLabel.Text = String.Format("Defender: Player {0}, Apply {1} hits", dPlayerNum, defenderHitsTaken);
+            attackerLabel.Text = String.Format("Attacker: Player {0}, Apply {1} hits", aPlayerNum, attackerHitsTaken);
+
+            var trace = new StackTrace(true);
+            var frame = trace.GetFrame(0);
+            string sourceCodeFile = Path.GetDirectoryName(frame.GetFileName());
+            sourceDirectory = Path.GetDirectoryName(sourceCodeFile);
+            xImage = Image.FromFile(Path.Combine(sourceDirectory, "WindowsGame1Content\\", "images\\x.png"));
+            init();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = p1TilesClicked.Length; i >= 0; i--)
+            for (int i = defenders.Count-1; i >= 0; i--)
             {
-                if (p1TilesClicked[i] == true)
+                if (defendersClicked[i] == true)
                 {
-                    stack1.RemoveAt(i);
+                    defenders.RemoveAt(i);
                 }
             }
-            for (int i = p2TilesClicked.Length; i >= 0; i--)
+            for (int i = attackers.Count - 1; i >= 0; i--)
             {
-                if (p2TilesClicked[i] == true)
+                if (attackersClicked[i] == true)
                 {
-                    stack2.RemoveAt(i);
+                    attackers.RemoveAt(i);
                 }
             }
+            
             this.Close();
         }
 
-        List<Thing> stack1, stack2;
-        Image[] images1;
-        Image[] images2;
-        bool[] p1TilesClicked;
-        bool[] p2TilesClicked;
-        int p1Attacks, p2Attacks;
-        int p1clicked = 0, p2clicked = 0;
-        bool done = false;
+        List<Thing> attackers, defenders;
+        Image[] images1 = new Image[10];
+        Image[] images2 = new Image[10];
+        Image xImage;
+        bool[] defendersClicked;
+        bool[] attackersClicked;
+        int defenderHitsTaken, attackerHitsTaken;
+        string sourceDirectory;
+
+        public List<Thing> getAttackerStack()
+        { return attackers; }
+
+        public List<Thing> getDefenderStack()
+        { return defenders; }
 
         private void BattleForm_Load(object sender, EventArgs e)
         {
-            for (int count = 0; count > 9; count++)
+            this.Activate();
+            this.Focus();
+        }
+
+        private void init()
+        {
+            for (int count = 0; count < 10; count++)
             {
-                p1TilesClicked[count] = true;
-                p2TilesClicked[count] = true;
+                defendersClicked[count] = true;
+                attackersClicked[count] = true;
             }
             int i = 0;
-            foreach (Thing thing in stack1){
-                
-                images1[i]= Image.FromFile(thing.getTexturePath());
-                if (i == 0) { pictureBox1.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 1) { pictureBox2.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 2) { pictureBox7.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 3) { pictureBox3.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 4) { pictureBox4.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 5) { pictureBox8.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 6) { pictureBox5.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 7) { pictureBox6.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 8) { pictureBox9.Image = images1[i]; p1TilesClicked[i] = false; }
-                if (i == 9) { pictureBox10.Image = images1[i]; p1TilesClicked[i] = false; }
+            foreach (Thing thing in defenders)
+            {
+
+                images1[i] = Image.FromFile(Path.Combine(sourceDirectory, "WindowsGame1Content\\", thing.getTexturePath()));
+
+                if (i == 0) { pictureBox1.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 1) { pictureBox2.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 2) { pictureBox7.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 3) { pictureBox3.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 4) { pictureBox4.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 5) { pictureBox8.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 6) { pictureBox5.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 7) { pictureBox6.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 8) { pictureBox9.Image = images1[i]; defendersClicked[i] = false; }
+                if (i == 9) { pictureBox10.Image = images1[i]; defendersClicked[i] = false; }
 
                 i++;
             }
 
             int j = 0;
-            foreach (Thing thing in stack2)
+            foreach (Thing thing in attackers)
             {
 
-                images1[j] = Image.FromFile(thing.getTexturePath());
-                if (j == 0) { pictureBox11.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 1) { pictureBox12.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 2) { pictureBox13.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 3) { pictureBox14.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 4) { pictureBox16.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 5) { pictureBox17.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 6) { pictureBox15.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 7) { pictureBox18.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 8) { pictureBox19.Image = images1[j]; p2TilesClicked[j] = false; }
-                if (j == 9) { pictureBox20.Image = images1[j]; p2TilesClicked[j] = false; }
+                images1[j] = Image.FromFile(Path.Combine(sourceDirectory, "WindowsGame1Content\\", thing.getTexturePath()));
+                if (j == 0) { pictureBox11.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 1) { pictureBox12.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 2) { pictureBox13.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 3) { pictureBox14.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 4) { pictureBox16.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 5) { pictureBox17.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 6) { pictureBox15.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 7) { pictureBox18.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 8) { pictureBox19.Image = images1[j]; attackersClicked[j] = false; }
+                if (j == 9) { pictureBox20.Image = images1[j]; attackersClicked[j] = false; }
 
                 j++;
             }
-
-            
-            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[0] == false && p1Attacks > 0)
+            if (defendersClicked[0] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[0] = true;
-                images1[0] = Image.FromFile("x.png");
+                defendersClicked[0] = true;
+                images1[0] = xImage;
                 pictureBox1.Image = images1[0];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[1] == false && p1Attacks > 0)
+            if (defendersClicked[1] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[1] = true;
-                images1[1] = Image.FromFile("x.png");
+                defendersClicked[1] = true;
+                images1[1] = xImage;
                 pictureBox2.Image = images1[1];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[2] == false && p1Attacks > 0)
+            if (defendersClicked[2] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[2] = true;
-                images1[2] = Image.FromFile("x.png");
+                defendersClicked[2] = true;
+                images1[2] = xImage;
                 pictureBox7.Image = images1[2];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[3] == false && p1Attacks > 0)
+            if (defendersClicked[3] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[3] = true;
-                images1[3] = Image.FromFile("x.png");
+                defendersClicked[3] = true;
+                images1[3] = xImage;
                 pictureBox3.Image = images1[3];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[4] == false && p1Attacks > 0)
+            if (defendersClicked[4] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[4] = true;
-                images1[4] = Image.FromFile("x.png");
+                defendersClicked[4] = true;
+                images1[4] = xImage;
                 pictureBox4.Image = images1[4];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[5] == false && p1Attacks > 0)
+            if (defendersClicked[5] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[5] = true;
-                images1[5] = Image.FromFile("x.png");
+                defendersClicked[5] = true;
+                images1[5] = xImage;
                 pictureBox8.Image = images1[5];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[6] == false && p1Attacks > 0)
+            if (defendersClicked[6] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[6] = true;
-                images1[6] = Image.FromFile("x.png");
+                defendersClicked[6] = true;
+                images1[6] = xImage;
                 pictureBox5.Image = images1[6];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[7] == false && p1Attacks > 0)
+            if (defendersClicked[7] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[7] = true;
-                images1[7] = Image.FromFile("x.png");
+                defendersClicked[7] = true;
+                images1[7] = xImage;
                 pictureBox6.Image = images1[7];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[8] == false && p1Attacks > 0)
+            if (defendersClicked[8] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[8] = true;
-                images1[8] = Image.FromFile("x.png");
+                defendersClicked[8] = true;
+                images1[8] = xImage;
                 pictureBox9.Image = images1[8];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-            if (p1TilesClicked[9] == false && p1Attacks > 0)
+            if (defendersClicked[9] == false && defenderHitsTaken > 0)
             {
-                p1TilesClicked[9] = true;
-                images1[9] = Image.FromFile("x.png");
+                defendersClicked[9] = true;
+                images1[9] = xImage;
                 pictureBox10.Image = images1[9];
-                p1Attacks--;
+                defenderHitsTaken--;
             }
         }
 
         private void pictureBox11_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[0] == false && p2Attacks > 0)
+            if (attackersClicked[0] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[0] = true;
-                images2[0] = Image.FromFile("x.png");
+                attackersClicked[0] = true;
+                images2[0] = xImage;
                 pictureBox11.Image = images2[0];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox12_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[1] == false && p2Attacks > 0)
+            if (attackersClicked[1] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[1] = true;
-                images2[1] = Image.FromFile("x.png");
-                pictureBox11.Image = images2[1];
-                p2Attacks--;
+                attackersClicked[1] = true;
+                images2[1] = xImage;
+                pictureBox12.Image = images2[1];
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox13_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[2] == false && p2Attacks > 0)
+            if (attackersClicked[2] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[2] = true;
-                images2[2] = Image.FromFile("x.png");
+                attackersClicked[2] = true;
+                images2[2] = xImage;
                 pictureBox13.Image = images2[2];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox14_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[3] == false && p2Attacks > 0)
+            if (attackersClicked[3] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[3] = true;
-                images2[3] = Image.FromFile("x.png");
+                attackersClicked[3] = true;
+                images2[3] = xImage;
                 pictureBox14.Image = images2[3];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox16_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[4] == false && p2Attacks > 0)
+            if (attackersClicked[4] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[4] = true;
-                images2[4] = Image.FromFile("x.png");
+                attackersClicked[4] = true;
+                images2[4] = xImage;
                 pictureBox16.Image = images2[4];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox17_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[5] == false && p2Attacks > 0)
+            if (attackersClicked[5] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[5] = true;
-                images2[5] = Image.FromFile("x.png");
+                attackersClicked[5] = true;
+                images2[5] = xImage;
                 pictureBox17.Image = images2[5];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox15_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[6] == false && p2Attacks > 0)
+            if (attackersClicked[6] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[6] = true;
-                images2[6] = Image.FromFile("x.png");
+                attackersClicked[6] = true;
+                images2[6] = xImage;
                 pictureBox15.Image = images2[6];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox18_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[7] == false && p2Attacks > 0)
+            if (attackersClicked[7] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[7] = true;
-                images2[7] = Image.FromFile("x.png");
+                attackersClicked[7] = true;
+                images2[7] = xImage;
                 pictureBox18.Image = images2[7];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox19_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[8] == false && p2Attacks > 0)
+            if (attackersClicked[8] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[8] = true;
-                images2[8] = Image.FromFile("x.png");
+                attackersClicked[8] = true;
+                images2[8] = xImage;
                 pictureBox19.Image = images2[8];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 
         private void pictureBox20_Click(object sender, EventArgs e)
         {
-            if (p2TilesClicked[9] == false && p2Attacks > 0)
+            if (attackersClicked[9] == false && attackerHitsTaken > 0)
             {
-                p2TilesClicked[9] = true;
-                images2[9] = Image.FromFile("x.png");
+                attackersClicked[9] = true;
+                images2[9] = xImage;
                 pictureBox20.Image = images2[9];
-                p2Attacks--;
+                attackerHitsTaken--;
             }
         }
 

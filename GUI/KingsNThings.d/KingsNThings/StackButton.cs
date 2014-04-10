@@ -24,7 +24,9 @@ namespace KingsNThings
             base(texture, sBatch, width, height, x, y)
         {
             image = texture;
-            thingsInStack = t;
+            thingsInStack = new List<Thing>(10);
+            foreach (Thing aThing in t)
+                thingsInStack.Add(aThing);
             hexStackIsOn = hex;
             owner = p;
         }
@@ -42,7 +44,7 @@ namespace KingsNThings
 
         public bool canAddToStack()
         {
-            if (thingsInStack.Count + 1 <= thingsInStack.Capacity - 1)
+            if (thingsInStack.Count + 1 <= thingsInStack.Capacity)
                 return true;
             return false;
         }
@@ -68,7 +70,7 @@ namespace KingsNThings
         {
            spriteBatch.Draw(image, location, Color.White);
 
-           if (location.Contains(new Point(mouse.X, mouse.Y)))
+           if (location.Contains(new Point(mouse.X, mouse.Y)) && KNT_Game.me.getPlayerNumber() == this.owner.getPlayerNumber())
            {
                int i = 0;
                int j = 0;

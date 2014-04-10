@@ -48,6 +48,10 @@ namespace GameLogic
                     //Player win
                     //if (GameBoard.Game.getMap().getHexList()[i].getFort() == 4)
                     //GameBoard.Game.win(GameBoard.Game.getMap().getHexList()[i].getPlayer());
+                    WinMessage wm = new WinMessage(currentPlayer.getName());
+
+                    wm.Show();
+                    
                 }
             }
         }

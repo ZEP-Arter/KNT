@@ -12,6 +12,8 @@ namespace GameLogic
         {
             positionsSet = false;
             markersSet = false;
+            towersSet = false;
+            towerPlacementPhase = false;
         }
 
         public override void playPhase(List<Player> players)
@@ -37,10 +39,33 @@ namespace GameLogic
             //place starting markers
             else if (!markersSet)
                 markersSet = placeStartingMarkers();
+            else if (!towersSet)
+                towersSet = placeStartingTower();
             //else if (!fortSet)
             //check to see if everyone has finised their turn
             if (allDone())
                 endPhase();
+        }
+
+        private bool placeStartingTower()
+        {
+            towerPlacementPhase = true;
+            if (_players.IndexOf(currentPlayer) == _players.Capacity - 1 &&
+                currentPlayer.towerPlaced == 1)
+            {
+                foreach (Player p in _players)
+                    p.donePhase();
+                changePlayer();
+                return true;
+            }
+            else if (_players.IndexOf(currentPlayer) != _players.Capacity - 1 &&
+                currentPlayer.towerPlaced == 1)
+            {
+                currentPlayer.donePhase();
+                changePlayer();
+                return false;
+            }
+            return false;
         }
 
         private bool placeStartingMarkers()
@@ -49,8 +74,8 @@ namespace GameLogic
                 currentPlayer.placedAllMarkers())
             {
                 Console.WriteLine("4th");
-                foreach (Player p in _players)
-                    p.donePhase();
+                //foreach (Player p in _players)
+                    //p.donePhase();
                 changePlayer();
                 return true;
             }
@@ -106,6 +131,11 @@ namespace GameLogic
         }
 
         bool positionsSet,
-             markersSet;
+             markersSet,
+             towersSet,
+             towerPlacementPhase;
+
+        public bool getTowerPlacementPhase()
+        { return towerPlacementPhase; }
     }
 }

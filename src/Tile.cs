@@ -24,10 +24,7 @@ namespace GameLogic
         private bool startPossible = false;
         //Holds stacks of things for each player
         public Dictionary<int, List<Thing>> stacks = new Dictionary<int,List<Thing>>();
-        public List<Thing> p1Stack;
-        public List<Thing> p2Stack;
-        public List<Thing> p3Stack;
-        public List<Thing> p4Stack;
+        public Dictionary<int, bool> movePossible = new Dictionary<int, bool>();
 
         //For Level is 0 if there is no Fort
         private int fortLevel = 0;
@@ -58,6 +55,10 @@ namespace GameLogic
             stacks.Add(2, new List<Thing>());
             stacks.Add(3, new List<Thing>());
             stacks.Add(4, new List<Thing>());
+            movePossible.Add(1, true);
+            movePossible.Add(2, true);
+            movePossible.Add(3, true);
+            movePossible.Add(4, true);
 
             if(h == "Swamp" || h == "Forest" || h == "Mountain" || h == "Jungle")
                 rough = true;
@@ -77,6 +78,11 @@ namespace GameLogic
             stacks.Add(2, new List<Thing>());
             stacks.Add(3, new List<Thing>());
             stacks.Add(4, new List<Thing>());
+            movePossible.Add(1, true);
+            movePossible.Add(2, true);
+            movePossible.Add(3, true);
+            movePossible.Add(4, true);
+
             if(h == "Swamp" || h == "Forest" || h == "Mountain" || h == "Jungle")
                 rough = true;
             startPossible = s;
