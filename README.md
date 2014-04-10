@@ -8,4 +8,6 @@ Source code was written in Visual C# in the Visual Studio IDE.
 
 If you would like to run the code from within the IDE, plesae download and install XNA ( zip file for downloads included. )
 
+A virtual image was not necessary because our release should run on every windows machine.
+
 Enjoy!
