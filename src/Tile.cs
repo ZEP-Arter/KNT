@@ -1,3 +1,5 @@
+using GameLogic.Managers;
+using GameLogic.Things;
 using System;
 using System.Collections.Generic;
 namespace GameLogic
