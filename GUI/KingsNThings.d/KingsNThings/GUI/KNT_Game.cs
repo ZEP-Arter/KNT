@@ -688,7 +688,7 @@ namespace KingsNThings.GUI
             MouseState mouse = Mouse.GetState();
             spriteBatch.DrawString(font, "MouseX = " + mouse.X, new Vector2(20, 45), Color.Black);
             spriteBatch.DrawString(font, "MouseY = " + mouse.Y, new Vector2(20, 70), Color.Black);
-            spriteBatch.DrawString(font, String.Format("Phase : {0}", _theGameBoard.getCurrentPhase()), new Vector2(10, 1), Color.Black);
+            spriteBatch.DrawString(font, String.Format("Phase : {0}", _theGameBoard.getCurrentPhase().getName()), new Vector2(10, 1), Color.Black);
 
 
             foreach (Player p in _theGameBoard.getPlayers())

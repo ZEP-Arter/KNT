@@ -30,11 +30,11 @@ namespace KingsNThings.Forms
             defenderLabel.Text = String.Format("Defender: Player {0}, Apply {1} hits", dPlayerNum, defenderHitsTaken);
             attackerLabel.Text = String.Format("Attacker: Player {0}, Apply {1} hits", aPlayerNum, attackerHitsTaken);
 
-            var trace = new StackTrace(true);
-            var frame = trace.GetFrame(0);
-            string sourceCodeFile = Path.GetDirectoryName(frame.GetFileName());
-            sourceDirectory = Path.GetDirectoryName(sourceCodeFile);
-            xImage = Image.FromFile(Path.Combine(sourceDirectory, "KNT_Game_FinalContent\\", "images\\x.png"));
+            //var trace = new StackTrace(true);
+            //var frame = trace.GetFrame(0);
+            //string sourceCodeFile = Path.GetDirectoryName(frame.GetFileName());
+            sourceDirectory = Path.GetDirectoryName(Directory.GetCurrentDirectory() + "\\Content\\");
+            xImage = Image.FromFile(Path.Combine(sourceDirectory, "images\\x.png"));
             init();
         }
 
@@ -90,7 +90,7 @@ namespace KingsNThings.Forms
             foreach (Thing thing in defenders)
             {
 
-                images1[i] = Image.FromFile(Path.Combine(sourceDirectory, "KNT_Game_FinalContent\\", thing.getTexturePath()));
+                images1[i] = Image.FromFile(Path.Combine(sourceDirectory, thing.getTexturePath()));
 
                 if (i == 0) { pictureBox1.Image = images1[i]; defendersClicked[i] = false; }
                 if (i == 1) { pictureBox2.Image = images1[i]; defendersClicked[i] = false; }
@@ -110,7 +110,7 @@ namespace KingsNThings.Forms
             foreach (Thing thing in attackers)
             {
 
-                images1[j] = Image.FromFile(Path.Combine(sourceDirectory, "WindowsGame1Content\\", thing.getTexturePath()));
+                images1[j] = Image.FromFile(Path.Combine(sourceDirectory, thing.getTexturePath()));
                 if (j == 0) { pictureBox11.Image = images1[j]; attackersClicked[j] = false; }
                 if (j == 1) { pictureBox12.Image = images1[j]; attackersClicked[j] = false; }
                 if (j == 2) { pictureBox13.Image = images1[j]; attackersClicked[j] = false; }

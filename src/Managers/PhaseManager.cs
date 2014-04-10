@@ -12,11 +12,8 @@ namespace GameLogic.Managers
     {
         public Phase play()
         {
-            phSemaphore.WaitOne();
 
             Phase returnState = (currentPhase.getCurrentState() != Phase.State.END) ? currentPhase : getNextPhase();
-
-            phSemaphore.Release();
 
             return returnState;
         }
@@ -37,14 +34,11 @@ namespace GameLogic.Managers
 
         private Phase getNextPhase()
         {
-            phSemaphore.WaitOne();
 
             if (phases.IndexOf(currentPhase) != phases.Capacity - 1)
                 currentPhase = phases[phases.IndexOf(currentPhase) + 1];
             else
                 currentPhase = phases[1];
-
-            phSemaphore.Release();
 
             return currentPhase;
         }
@@ -71,12 +65,8 @@ namespace GameLogic.Managers
         {
             get
             {
-                phSemaphore.WaitOne();
-
                 if (phManager == null)
                     phManager = new PhaseManager();
-
-                phSemaphore.Release();
 
                 return phManager;
             }

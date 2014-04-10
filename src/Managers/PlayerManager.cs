@@ -71,6 +71,7 @@ namespace GameLogic.Managers
                 else
                 {
                     Console.WriteLine("There is a duplicate roll, rolling again . . .");
+                    pSemaphore.Release();
                     return false;
                 }
             }

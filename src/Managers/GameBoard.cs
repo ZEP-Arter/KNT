@@ -78,7 +78,8 @@ using GameLogic.Phases;
 	
 	                while (players.Count != players.Capacity)
 	                {
-	                   addPlayer(String.Format("Player {0}", n));
+                        addPlayer(String.Format("Player {0}", n));
+                        n++;
 	                }
 	
 	                init();
@@ -371,7 +372,7 @@ using GameLogic.Phases;
                 playingCup.Add(new Creature("Bandits", "Forest", 2, attr, 1, "images\\bandits_forest_2.png"));
                 playingCup.Add(new Creature("Flying Squirrel", "Forest", 1, attr, 47, "images\\flyingsquirrel_forest_1.png")); //Flying
                 playingCup.Add(new Creature("Flying Squirrel", "Forest", 2, attr, 48, "images\\flyingsquirrel_forest_1_2.png")); //Flying
-                playingCup.Add(new Creature("Green Knight", "Forest", 4, attr, 74, "images\\greenknight_forest_4.png")); //Charge
+                playingCup.Add(new Creature("Green Knight", "Forest", 4, attr, 74, "images\\greenknight_forest_c4.png")); //Charge
                 playingCup.Add(new Creature("Dryad", "Forest", 1, attr, 26, "images\\dryad_forest_1.png")); //Magic
                 playingCup.Add(new Creature("Elves", "Forest", 3, attr, 37, "images\\elves_forest_r3.png")); //Ranged
                 playingCup.Add(new Creature("Elves", "Forest", 2, attr, 35, "images\\elves_forest_r2.png")); //Ranged
